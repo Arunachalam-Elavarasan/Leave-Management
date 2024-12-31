@@ -23,11 +23,9 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/assets/"
-            ],
+            "assets": ["src/assets/"],
             "styles": [
-              "src/styles.scss",
+              "src/styles/index.scss",
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
             ],
             "scripts": []

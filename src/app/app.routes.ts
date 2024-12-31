@@ -24,8 +24,8 @@ export const routes: Routes = [
       {
         path: routePath?.USER_FORM,
         loadComponent: () =>
-          import('./pages/user/form/form.component').then(
-            (m) => m.FormComponent
+          import('./pages/user/form/basic-info/basic-info.component').then(
+            (m) => m.BasicInfoComponent
           ),
       },
 
