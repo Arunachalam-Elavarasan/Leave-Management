@@ -1,1 +1,28 @@
-<p>basic-info works!</p>
+<form [formGroup]="user" (submit)="onSubmit()">
+  <button type="submit">Save</button>
+  <div style="display: flex; gap: 20px">
+    <div>
+      <div>
+        <text-field label="First Name" [control]="user.controls.firstName" />
+      </div>
+      <div>
+        <text-field label="Last Name" [control]="user.controls.lastName" />
+      </div>
+      <div>
+        <text-field label="Email" [control]="user.controls.email" />
+      </div>
+      <div>
+        <text-field label="Phone Number" [control]="user.controls.phoneNo" />
+      </div>
+      <div>
+        <toggle-field
+          label="Status"
+          name="status"
+          [control]="user.controls.status"
+        />
+      </div>
+    </div>
+    <div></div>
+    <div></div>
+  </div>
+</form>

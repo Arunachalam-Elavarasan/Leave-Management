@@ -1,0 +1,14 @@
+<mat-form-field [appearance]="appearance">
+  <mat-label>{{ label }}</mat-label>
+  @if (!isTextArea) {
+  <input
+    matInput
+    [readonly]="readonly"
+    [disabled]="disabled"
+    [formControl]="control"
+  />
+  } @else {
+  <textarea matInput [readonly]="readonly" [disabled]="disabled"></textarea>
+  }
+  <mat-error *ngIf="error">{{ error }}</mat-error>
+</mat-form-field>

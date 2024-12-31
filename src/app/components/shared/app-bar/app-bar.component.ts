@@ -20,7 +20,5 @@ export class AppBarComponent {
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    console.log(this.route);
-  }
+  ngOnInit(): void {}
 }

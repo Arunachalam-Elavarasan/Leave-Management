@@ -1,0 +1,19 @@
+<form [formGroup]="contactInfoValue">
+  <div></div>
+  <div>
+    <text-field
+      label="Street"
+      [control]="contactInfoValue.get('contactInfoValue')"
+    />
+  </div>
+  <div>
+    <text-field label="City" />
+  </div>
+  <div>
+    <text-field label="State" />
+  </div>
+  <div>
+    <text-field label="Pin code" />
+    <check-box-field label="Use Primary Contact" *ngIf="!isPrimaryInfo" />
+  </div>
+</form>
