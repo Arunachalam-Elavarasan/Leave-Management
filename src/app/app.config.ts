@@ -7,11 +7,15 @@ import { provideRouter } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
+import { provideStore } from '@ngrx/store';
+import { UserReducer } from './store/users/user.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     importProvidersFrom(BrowserAnimationsModule),
+    provideStore({ users: UserReducer }),
   ],
 };
+
