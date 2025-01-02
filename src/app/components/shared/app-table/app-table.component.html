@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr class="row">
+      <ng-container *ngFor="let item of columnData">
+        <th class="cell">
+          {{ item?.label }}
+        </th>
+      </ng-container>
+      <th *ngIf="hasAction">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let item of data">
+      <tr class="row">
+        <ng-container *ngFor="let column of columnData">
+          <td class="cell">
+            {{item?.[column?.accessor] || ""}}
+          </td>
+        </ng-container>
+        <td class="cell" *ngIf="hasAction">
+          <button *ngIf="canEdit" (click)="onClick('edit', item)">Edit</button>
+          <button *ngIf="canView" (click)="onClick('view', item)">View</button>
+          <button *ngIf="canDelete" (click)="onClick('delete', item)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
