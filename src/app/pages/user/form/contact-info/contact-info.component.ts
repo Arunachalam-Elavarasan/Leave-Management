@@ -2,7 +2,14 @@ import { Component, Input } from '@angular/core';
 import { TextFieldComponent } from '../../../../components/shared/form-fields/text-field/text-field.component';
 import { CommonModule } from '@angular/common';
 import { CheckBoxFieldComponent } from '../../../../components/shared/form-fields/check-box-field/check-box-field.component';
-import { FormControl,  FormGroup,  FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe';
 
 @Component({
   selector: 'contact-info',
@@ -13,6 +20,7 @@ import { FormControl,  FormGroup,  FormsModule, ReactiveFormsModule } from '@ang
     FormsModule,
     TextFieldComponent,
     CheckBoxFieldComponent,
+    FormControlPipe,
   ],
   templateUrl: './contact-info.component.html',
   styleUrl: './contact-info.component.scss',
@@ -20,11 +28,4 @@ import { FormControl,  FormGroup,  FormsModule, ReactiveFormsModule } from '@ang
 export class ContactInfoComponent {
   @Input() isPrimaryInfo: boolean = true;
   @Input() contactInfoValue!: FormGroup;
-
-  ngOnChanges(): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log(this.contactInfoValue);
-    
-  }
 }

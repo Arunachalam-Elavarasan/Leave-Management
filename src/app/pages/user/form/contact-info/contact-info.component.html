@@ -1,19 +1,38 @@
-<form [formGroup]="contactInfoValue">
-  <div></div>
+<div
+  [formGroup]="contactInfoValue"
+  style="display: flex; flex-direction: column; gap: 12px"
+>
+  <h3>{{ isPrimaryInfo ? "Primary" : "Secondary" }} Contact Info</h3>
   <div>
     <text-field
-      label="Street"
-      [control]="contactInfoValue.get('contactInfoValue')"
+      label="Address"
+      [control]="contactInfoValue.get('address') | formControl"
+      [isTextArea]="true"
     />
   </div>
   <div>
-    <text-field label="City" />
+    <text-field
+      label="Street"
+      [control]="contactInfoValue.get('street') | formControl"
+    />
   </div>
   <div>
-    <text-field label="State" />
+    <text-field
+      label="City"
+      [control]="contactInfoValue.get('city') | formControl"
+    />
   </div>
   <div>
-    <text-field label="Pin code" />
+    <text-field
+      label="State"
+      [control]="contactInfoValue.get('state') | formControl"
+    />
+  </div>
+  <div>
+    <text-field
+      label="Pin code"
+      [control]="contactInfoValue.get('pinCode') | formControl"
+    />
     <check-box-field label="Use Primary Contact" *ngIf="!isPrimaryInfo" />
   </div>
-</form>
+</div>

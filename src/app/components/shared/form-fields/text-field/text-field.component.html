@@ -5,7 +5,7 @@
     matInput
     [readonly]="readonly"
     [disabled]="disabled"
-    [formControl]="control"
+    [formControl]="control | formControl"
   />
   } @else {
   <textarea matInput [readonly]="readonly" [disabled]="disabled"></textarea>

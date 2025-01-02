@@ -4,12 +4,12 @@ import { ContactInfoComponent } from '../contact-info/contact-info.component';
 import { ToggleFieldComponent } from '../../../../components/shared/form-fields/toggle-field/toggle-field.component';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe';
+import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'basic-info',
@@ -18,9 +18,10 @@ import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe
     ReactiveFormsModule,
     FormsModule,
     TextFieldComponent,
-    ContactInfoComponent,
     ToggleFieldComponent,
-    FormControlPipe,
+    ContactInfoComponent,
+    FormGroupPipe,
+    CommonModule,
   ],
   templateUrl: './basic-info.component.html',
   styleUrl: './basic-info.component.scss',
@@ -53,6 +54,10 @@ export class BasicInfoComponent {
       sameAsPrimary: false,
     }),
   });
+
+  get primaryContactInfo(): FormGroup {
+    return this.user.get('primaryContactInfo') as FormGroup;
+  }
 
   onSubmit() {
     console.log(this.user.value);
