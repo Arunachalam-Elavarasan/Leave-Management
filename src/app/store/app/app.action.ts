@@ -1,13 +1,34 @@
 import { createAction, props } from '@ngrx/store';
-import { Users } from '../../model/users';
 
-export const addUsers = createAction('Add Users', props<{ value: Users[] }>());
+export const appActions = {
+  ADD_USERS: 'Add Users',
+  ADD_USER: 'Add User',
+  UPDATE_USER: 'Update User',
+  DELETE_user: 'Delete User',
+  USER_ADDED_SUCCESSFULLY: '[User Added] Successfully',
+};
 
-export const addUser = createAction('Add User', props<{ value: any }>());
+export const addUsers = createAction(
+  appActions?.ADD_USERS,
+  props<{ value: any[] }>()
+);
+
+export const addUser = createAction(
+  appActions?.ADD_USER,
+  props<{ value: any }>()
+);
+
+export const userAdded = createAction(
+  appActions?.USER_ADDED_SUCCESSFULLY,
+  props<{ value: any }>()
+);
 
 export const updateUser = createAction(
-  'Update User',
+  appActions?.UPDATE_USER,
   props<{ id: string; value: any }>()
 );
 
-export const deleteUser = createAction('Delete User', props<{ id: string }>());
+export const deleteUser = createAction(
+  appActions?.DELETE_user,
+  props<{ id: string }>()
+);

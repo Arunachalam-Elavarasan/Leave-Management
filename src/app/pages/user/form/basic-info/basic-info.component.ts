@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { addUser } from '../../../../store/app/app.action';
 
 @Component({
   selector: 'basic-info',
@@ -29,6 +31,7 @@ import { CommonModule } from '@angular/common';
 })
 export class BasicInfoComponent {
   private formBuilder = inject(FormBuilder);
+  private store = inject(Store);
 
   @Input() isUpdate: boolean = false;
 
@@ -55,11 +58,7 @@ export class BasicInfoComponent {
     }),
   });
 
-  get primaryContactInfo(): FormGroup {
-    return this.user.get('primaryContactInfo') as FormGroup;
-  }
-
   onSubmit() {
-    console.log(this.user.value);
+    this.store.dispatch(addUser({ value: this.user.value }));
   }
 }
