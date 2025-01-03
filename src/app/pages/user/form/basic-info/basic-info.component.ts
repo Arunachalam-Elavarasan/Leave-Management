@@ -12,6 +12,9 @@ import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { addUser } from '../../../../store/app/app.action';
+import { NavigationService } from '../../../../services/navigation/navigation.service';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../../../services/api/api.service';
 
 @Component({
   selector: 'basic-info',
@@ -32,8 +35,11 @@ import { addUser } from '../../../../store/app/app.action';
 export class BasicInfoComponent {
   private formBuilder = inject(FormBuilder);
   private store = inject(Store);
+  private navigation = inject(NavigationService);
+  private api = inject(ApiService);
 
-  @Input() isUpdate: boolean = false;
+  editId: any = '';
+  isEdit: boolean = false;
 
   user = this.formBuilder.group({
     firstName: '',
@@ -57,6 +63,27 @@ export class BasicInfoComponent {
       sameAsPrimary: false,
     }),
   });
+
+  ngOnInit(): void {
+    const paramId = this.navigation.getQueryParam('id');
+    const paramsIsEdit = this.navigation.getQueryParam('isEdit');
+
+    paramId.subscribe((id) => {
+      this.editId = id;
+      if (id) {
+        this.api.service.get(this.api.path.USERS, id).subscribe({
+          next: (data) => {
+            this.user.patchValue({ ...(data || {}) });
+          },
+          error: (err) => console.log(err),
+        });
+      }
+    });
+
+    paramsIsEdit.subscribe((editStatus) => {
+      this.isEdit = editStatus === 'true';
+    });
+  }
 
   onSubmit() {
     this.store.dispatch(addUser({ value: this.user.value }));
