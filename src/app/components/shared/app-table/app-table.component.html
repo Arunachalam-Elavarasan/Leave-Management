@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" *ngIf="!!data?.length">
   <thead>
     <tr class="row">
       <ng-container *ngFor="let item of columnData">
@@ -28,3 +28,4 @@
     </ng-container>
   </tbody>
 </table>
+<p *ngIf="!data?.length">{{ emptyMessage }}</p>

@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+  <p mat-dialog-title>{{ inputDate?.title }}</p>
+  <p>{{ inputDate?.confirmMessage }}</p>
+  <div mat-dialog-actions class="actionContainer">
+    <button (click)="onClose()" mat-flat-button>Cancel</button>
+    <button (click)="onConfirm()" mat-flat-button>Delete</button>
+  </div>
+</div>

@@ -1,188 +1,44 @@
 {
   "users": [
     {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "firstName": "James",
-      "lastName": "Anderson",
-      "email": "james.anderson@example.com",
-      "phoneNo": "+91 9084123456",
-      "isActive": true,
-      "primaryContactInfo": {
-        "address": "123 Maple Street",
-        "street": "Maple Street",
-        "city": "Springfield",
-        "state": "IL",
-        "pinCode": "62701"
-      },
-      "secondaryContactInfo": {
-        "address": "456 Oak Avenue",
-        "street": "Oak Avenue",
-        "city": "Springfield",
-        "state": "IL",
-        "pinCode": "62702",
-        "sameAsPrimary": false
-      }
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "phoneNo": "123-456-7890",
+      "status": true,
+      "id": "6e9d6edb-e2a4-47f9-a40b-57a0a5931ff0"
     },
     {
-      "id": "550e8400-e29b-41d4-a716-446655440001",
-      "firstName": "Emily",
-      "lastName": "Clark",
-      "email": "emily.clark@example.com",
-      "phoneNo": "+91 9184123456",
-      "isActive": true,
-      "primaryContactInfo": {
-        "address": "789 Pine Lane",
-        "street": "Pine Lane",
-        "city": "Madison",
-        "state": "WI",
-        "pinCode": "53703"
-      },
-      "secondaryContactInfo": {
-        "address": "101 Birch Road",
-        "street": "Birch Road",
-        "city": "Madison",
-        "state": "WI",
-        "pinCode": "53704",
-        "sameAsPrimary": false
-      }
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "phoneNo": "234-567-8901",
+      "status": false,
+      "id": "a4b235b7-4a75-4b5f-b6cf-6edb68cbe22c"
     },
     {
-      "id": "550e8400-e29b-41d4-a716-446655440002",
-      "firstName": "Michael",
-      "lastName": "Davis",
-      "email": "michael.davis@example.com",
-      "phoneNo": "+91 9284123456",
-      "isActive": false,
-      "primaryContactInfo": {
-        "address": "234 Cedar Street",
-        "street": "Cedar Street",
-        "city": "Austin",
-        "state": "TX",
-        "pinCode": "73301"
-      },
-      "secondaryContactInfo": {
-        "address": "567 Elm Avenue",
-        "street": "Elm Avenue",
-        "city": "Austin",
-        "state": "TX",
-        "pinCode": "73302",
-        "sameAsPrimary": false
-      }
-    },
-    {
-      "id": "550e8400-e29b-41d4-a716-446655440003",
-      "firstName": "Sophia",
-      "lastName": "Evans",
-      "email": "sophia.evans@example.com",
-      "phoneNo": "+91 9384123456",
-      "isActive": true,
-      "primaryContactInfo": {
-        "address": "890 Willow Drive",
-        "street": "Willow Drive",
-        "city": "Denver",
-        "state": "CO",
-        "pinCode": "80201"
-      },
-      "secondaryContactInfo": {
-        "address": "123 Aspen Court",
-        "street": "Aspen Court",
-        "city": "Denver",
-        "state": "CO",
-        "pinCode": "80202",
-        "sameAsPrimary": false
-      }
-    },
-    {
-      "id": "550e8400-e29b-41d4-a716-446655440004",
-      "firstName": "William",
-      "lastName": "Garcia",
-      "email": "william.garcia@example.com",
-      "phoneNo": "+91 9484123456",
-      "isActive": false,
-      "primaryContactInfo": {
-        "address": "345 Spruce Street",
-        "street": "Spruce Street",
-        "city": "Seattle",
-        "state": "WA",
-        "pinCode": "98101"
-      },
-      "secondaryContactInfo": {
-        "address": "678 Fir Avenue",
-        "street": "Fir Avenue",
-        "city": "Seattle",
-        "state": "WA",
-        "pinCode": "98102",
-        "sameAsPrimary": false
-      }
-    },
-    {
-      "id": "550e8400-e29b-41d4-a716-446655440005",
-      "firstName": "Olivia",
-      "lastName": "Harris",
-      "email": "olivia.harris@example.com",
-      "phoneNo": "+91 9584123456",
-      "isActive": true,
-      "primaryContactInfo": {
-        "address": "901 Cherry Boulevard",
-        "street": "Cherry Boulevard",
-        "city": "Portland",
-        "state": "OR",
-        "pinCode": "97201"
-      },
-      "secondaryContactInfo": {
-        "address": "234 Peach Street",
-        "street": "Peach Street",
-        "city": "Portland",
-        "state": "OR",
-        "pinCode": "97202",
-        "sameAsPrimary": false
-      }
-    },
-    {
-      "id": "550e8400-e29b-41d4-a716-446655440006",
-      "firstName": "Benjamin",
+      "firstName": "Alice",
       "lastName": "Johnson",
-      "email": "benjamin.johnson@example.com",
-      "phoneNo": "+91 9684123456",
-      "isActive": false,
-      "primaryContactInfo": {
-        "address": "567 Walnut Avenue",
-        "street": "Walnut Avenue",
-        "city": "San Francisco",
-        "state": "CA",
-        "pinCode": "94101"
-      },
-      "secondaryContactInfo": {
-        "address": "890 Chestnut Street",
-        "street": "Chestnut Street",
-        "city": "San Francisco",
-        "state": "CA",
-        "pinCode": "94102",
-        "sameAsPrimary": false
-      }
+      "email": "alice.johnson@example.com",
+      "phoneNo": "345-678-9012",
+      "status": true,
+      "id": "d61a9d99-09ad-48f5-8b35-bd0b8471d42e"
     },
     {
-      "id": "550e8400-e29b-41d4-a716-446655440007",
-      "firstName": "Ava",
-      "lastName": "Martinez",
-      "email": "ava.martinez@example.com",
-      "phoneNo": "+91 9784123456",
-      "isActive": true,
-      "primaryContactInfo": {
-        "address": "123 Maple Street",
-        "street": "Maple Street",
-        "city": "Los Angeles",
-        "state": "CA",
-        "pinCode": "90001"
-      },
-      "secondaryContactInfo": {
-        "address": "456 Oak Avenue",
-        "street": "Oak Avenue",
-        "city": "Los Angeles",
-        "state": "CA",
-        "pinCode": "90002",
-        "sameAsPrimary": false
-      }
+      "firstName": "Bob",
+      "lastName": "Brown",
+      "email": "bob.brown@example.com",
+      "phoneNo": "456-789-0123",
+      "status": true,
+      "id": "c8d60e5c-e8b5-4936-bd43-93e832ba2e87"
+    },
+    {
+      "firstName": "Charlie",
+      "lastName": "Davis",
+      "email": "charlie.davis@example.com",
+      "phoneNo": "567-890-1234",
+      "status": false,
+      "id": "b1d72fb1-99c9-4b74-8d1d-912b67290215"
     }
   ]
 }

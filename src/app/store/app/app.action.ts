@@ -6,7 +6,10 @@ export const appActions = {
   UPDATE_USER: 'Update User',
   DELETE_user: 'Delete User',
   USER_ADDED_SUCCESSFULLY: '[User Added] Successfully',
+  LOAD_USER: `[Load Users]`,
 };
+
+export const loadUsers = createAction(appActions.LOAD_USER);
 
 export const addUsers = createAction(
   appActions?.ADD_USERS,

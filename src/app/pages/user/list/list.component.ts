@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, input } from '@angular/core';
 import { ApiService } from '../../../services/api/api.service';
 import { Store } from '@ngrx/store';
-import { addUsers } from '../../../store/app/app.action';
-import { Users } from '../../../model/users';
 import { AppTableComponent } from '../../../components/shared/app-table/app-table.component';
 import { NavigationService } from '../../../services/navigation/navigation.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../components/shared/confirm-dialog/confirm-dialog.component';
+import { loadUsers } from '../../../store/app/app.action';
 
 const tableColumn = [
   {
@@ -34,10 +34,12 @@ const tableColumn = [
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
-  private route = inject(Router);
   private api = inject(ApiService);
   private store = inject(Store);
   private navigation = inject(NavigationService);
+  private dialog = inject(MatDialog);
+
+  deleteId = '';
 
   columnData = tableColumn;
 
@@ -52,8 +54,35 @@ export class ListComponent {
     });
   }
 
+  onConfirm(): void {
+    this.api.service.delete(this.api.path.USERS, this.deleteId).subscribe({
+      next: (value) => {
+        this.store.dispatch(loadUsers());
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  openDialog(): void {
+    this.dialog.open(ConfirmDialogComponent, {
+      width: '60%',
+      maxWidth: '600px',
+      enterAnimationDuration: '200ms',
+      exitAnimationDuration: '400ms',
+      data: {
+        title: 'Delete User',
+        confirmMessage: 'Are you sure Do you want to delete this User?',
+        onConfirm: this.onConfirm.bind(this),
+      },
+    });
+  }
+
   onActionClick(values: any) {
     if (values?.action === 'delete') {
+      this.deleteId = values?.item?.id;
+      this.openDialog();
       return;
     }
     this.navigation.navigateTo(this.navigation.path.USER_FORM, {
