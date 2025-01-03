@@ -5,6 +5,7 @@ import { AppTableComponent } from '../../../components/shared/app-table/app-tabl
 import { NavigationService } from '../../../services/navigation/navigation.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../components/shared/confirm-dialog/confirm-dialog.component';
+import { loadUsers } from '../../../store/app/app.action';
 
 const tableColumn = [
   {
@@ -55,6 +56,9 @@ export class ListComponent {
 
   onConfirm(): void {
     this.api.service.delete(this.api.path.USERS, this.deleteId).subscribe({
+      next: (value) => {
+        this.store.dispatch(loadUsers());
+      },
       error: (err) => {
         console.error(err);
       },
