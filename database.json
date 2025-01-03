@@ -1,29 +1,6 @@
 {
   "users": [
     {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "firstName": "James",
-      "lastName": "Anderson",
-      "email": "james.anderson@example.com",
-      "phoneNo": "+91 9084123456",
-      "isActive": true,
-      "primaryContactInfo": {
-        "address": "123 Maple Street",
-        "street": "Maple Street",
-        "city": "Springfield",
-        "state": "IL",
-        "pinCode": "62701"
-      },
-      "secondaryContactInfo": {
-        "address": "456 Oak Avenue",
-        "street": "Oak Avenue",
-        "city": "Springfield",
-        "state": "IL",
-        "pinCode": "62702",
-        "sameAsPrimary": false
-      }
-    },
-    {
       "id": "550e8400-e29b-41d4-a716-446655440001",
       "firstName": "Emily",
       "lastName": "Clark",

@@ -12,18 +12,13 @@ export class AppEffects {
   addUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(appActions.ADD_USER),
-      exhaustMap(() => {
-        return this.api.service
-          .post(this.api.path.USER, {
-            firstName: 'Arunachalma',
-            lastName: 'Elavarasan',
-          })
-          .pipe(
-            map((data) => {
-              return userAdded({ value: data });
-            }),
-            catchError(() => EMPTY)
-          );
+      exhaustMap((action) => {
+        return this.api.service.post(this.api.path.USERS, action?.value).pipe(
+          map((data) => {
+            return userAdded({ value: data });
+          }),
+          catchError(() => EMPTY)
+        );
       })
     )
   );
