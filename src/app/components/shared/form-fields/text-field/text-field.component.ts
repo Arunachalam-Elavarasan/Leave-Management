@@ -33,4 +33,8 @@ export class TextFieldComponent {
   @Input() disabled: boolean = false;
   @Input() error: string | null = null;
   @Input() isTextArea: boolean = false;
+
+  ngOnInit(): void {
+    console.log(this.disabled);
+  }
 }
