@@ -1,0 +1,14 @@
+<div
+  [ngClass]="{
+    'snack-bar-success': data?.isSuccess,
+    'snack-bar-error': !data?.isSuccess,
+  }"
+  class="snack-bar-container"
+>
+  <div>Message</div>
+  <div>
+    <button mat-icon-button (click)="snackBarRef.dismiss()">
+      <mat-icon>Dismiss</mat-icon>
+    </button>
+  </div>
+</div>

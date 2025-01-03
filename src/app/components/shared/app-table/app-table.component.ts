@@ -1,25 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 @Component({
   selector: 'app-table',
-  standalone: true,
-  imports: [MatTableModule, CommonModule],
-  templateUrl: './app-table.component.html',
   styleUrl: './app-table.component.scss',
+  templateUrl: './app-table.component.html',
+  standalone: true,
+  imports: [MatTableModule, MatPaginatorModule, CommonModule],
 })
-export class AppTableComponent {
+export class TablePaginationExample {
   @Input() columnData: any[] = [];
   @Input() data: any[] = [];
   @Input() emptyMessage: string = 'No Data Found';
   @Input() hasAction: boolean = true;
-  @Input() canEdit: boolean = true;
   @Input() canView: boolean = true;
+  @Input() canEdit: boolean = true;
   @Input() canDelete: boolean = true;
+
   @Output() onActionClick = new EventEmitter<any>();
 
-  onClick(action: string, item: any) {
-    this.onActionClick.emit({ action, item });
+  displayedColumns: string[] = [];
+
+  ngOnInit(): void {
+    this.displayedColumns = this.columnData?.map((item) => item?.accessor);
+  }
+
+  ngAfterViewInit() {
+    console.log(this.data);
+    console.log(this.columnData);
   }
 }
