@@ -5,7 +5,14 @@
 }
 
 :root {
+  --success-bg-color: #4caf50;
+  --error-bg-color: #f44336;
+  --text-color-light: #ffffff;
 }
 
 body {
+}
+
+.success.mat-snack-bar-container {
+  background-color: green;
 }

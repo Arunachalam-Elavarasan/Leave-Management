@@ -1,11 +1,12 @@
 import { Component, inject, input } from '@angular/core';
 import { ApiService } from '../../../services/api/api.service';
 import { Store } from '@ngrx/store';
-import { AppTableComponent } from '../../../components/shared/app-table/app-table.component';
+import { TablePaginationExample } from '../../../components/shared/app-table/app-table.component';
 import { NavigationService } from '../../../services/navigation/navigation.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../components/shared/confirm-dialog/confirm-dialog.component';
 import { loadUsers } from '../../../store/app/app.action';
+import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
 
 const tableColumn = [
   {
@@ -17,19 +18,19 @@ const tableColumn = [
     accessor: 'lastName',
   },
   {
-    label: 'Mobile No',
-    accessor: 'mobileNo',
-  },
-  {
     label: 'Email',
     accessor: 'email',
+  },
+  {
+    label: 'Phone No',
+    accessor: 'phoneNo',
   },
 ];
 
 @Component({
   selector: 'user-list',
   standalone: true,
-  imports: [AppTableComponent],
+  imports: [TablePaginationExample],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
@@ -38,6 +39,7 @@ export class ListComponent {
   private store = inject(Store);
   private navigation = inject(NavigationService);
   private dialog = inject(MatDialog);
+  private snackBar = inject(SnackBarService);
 
   deleteId = '';
 
@@ -89,5 +91,10 @@ export class ListComponent {
       id: values?.item?.id,
       isEdit: values?.action === 'edit',
     });
+  }
+
+  onAddClick() {
+    // this.navigation.navigateTo(this.navigation.path.USER_FORM);
+    this.snackBar.showSnackBar({ message: 'Hello Arunachalm' });
   }
 }

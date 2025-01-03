@@ -5,7 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { environment } from '../../../../environment/environment';
 import { APP_BAR_MENU } from '../../../constants/contents';
 import { AvatarComponent } from '../avatar/avatar.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { ApiService } from '../../../services/api/api.service';
+import { NavigationService } from '../../../services/navigation/navigation.service';
 
 @Component({
   selector: 'app-bar',
@@ -18,7 +20,5 @@ export class AppBarComponent {
   appName = environment?.APP_NAME;
   appBarMenu = APP_BAR_MENU;
 
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {}
+  constructor(public navigation: NavigationService) {}
 }
