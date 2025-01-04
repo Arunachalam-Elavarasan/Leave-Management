@@ -29,21 +29,28 @@ export class TablePaginationExample {
   @Input() columnData: any[] = [];
   @Input() data!: any;
   @Input() emptyMessage: string = 'No Data Found';
-  @Input() hasAction: boolean = true;
+  @Input() hasPagination: boolean = true;
+  @Input() isPaginationDisabled: boolean = false;
+  @Input() hasPageSize: boolean = true;
+  @Input() hasFirstLastButton: boolean = true;
+  @Input() pageOptions: number[] = [5, 10, 15];
 
   @Output() onActionClick = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   displayedColumns: string[] = [];
+  dataSource: any;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.displayedColumns = this.columnData?.map((item) => item?.accessor);
+    this.dataSource = new MatTableDataSource(this.data);
   }
 
-  ngAfterViewInit() {
-    console.log(this.paginator);
-    this.data.paginator = this.paginator;
+  ngAfterViewInit(): void {
+    if (this.hasPagination) {
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   handleActionClick(action: string, item: any) {
