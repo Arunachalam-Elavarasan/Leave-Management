@@ -6,6 +6,8 @@
     [readonly]="readonly"
     [disabled]="disabled"
     [formControl]="control | formControl"
+    [type]="type"
+    [maxlength]="maxLength"
   />
   } @else {
   <textarea
@@ -15,5 +17,5 @@
     [formControl]="control | formControl"
   ></textarea>
   }
-  <mat-error *ngIf="error">{{ error }}</mat-error>
+  <mat-error *ngIf="error && !readonly">{{ error }}</mat-error>
 </mat-form-field>

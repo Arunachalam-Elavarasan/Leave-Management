@@ -109,7 +109,7 @@ export class ListComponent {
     }
     this.navigation.navigateTo(this.navigation.path.USER_FORM, {
       id: values?.item?.id,
-      isEdit: values?.action === 'edit',
+      isView: values?.action === 'view',
     });
   }
 

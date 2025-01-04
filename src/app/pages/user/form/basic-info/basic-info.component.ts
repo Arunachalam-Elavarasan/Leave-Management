@@ -15,6 +15,9 @@ import { NavigationService } from '../../../../services/navigation/navigation.se
 import { ApiService } from '../../../../services/api/api.service';
 import { userDetailsValidation } from '../../../../constants/validations';
 import { FormService } from '../../../../services/form/form-service.service';
+import { CheckBoxFieldComponent } from '../../../../components/shared/form-fields/check-box-field/check-box-field.component';
+import { Store } from '@ngrx/store';
+import { loadUsers } from '../../../../store/app/app.action';
 
 @Component({
   selector: 'basic-info',
@@ -27,6 +30,7 @@ import { FormService } from '../../../../services/form/form-service.service';
     ContactInfoComponent,
     FormGroupPipe,
     CommonModule,
+    CheckBoxFieldComponent,
   ],
   templateUrl: './basic-info.component.html',
   styleUrl: './basic-info.component.scss',
@@ -36,12 +40,13 @@ export class BasicInfoComponent {
   private api = inject(ApiService);
   private formBuilder = inject(FormBuilder);
   private navigation = inject(NavigationService);
+  private store = inject(Store);
 
   formService = inject(FormService);
 
   validation = userDetailsValidation;
   editId: any = '';
-  isEdit: boolean = false;
+  isView: boolean = false;
 
   user = this.formBuilder.group({
     firstName: ['', [Validators.required]],
@@ -62,31 +67,30 @@ export class BasicInfoComponent {
       city: ['', [Validators.required]],
       state: ['', [Validators.required]],
       pinCode: ['', [Validators.required, Validators.minLength(6)]],
-      sameAsPrimary: false,
     }),
+    secondarySameAsPrimary: false,
   });
 
   ngOnInit(): void {
     const paramId = this.navigation.getQueryParam('id');
-    const paramsIsEdit = this.navigation.getQueryParam('isEdit');
+    const paramsIsView = this.navigation.getQueryParam('isView');
 
-    this.user
-      .get('secondaryContactInfo.sameAsPrimary')
-      ?.valueChanges.subscribe((value) => {
-        if (value) {
-          this.user.patchValue({
-            secondaryContactInfo: this.user.get('primaryContactInfo')?.value,
-          });
-        }
-      });
+    this.user.get('secondarySameAsPrimary')?.disable();
 
-    this.user.get('primaryContactInfo')?.valueChanges.subscribe((value) => {
-      if (this.user.get('secondaryContactInfo.sameAsPrimary')?.value) {
+    this.user.get('secondarySameAsPrimary')?.valueChanges.subscribe((value) => {
+      if (value) {
         this.user.patchValue({
           secondaryContactInfo: this.user.get('primaryContactInfo')?.value,
         });
       }
-      console.log(value);
+    });
+
+    this.user.get('primaryContactInfo')?.valueChanges.subscribe((value) => {
+      if (this.user.get('secondarySameAsPrimary')?.value) {
+        this.user.patchValue({
+          secondaryContactInfo: this.user.get('primaryContactInfo')?.value,
+        });
+      }
     });
 
     paramId.subscribe((id) => {
@@ -101,12 +105,23 @@ export class BasicInfoComponent {
       }
     });
 
-    paramsIsEdit.subscribe((editStatus) => {
-      this.isEdit = editStatus === 'true';
+    paramsIsView.subscribe((viewStatus) => {
+      if (viewStatus === 'true') {
+        this.isView = true;
+        this.user.get('status')?.disable();
+        this.user.get('secondarySameAsPrimary')?.disable();
+      }
     });
   }
 
   onSubmit() {
-    console.log(this.user);
+    if (this.user.valid) {
+      this.api.service.post(this.api.path.USERS, this.user.value).subscribe({
+        next: () => {
+          this.store.dispatch(loadUsers());
+        },
+        error: () => {},
+      });
+    }
   }
 }

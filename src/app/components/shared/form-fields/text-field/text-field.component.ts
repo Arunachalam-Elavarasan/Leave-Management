@@ -31,4 +31,5 @@ export class TextFieldComponent {
   @Input() disabled: boolean = false;
   @Input() error: string | null = null;
   @Input() isTextArea: boolean = false;
+  @Input() maxLength!: number;
 }

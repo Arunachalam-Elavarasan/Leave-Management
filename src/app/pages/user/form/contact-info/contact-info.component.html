@@ -8,6 +8,7 @@
       label="Address"
       [control]="contactInfoValue.get('address')"
       [isTextArea]="true"
+      [readonly]="isReadOnly"
       [error]="
         formService.fieldError(
           contactInfoValue.get('address'),
@@ -20,6 +21,7 @@
   <div>
     <text-field
       label="Street"
+      [readonly]="isReadOnly"
       [control]="contactInfoValue.get('street')"
       [error]="
         formService.fieldError(
@@ -33,6 +35,7 @@
   <div>
     <text-field
       label="City"
+      [readonly]="isReadOnly"
       [control]="contactInfoValue.get('city')"
       [error]="
         formService.fieldError(contactInfoValue.get('city'), 'city', validation)
@@ -42,6 +45,7 @@
   <div>
     <text-field
       label="State"
+      [readonly]="isReadOnly"
       [control]="contactInfoValue.get('state')"
       [error]="
         formService.fieldError(
@@ -55,6 +59,9 @@
   <div>
     <text-field
       label="Pin code"
+      [readonly]="isReadOnly"
+      [maxLength]="6"
+      type="number"
       [control]="contactInfoValue.get('pinCode')"
       [error]="
         formService.fieldError(
@@ -63,11 +70,6 @@
           validation
         )
       "
-    />
-    <check-box-field
-      label="Use Primary Contact"
-      *ngIf="!isPrimaryInfo"
-      [control]="contactInfoValue.get('sameAsPrimary')"
     />
   </div>
 </div>

@@ -27,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class TablePaginationExample {
   @Input() columnData: any[] = [];
-  @Input() data!: any;
+  @Input() data: any[] = [];
   @Input() emptyMessage: string = 'No Data Found';
   @Input() hasPagination: boolean = true;
   @Input() isPaginationDisabled: boolean = false;

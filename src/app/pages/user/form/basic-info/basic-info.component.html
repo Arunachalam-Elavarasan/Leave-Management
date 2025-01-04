@@ -7,7 +7,13 @@
         <h2>User Details Form</h2>
       </div>
       <div style="display: flex; column-gap: 12px">
-        <button type="submit">Save</button>
+        <button
+          type="submit"
+          [disabled]="isView || user.invalid"
+          *ngIf="!isView"
+        >
+          Save
+        </button>
         <button type="submit">Apply Leave</button>
         <button type="submit">Cancel</button>
       </div>
@@ -19,7 +25,7 @@
           <text-field
             label="First Name"
             [control]="user.get('firstName')"
-            [disabled]="!isEdit"
+            [readonly]="isView"
             [error]="
               formService.fieldError(
                 user.get('firstName'),
@@ -33,7 +39,7 @@
           <text-field
             label="Last Name"
             [control]="user.get('lastName')"
-            [disabled]="!isEdit"
+            [readonly]="isView"
             [error]="
               formService.fieldError(
                 user.get('lastName'),
@@ -46,8 +52,8 @@
         <div>
           <text-field
             label="Email"
+            [readonly]="isView"
             [control]="user.get('email')"
-            [disabled]="!isEdit"
             [error]="
               formService.fieldError(user.get('email'), 'email', validation)
             "
@@ -56,8 +62,9 @@
         <div>
           <text-field
             label="Phone Number"
+            [readonly]="isView"
             [control]="user.get('phoneNo')"
-            [disabled]="!isEdit"
+            [maxLength]="10"
             [error]="
               formService.fieldError(user.get('phoneNo'), 'phoneNo', validation)
             "
@@ -68,19 +75,24 @@
             label="Status"
             name="status"
             [control]="user.get('status')"
-            *ngIf="isEdit"
           />
         </div>
       </div>
       <div>
         <contact-info
           [contactInfoValue]="user.get('primaryContactInfo') | formGroup"
+          [isReadOnly]="isView"
         />
       </div>
       <div>
         <contact-info
           [contactInfoValue]="user.get('secondaryContactInfo') | formGroup"
           [isPrimaryInfo]="false"
+          [isReadOnly]="!!user.get('secondarySameAsPrimary')?.value || isView"
+        />
+        <check-box-field
+          label="Use Primary Contact"
+          [control]="user.get('secondarySameAsPrimary')"
         />
       </div>
     </div>
