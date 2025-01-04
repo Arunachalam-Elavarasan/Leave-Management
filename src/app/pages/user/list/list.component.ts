@@ -71,7 +71,6 @@ export class ListComponent {
   ngOnInit(): void {
     this.store.subscribe({
       next: (value: any) => {
-        console.log(value?.app?.users);
         this.users = [...(value?.app?.users || [])];
       },
     });

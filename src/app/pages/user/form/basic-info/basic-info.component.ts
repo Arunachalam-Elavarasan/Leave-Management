@@ -7,14 +7,14 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
-import { addUser } from '../../../../store/app/app.action';
 import { NavigationService } from '../../../../services/navigation/navigation.service';
-import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../../services/api/api.service';
+import { userDetailsValidation } from '../../../../constants/validations';
+import { FormService } from '../../../../services/form/form-service.service';
 
 @Component({
   selector: 'basic-info',
@@ -33,33 +33,35 @@ import { ApiService } from '../../../../services/api/api.service';
   providers: [FormBuilder],
 })
 export class BasicInfoComponent {
-  private formBuilder = inject(FormBuilder);
-  private store = inject(Store);
-  private navigation = inject(NavigationService);
   private api = inject(ApiService);
+  private formBuilder = inject(FormBuilder);
+  private navigation = inject(NavigationService);
 
+  formService = inject(FormService);
+
+  validation = userDetailsValidation;
   editId: any = '';
   isEdit: boolean = false;
 
   user = this.formBuilder.group({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNo: '',
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    phoneNo: ['', [Validators.required, Validators.minLength(10)]],
     status: true,
     primaryContactInfo: this.formBuilder.group({
-      address: '',
-      street: '',
-      city: '',
-      state: '',
-      pinCode: '',
+      address: ['', [Validators.required]],
+      street: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      pinCode: ['', [Validators.required, Validators.minLength(6)]],
     }),
     secondaryContactInfo: this.formBuilder.group({
-      address: '',
-      street: '',
-      city: '',
-      state: '',
-      pinCode: '',
+      address: ['', [Validators.required]],
+      street: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      pinCode: ['', [Validators.required, Validators.minLength(6)]],
       sameAsPrimary: false,
     }),
   });
@@ -69,11 +71,23 @@ export class BasicInfoComponent {
     const paramsIsEdit = this.navigation.getQueryParam('isEdit');
 
     this.user
-      .get('secondaryContactInfo')
-      ?.get('address')
-      ?.valueChanges.subscribe((val) => {
-        console.log(val);
+      .get('secondaryContactInfo.sameAsPrimary')
+      ?.valueChanges.subscribe((value) => {
+        if (value) {
+          this.user.patchValue({
+            secondaryContactInfo: this.user.get('primaryContactInfo')?.value,
+          });
+        }
       });
+
+    this.user.get('primaryContactInfo')?.valueChanges.subscribe((value) => {
+      if (this.user.get('secondaryContactInfo.sameAsPrimary')?.value) {
+        this.user.patchValue({
+          secondaryContactInfo: this.user.get('primaryContactInfo')?.value,
+        });
+      }
+      console.log(value);
+    });
 
     paramId.subscribe((id) => {
       this.editId = id;
@@ -93,6 +107,6 @@ export class BasicInfoComponent {
   }
 
   onSubmit() {
-    this.store.dispatch(addUser({ value: this.user.value }));
+    console.log(this.user);
   }
 }

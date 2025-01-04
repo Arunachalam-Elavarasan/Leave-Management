@@ -1,15 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { TextFieldComponent } from '../../../../components/shared/form-fields/text-field/text-field.component';
 import { CommonModule } from '@angular/common';
 import { CheckBoxFieldComponent } from '../../../../components/shared/form-fields/check-box-field/check-box-field.component';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FieldErrorPipe } from '../../../../pipes/fieldError/field-error.pipe';
+import { userContactInfoValidation } from '../../../../constants/validations';
+import { FormService } from '../../../../services/form/form-service.service';
 
 @Component({
   selector: 'contact-info',
@@ -20,7 +16,7 @@ import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe
     FormsModule,
     TextFieldComponent,
     CheckBoxFieldComponent,
-    FormControlPipe,
+    FieldErrorPipe,
   ],
   templateUrl: './contact-info.component.html',
   styleUrl: './contact-info.component.scss',
@@ -28,4 +24,8 @@ import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe
 export class ContactInfoComponent {
   @Input() isPrimaryInfo: boolean = true;
   @Input() contactInfoValue!: FormGroup;
+
+  formService = inject(FormService);
+
+  validation = userContactInfoValidation;
 }

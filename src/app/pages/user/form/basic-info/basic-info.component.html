@@ -20,6 +20,13 @@
             label="First Name"
             [control]="user.get('firstName')"
             [disabled]="!isEdit"
+            [error]="
+              formService.fieldError(
+                user.get('firstName'),
+                'firstName',
+                validation
+              )
+            "
           />
         </div>
         <div>
@@ -27,6 +34,13 @@
             label="Last Name"
             [control]="user.get('lastName')"
             [disabled]="!isEdit"
+            [error]="
+              formService.fieldError(
+                user.get('lastName'),
+                'lastName',
+                validation
+              )
+            "
           />
         </div>
         <div>
@@ -34,6 +48,9 @@
             label="Email"
             [control]="user.get('email')"
             [disabled]="!isEdit"
+            [error]="
+              formService.fieldError(user.get('email'), 'email', validation)
+            "
           />
         </div>
         <div>
@@ -41,6 +58,9 @@
             label="Phone Number"
             [control]="user.get('phoneNo')"
             [disabled]="!isEdit"
+            [error]="
+              formService.fieldError(user.get('phoneNo'), 'phoneNo', validation)
+            "
           />
         </div>
         <div>

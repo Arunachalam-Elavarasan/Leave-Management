@@ -8,7 +8,12 @@
     [formControl]="control | formControl"
   />
   } @else {
-  <textarea matInput [readonly]="readonly" [disabled]="disabled"></textarea>
+  <textarea
+    matInput
+    [readonly]="readonly"
+    [disabled]="disabled"
+    [formControl]="control | formControl"
+  ></textarea>
   }
   <mat-error *ngIf="error">{{ error }}</mat-error>
 </mat-form-field>
