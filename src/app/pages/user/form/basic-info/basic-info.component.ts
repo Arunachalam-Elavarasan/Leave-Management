@@ -68,6 +68,13 @@ export class BasicInfoComponent {
     const paramId = this.navigation.getQueryParam('id');
     const paramsIsEdit = this.navigation.getQueryParam('isEdit');
 
+    this.user
+      .get('secondaryContactInfo')
+      ?.get('address')
+      ?.valueChanges.subscribe((val) => {
+        console.log(val);
+      });
+
     paramId.subscribe((id) => {
       this.editId = id;
       if (id) {
