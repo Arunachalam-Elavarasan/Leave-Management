@@ -25,6 +25,27 @@ const tableColumn = [
     label: 'Phone No',
     accessor: 'phoneNo',
   },
+  {
+    label: 'Actions',
+    accessor: 'actions',
+    actions: [
+      {
+        iconName: 'edit',
+        iconColor: 'primary',
+        name: 'edit',
+      },
+      {
+        iconName: 'visibility',
+        iconColor: 'accent',
+        name: 'view',
+      },
+      {
+        iconName: 'delete',
+        iconColor: 'warn',
+        name: 'delete',
+      },
+    ],
+  },
 ];
 
 @Component({
