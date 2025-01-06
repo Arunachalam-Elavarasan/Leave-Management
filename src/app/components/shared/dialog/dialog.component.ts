@@ -1,28 +1,30 @@
 import { Component, Inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-confirm-dialog',
+  selector: 'dialog-box',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
-  templateUrl: './confirm-dialog.component.html',
-  styleUrl: './confirm-dialog.component.scss',
+  templateUrl: './dialog.component.html',
+  styleUrl: './dialog.component.scss',
 })
-export class ConfirmDialogComponent {
-  inputDate: any;
+export class DialogBoxComponent {
+  inputData: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ConfirmDialogComponent>
+    private dialogRef: MatDialogRef<DialogBoxComponent>
   ) {}
 
   ngOnInit(): void {
-    this.inputDate = this.data;
+    this.inputData = this.data;
+
+    console.log(this.data);
   }
 
   onClose() {
@@ -30,8 +32,8 @@ export class ConfirmDialogComponent {
   }
 
   onConfirm() {
-    if (this.inputDate?.onConfirm) {
-      this?.inputDate?.onConfirm();
+    if (this.inputData?.onConfirm) {
+      this?.inputData?.onConfirm();
     }
     this.onClose();
   }

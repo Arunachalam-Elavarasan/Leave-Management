@@ -1,83 +1,47 @@
-import { Component, inject, input } from '@angular/core';
-import { ApiService } from '../../../services/api/api.service';
 import { Store } from '@ngrx/store';
-import { TablePaginationExample } from '../../../components/shared/app-table/app-table.component';
-import { NavigationService } from '../../../services/navigation/navigation.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../../components/shared/confirm-dialog/confirm-dialog.component';
-import { loadUsers } from '../../../store/app/app.action';
+import { Component, inject } from '@angular/core';
+
 import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
+import { TablePaginationExample } from '../../../components/shared/app-table/app-table.component';
 import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 
-const tableColumn = [
-  {
-    label: 'First Name',
-    accessor: 'firstName',
-  },
-  {
-    label: 'Last Name',
-    accessor: 'lastName',
-  },
-  {
-    label: 'Email',
-    accessor: 'email',
-  },
-  {
-    label: 'Phone No',
-    accessor: 'phoneNo',
-  },
-  {
-    label: 'Actions',
-    accessor: 'actions',
-    actions: [
-      {
-        iconName: 'edit',
-        iconColor: 'primary',
-        name: 'edit',
-      },
-      {
-        iconName: 'visibility',
-        iconColor: 'accent',
-        name: 'view',
-      },
-      {
-        iconName: 'delete',
-        iconColor: 'warn',
-        name: 'delete',
-      },
-    ],
-  },
-];
+import { UserListItem } from '../../../model/userDetails';
+import { loadUsers } from '../../../store/app/app.action';
+import { ApiService } from '../../../services/api/api.service';
+import { HeaderActions, TableAction } from '../../../model/common';
+import { NavigationService } from '../../../services/navigation/navigation.service';
+import {
+  DialogConfig,
+  DialogData,
+  DialogService,
+} from '../../../services/dialog/dialog.service';
+import {
+  userDetailsList,
+  userDialogConfig,
+  userDialogData,
+  userHeaderAction,
+} from '../../../constants/userDetails';
+import { getUsers } from '../../../store/app/app.selector';
 
 @Component({
   selector: 'user-list',
   standalone: true,
   imports: [TablePaginationExample, ScreenHeaderComponent],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
 })
 export class ListComponent {
-  private api = inject(ApiService);
   private store = inject(Store);
-  private dialog = inject(MatDialog);
+  private api = inject(ApiService);
+  private dialog = inject(DialogService);
   private snackBar = inject(SnackBarService);
-  navigation = inject(NavigationService);
-
-  deleteId = '';
-
-  columnData = tableColumn;
 
   users: any[] = [];
-
-  headerActions = [{ label: 'Add Details', action: 'add', color: 'primary' }];
-
-  ngOnInit(): void {
-    this.store.subscribe({
-      next: (value: any) => {
-        this.users = [...(value?.app?.users || [])];
-      },
-    });
-  }
+  deleteId: string = '';
+  navigation = inject(NavigationService);
+  columnData: UserListItem[] = userDetailsList;
+  headerActions: HeaderActions = userHeaderAction;
+  dialogConfig: DialogConfig = userDialogConfig;
+  dialogData: DialogData = userDialogData;
 
   onConfirm(): void {
     this.api.service.delete(this.api.path.USERS, this.deleteId).subscribe({
@@ -91,20 +55,14 @@ export class ListComponent {
   }
 
   openDialog(): void {
-    this.dialog.open(ConfirmDialogComponent, {
-      width: '60%',
-      maxWidth: '600px',
-      enterAnimationDuration: '200ms',
-      exitAnimationDuration: '400ms',
-      data: {
-        title: 'Delete User',
-        confirmMessage: 'Are you sure Do you want to delete this User?',
-        onConfirm: this.onConfirm.bind(this),
-      },
-    });
+    this.dialog.open(
+      this.dialogConfig,
+      this.dialogData,
+      this.onConfirm.bind(this)
+    );
   }
 
-  onActionClick(values: any) {
+  onActionClick(values: TableAction) {
     if (values?.action === 'delete') {
       this.deleteId = values?.item?.id;
       this.openDialog();
@@ -116,8 +74,11 @@ export class ListComponent {
     });
   }
 
-  onAddClick() {
-    // this.navigation.navigateTo(this.navigation.path.USER_FORM);
-    this.snackBar.showSnackBar({ message: 'Hello Arunachalm' });
+  ngOnInit(): void {
+    this.store.select(getUsers).subscribe({
+      next: (state) => {
+        this.users = [...state];
+      },
+    });
   }
 }

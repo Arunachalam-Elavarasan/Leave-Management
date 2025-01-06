@@ -149,13 +149,12 @@ export class BasicInfoComponent {
     if (this.user.valid) {
       this.api.service.post(this.api.path.USERS, this.user.value).subscribe({
         next: () => {
+          this.navigation.navigateTo(this.navigation.path.HOME);
           this.store.dispatch(loadUsers());
         },
         error: () => {},
       });
       return;
     }
-
-    console.log(this.user);
   }
 }

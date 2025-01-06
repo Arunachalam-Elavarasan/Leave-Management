@@ -1,25 +1,48 @@
 {
   "users": [
     {
-      "id": "3a5a",
-      "firstName": "John ",
-      "lastName": "Daniel",
-      "email": "john@gmail.com",
-      "phoneNo": "3483473847",
+      "id": "3ee9",
+      "firstName": "Michel",
+      "lastName": "Johnson",
+      "email": "michel@gmail.com",
+      "phoneNo": "3438943894",
       "status": true,
       "primaryContactInfo": {
         "address": "Address",
         "street": "Street",
         "city": "City",
         "state": "State",
-        "pinCode": "438948"
+        "pinCode": "834988"
       },
       "secondaryContactInfo": {
         "address": "Address",
         "street": "Street",
         "city": "City",
         "state": "State",
-        "pinCode": "438948"
+        "pinCode": "834988"
+      },
+      "secondarySameAsPrimary": true
+    },
+    {
+      "id": "3ee3",
+      "firstName": "Michel",
+      "lastName": "Johnson",
+      "email": "michel@gmail.com",
+      "phoneNo": "3438943894",
+      "status": true,
+      "primaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "834988"
+      },
+      "secondaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "834988"
       },
       "secondarySameAsPrimary": true
     }
