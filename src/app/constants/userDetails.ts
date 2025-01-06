@@ -1,5 +1,6 @@
+import { Validators } from '@angular/forms';
 import { HeaderActions } from '../model/common';
-import { UserListItem } from '../model/userDetails';
+import { FormHeaderAction, UserListItem } from '../model/userDetails';
 import { DialogConfig, DialogData } from '../services/dialog/dialog.service';
 
 export const userDetailsList: UserListItem[] = [
@@ -64,3 +65,38 @@ export const userDialogData: DialogData = {
     color: 'primary',
   },
 };
+
+export const basicInfo = {
+  firstName: ['', [Validators.required]],
+  lastName: ['', [Validators.required]],
+  email: ['', [Validators.required, Validators.email]],
+  phoneNo: ['', [Validators.required, Validators.minLength(10)]],
+  status: true,
+  secondarySameAsPrimary: false,
+};
+
+export const contactInfo = {
+  address: ['', [Validators.required]],
+  street: ['', [Validators.required]],
+  city: ['', [Validators.required]],
+  state: ['', [Validators.required]],
+  pinCode: ['', [Validators.required, Validators.minLength(6)]],
+};
+
+export const formHeaderActions: FormHeaderAction[] = [
+  {
+    label: 'Apply Leave',
+    action: 'applyLeave',
+    color: 'accent',
+  },
+  {
+    label: 'Save',
+    action: 'save',
+    color: 'primary',
+  },
+  {
+    label: 'Cancel',
+    action: 'cancel',
+    color: 'warn',
+  },
+];

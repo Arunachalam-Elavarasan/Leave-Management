@@ -1,16 +1,14 @@
 <form [formGroup]="user" (submit)="onSubmit()">
   <div class="flex-justify-center">
     <div class="container">
-      <div style="display: flex; flex-direction: column; gap: 18px">
+      <div class="flex-col row-gap-md">
         <screen-header
           title="Add User Details"
           [btnActions]="btnActions"
           (onActionClick)="onActionClick($event)"
         ></screen-header>
-        <div style="display: flex; gap: 18px; justify-content: space-between">
-          <div
-            style="display: flex; flex-direction: column; gap: 12px; width: 30%"
-          >
+        <div class="flex space-between col-gap-md">
+          <div class="flex-col row-gap-md" style="width: 30%">
             <h3>Basic Info</h3>
             <div>
               <text-field
@@ -25,8 +23,6 @@
                   )
                 "
               />
-            </div>
-            <div>
               <text-field
                 label="Last Name"
                 [control]="user.get('lastName')"
@@ -39,8 +35,6 @@
                   )
                 "
               />
-            </div>
-            <div>
               <text-field
                 label="Email"
                 [readonly]="isView"
@@ -49,8 +43,6 @@
                   formService.fieldError(user.get('email'), 'email', validation)
                 "
               />
-            </div>
-            <div>
               <text-field
                 label="Phone Number"
                 [readonly]="isView"
@@ -64,13 +56,13 @@
                   )
                 "
               />
-            </div>
-            <div *ngIf="isView">
-              <toggle-field
-                label="Status"
-                name="status"
-                [control]="user.get('status')"
-              />
+              <ng-container *ngIf="isView">
+                <toggle-field
+                  label="Status"
+                  name="status"
+                  [control]="user.get('status')"
+                />
+              </ng-container>
             </div>
           </div>
           <div style="width: 30%">

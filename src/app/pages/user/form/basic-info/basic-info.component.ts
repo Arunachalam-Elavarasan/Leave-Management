@@ -4,7 +4,6 @@ import { ContactInfoComponent } from '../contact-info/contact-info.component';
 import { ToggleFieldComponent } from '../../../../components/shared/form-fields/toggle-field/toggle-field.component';
 import {
   FormBuilder,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -19,6 +18,12 @@ import { CheckBoxFieldComponent } from '../../../../components/shared/form-field
 import { Store } from '@ngrx/store';
 import { loadUsers } from '../../../../store/app/app.action';
 import { ScreenHeaderComponent } from '../../../../components/shared/screen-header/screen-header.component';
+import {
+  basicInfo,
+  contactInfo,
+  formHeaderActions,
+} from '../../../../constants/userDetails';
+import { FormHeaderAction } from '../../../../model/userDetails';
 
 @Component({
   selector: 'basic-info',
@@ -35,60 +40,25 @@ import { ScreenHeaderComponent } from '../../../../components/shared/screen-head
     ScreenHeaderComponent,
   ],
   templateUrl: './basic-info.component.html',
-  styleUrl: './basic-info.component.scss',
   providers: [FormBuilder],
 })
 export class BasicInfoComponent {
+  private store = inject(Store);
   private api = inject(ApiService);
   private formBuilder = inject(FormBuilder);
   private navigation = inject(NavigationService);
-  private store = inject(Store);
 
   formService = inject(FormService);
 
-  validation = userDetailsValidation;
   editId: any = '';
   isView: boolean = false;
-
-  btnActions = [
-    {
-      label: 'Apply Leave',
-      action: 'applyLeave',
-      color: 'accent',
-    },
-    {
-      label: 'Save',
-      action: 'save',
-      color: 'primary',
-    },
-    {
-      label: 'Cancel',
-      action: 'cancel',
-      color: 'warn',
-    },
-  ];
+  validation = userDetailsValidation;
+  btnActions: FormHeaderAction[] = formHeaderActions;
 
   user = this.formBuilder.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    phoneNo: ['', [Validators.required, Validators.minLength(10)]],
-    status: true,
-    primaryContactInfo: this.formBuilder.group({
-      address: ['', [Validators.required]],
-      street: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      pinCode: ['', [Validators.required, Validators.minLength(6)]],
-    }),
-    secondaryContactInfo: this.formBuilder.group({
-      address: ['', [Validators.required]],
-      street: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      pinCode: ['', [Validators.required, Validators.minLength(6)]],
-    }),
-    secondarySameAsPrimary: false,
+    ...basicInfo,
+    primaryContactInfo: this.formBuilder.group(contactInfo),
+    secondaryContactInfo: this.formBuilder.group(contactInfo),
   });
 
   ngOnInit(): void {

@@ -9,3 +9,9 @@ export type UserListItem = {
   accessor: string;
   actions?: ActionType[];
 };
+
+export type FormHeaderAction = {
+  label: string;
+  action: 'applyLeave' | 'save' | 'cancel';
+  color: string;
+};
