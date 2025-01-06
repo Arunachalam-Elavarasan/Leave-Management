@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 import { Store } from '@ngrx/store';
-import { getLeaveDetails } from '../../../store/app/app.selector';
 import { CommonModule } from '@angular/common';
 
 @Component({

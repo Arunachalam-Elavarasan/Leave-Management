@@ -5,6 +5,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -45,6 +46,12 @@ export class TablePaginationExample {
   ngOnInit(): void {
     this.displayedColumns = this.columnData?.map((item) => item?.accessor);
     this.dataSource = new MatTableDataSource(this.data);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes?.['data']) {
+      this.dataSource = changes['data']?.currentValue;
+    }
   }
 
   ngAfterViewInit(): void {

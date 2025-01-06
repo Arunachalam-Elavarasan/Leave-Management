@@ -1,0 +1,21 @@
+<div mat-dialog-content>
+  <p mat-dialog-title>{{ inputData?.title }}</p>
+  <p mat-dialog-content>{{ inputData?.message }}</p>
+  <div mat-dialog-actions class="actionContainer">
+    <button
+      (click)="onClose()"
+      mat-flat-button
+      [color]="inputData?.cancelBtn?.color || ''"
+    >
+      {{ inputData?.cancelBtn?.label }}
+    </button>
+    <button
+      (click)="onConfirm()"
+      (click)="onClose()"
+      mat-flat-button
+      [color]="inputData?.submitBtn?.color || ''"
+    >
+      {{ inputData?.submitBtn?.label }}
+    </button>
+  </div>
+</div>

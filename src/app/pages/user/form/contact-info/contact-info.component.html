@@ -1,7 +1,4 @@
-<div
-  [formGroup]="contactInfoValue"
-  style="display: flex; flex-direction: column; gap: 12px; width: 100%"
->
+<div [formGroup]="contactInfoValue" class="flex-col row-gap-md">
   <h3>{{ isPrimaryInfo ? "Primary" : "Secondary" }} Contact Info</h3>
   <div>
     <text-field
@@ -17,8 +14,6 @@
         )
       "
     />
-  </div>
-  <div>
     <text-field
       label="Street"
       [readonly]="isReadOnly"
@@ -31,8 +26,6 @@
         )
       "
     />
-  </div>
-  <div>
     <text-field
       label="City"
       [readonly]="isReadOnly"
@@ -41,8 +34,6 @@
         formService.fieldError(contactInfoValue.get('city'), 'city', validation)
       "
     />
-  </div>
-  <div>
     <text-field
       label="State"
       [readonly]="isReadOnly"
@@ -55,8 +46,6 @@
         )
       "
     />
-  </div>
-  <div>
     <text-field
       label="Pin code"
       [readonly]="isReadOnly"

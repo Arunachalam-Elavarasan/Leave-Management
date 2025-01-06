@@ -1,13 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  addLeaveDetails,
-  addUsers,
-  deleteUser,
-  updateUser,
-  userAdded,
-} from './app.action';
+import { addLeaveDetails, addUsers, userAdded } from './app.action';
 import { AppStore } from '../../model/store';
-import { removeData } from '../../utils/common';
 
 export const initialStore: AppStore = {
   users: [],
