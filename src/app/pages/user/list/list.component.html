@@ -1,7 +1,15 @@
-<div style="padding: 20px 80px">
-  <app-table
-    [columnData]="columnData"
-    [data]="users"
-    (onActionClick)="onActionClick($event)"
-  ></app-table>
+<div class="flex-justify-center">
+  <div class="container">
+    <screen-header
+      addBtn="Add User"
+      title="Users"
+      [addPath]="navigation.path.USER_FORM"
+      [btnActions]="headerActions"
+    ></screen-header>
+    <app-table
+      [columnData]="columnData"
+      [data]="users"
+      (onActionClick)="onActionClick($event)"
+    ></app-table>
+  </div>
 </div>

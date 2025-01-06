@@ -31,7 +31,7 @@ export class TablePaginationExample {
   @Input() emptyMessage: string = 'No Data Found';
   @Input() hasPagination: boolean = true;
   @Input() isPaginationDisabled: boolean = false;
-  @Input() hasPageSize: boolean = true;
+  @Input() hidePageSize: boolean = false;
   @Input() hasFirstLastButton: boolean = true;
   @Input() pageOptions: number[] = [5, 10, 15];
 

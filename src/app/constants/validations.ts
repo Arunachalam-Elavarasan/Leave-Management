@@ -42,3 +42,18 @@ export const userContactInfoValidation = {
     required: required('Pin Code'),
   },
 };
+
+export const leaveDetailsValidation = {
+  typeOfLeave: {
+    required: required('Type Of Leave'),
+  },
+  comment: {
+    required: required('Comment is required'),
+  },
+  startDate: {
+    required: required('Start Date'),
+  },
+  endDate: {
+    required: required('End Date'),
+  },
+};

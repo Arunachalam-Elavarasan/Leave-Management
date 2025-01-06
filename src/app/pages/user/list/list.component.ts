@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../components/shared/confirm-dialog/confirm-dialog.component';
 import { loadUsers } from '../../../store/app/app.action';
 import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
+import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 
 const tableColumn = [
   {
@@ -51,22 +52,24 @@ const tableColumn = [
 @Component({
   selector: 'user-list',
   standalone: true,
-  imports: [TablePaginationExample],
+  imports: [TablePaginationExample, ScreenHeaderComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
   private api = inject(ApiService);
   private store = inject(Store);
-  private navigation = inject(NavigationService);
   private dialog = inject(MatDialog);
   private snackBar = inject(SnackBarService);
+  navigation = inject(NavigationService);
 
   deleteId = '';
 
   columnData = tableColumn;
 
   users: any[] = [];
+
+  headerActions = [{ label: 'Add Details', action: 'add', color: 'primary' }];
 
   ngOnInit(): void {
     this.store.subscribe({

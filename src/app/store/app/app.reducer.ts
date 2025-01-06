@@ -1,10 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
-import { addUsers, deleteUser, updateUser, userAdded } from './app.action';
+import {
+  addLeaveDetails,
+  addUsers,
+  deleteUser,
+  updateUser,
+  userAdded,
+} from './app.action';
 import { AppStore } from '../../model/store';
 import { removeData } from '../../utils/common';
 
 export const initialStore: AppStore = {
   users: [],
+  leaveDetails: [],
 };
 
 export const AppReducer = createReducer(
@@ -14,9 +21,8 @@ export const AppReducer = createReducer(
     ...state,
     users: [...state.users, action.value],
   })),
-  on(deleteUser, (state, action) => {
-    const updateUserList = removeData(state?.users, action?.id);
-    return { ...state, users: updateUserList };
-  }),
-  on(updateUser, (state) => state)
+  on(addLeaveDetails, (state, action) => ({
+    ...state,
+    leaveDetails: action?.value,
+  }))
 );

@@ -12,6 +12,8 @@ export class NavigationService {
 
   path = routePath;
 
+  activeLink = this.route.url;
+
   navigateTo(path: string, queryParams?: any) {
     this.route.navigate([path], { queryParams });
   }

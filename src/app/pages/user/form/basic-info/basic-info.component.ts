@@ -18,6 +18,7 @@ import { FormService } from '../../../../services/form/form-service.service';
 import { CheckBoxFieldComponent } from '../../../../components/shared/form-fields/check-box-field/check-box-field.component';
 import { Store } from '@ngrx/store';
 import { loadUsers } from '../../../../store/app/app.action';
+import { ScreenHeaderComponent } from '../../../../components/shared/screen-header/screen-header.component';
 
 @Component({
   selector: 'basic-info',
@@ -31,6 +32,7 @@ import { loadUsers } from '../../../../store/app/app.action';
     FormGroupPipe,
     CommonModule,
     CheckBoxFieldComponent,
+    ScreenHeaderComponent,
   ],
   templateUrl: './basic-info.component.html',
   styleUrl: './basic-info.component.scss',
@@ -47,6 +49,24 @@ export class BasicInfoComponent {
   validation = userDetailsValidation;
   editId: any = '';
   isView: boolean = false;
+
+  btnActions = [
+    {
+      label: 'Apply Leave',
+      action: 'applyLeave',
+      color: 'accent',
+    },
+    {
+      label: 'Save',
+      action: 'save',
+      color: 'primary',
+    },
+    {
+      label: 'Cancel',
+      action: 'cancel',
+      color: 'warn',
+    },
+  ];
 
   user = this.formBuilder.group({
     firstName: ['', [Validators.required]],
@@ -74,8 +94,6 @@ export class BasicInfoComponent {
   ngOnInit(): void {
     const paramId = this.navigation.getQueryParam('id');
     const paramsIsView = this.navigation.getQueryParam('isView');
-
-    this.user.get('secondarySameAsPrimary')?.disable();
 
     this.user.get('secondarySameAsPrimary')?.valueChanges.subscribe((value) => {
       if (value) {
@@ -114,6 +132,19 @@ export class BasicInfoComponent {
     });
   }
 
+  onActionClick(action: string) {
+    if (action === 'applyLeave' && this.editId) {
+      this.navigation.navigateTo(this.navigation.path.LEAVE_FORM, {
+        id: this.editId,
+      });
+      return;
+    }
+
+    action === 'save'
+      ? this.onSubmit()
+      : this.navigation.navigateTo(this.navigation.path.HOME);
+  }
+
   onSubmit() {
     if (this.user.valid) {
       this.api.service.post(this.api.path.USERS, this.user.value).subscribe({
@@ -122,6 +153,9 @@ export class BasicInfoComponent {
         },
         error: () => {},
       });
+      return;
     }
+
+    console.log(this.user);
   }
 }

@@ -1,27 +1,69 @@
 {
   "users": [
     {
-      "id": "baf8",
-      "firstName": "John",
-      "lastName": "Daniels",
-      "email": "daniels@gmail.com",
-      "phoneNo": "3489348393",
+      "id": "3a5a",
+      "firstName": "John ",
+      "lastName": "Daniel",
+      "email": "john@gmail.com",
+      "phoneNo": "3483473847",
       "status": true,
       "primaryContactInfo": {
         "address": "Address",
-        "street": "street",
-        "city": "city",
-        "state": "state",
-        "pinCode": "843984"
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "438948"
       },
       "secondaryContactInfo": {
         "address": "Address",
-        "street": "street",
-        "city": "city",
-        "state": "state",
-        "pinCode": "843984"
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "438948"
       },
       "secondarySameAsPrimary": true
+    }
+  ],
+  "leaveDetails": [
+    {
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
+    },
+    {
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
+    },
+    {
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
+    },
+    {
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
+    },
+    {
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
     }
   ]
 }
