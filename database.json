@@ -1,44 +1,69 @@
 {
   "users": [
     {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john.doe@example.com",
-      "phoneNo": "123-456-7890",
+      "id": "3a5a",
+      "firstName": "John ",
+      "lastName": "Daniel",
+      "email": "john@gmail.com",
+      "phoneNo": "3483473847",
       "status": true,
-      "id": "6e9d6edb-e2a4-47f9-a40b-57a0a5931ff0"
+      "primaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "438948"
+      },
+      "secondaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "438948"
+      },
+      "secondarySameAsPrimary": true
+    }
+  ],
+  "leaveDetails": [
+    {
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
     },
     {
-      "firstName": "Jane",
-      "lastName": "Smith",
-      "email": "jane.smith@example.com",
-      "phoneNo": "234-567-8901",
-      "status": false,
-      "id": "a4b235b7-4a75-4b5f-b6cf-6edb68cbe22c"
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
     },
     {
-      "firstName": "Alice",
-      "lastName": "Johnson",
-      "email": "alice.johnson@example.com",
-      "phoneNo": "345-678-9012",
-      "status": true,
-      "id": "d61a9d99-09ad-48f5-8b35-bd0b8471d42e"
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
     },
     {
-      "firstName": "Bob",
-      "lastName": "Brown",
-      "email": "bob.brown@example.com",
-      "phoneNo": "456-789-0123",
-      "status": true,
-      "id": "c8d60e5c-e8b5-4936-bd43-93e832ba2e87"
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
     },
     {
-      "firstName": "Charlie",
-      "lastName": "Davis",
-      "email": "charlie.davis@example.com",
-      "phoneNo": "567-890-1234",
-      "status": false,
-      "id": "b1d72fb1-99c9-4b74-8d1d-912b67290215"
+      "id": "4adg",
+      "userId": null,
+      "userName": "John Daniels",
+      "typeOfLeave": "Sick Leave",
+      "startDate": "20-12-2024",
+      "endDate": "25-12-2024"
     }
   ]
 }

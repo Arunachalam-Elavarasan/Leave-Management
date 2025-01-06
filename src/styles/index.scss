@@ -2,12 +2,17 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 :root {
   --success-bg-color: #4caf50;
   --error-bg-color: #f44336;
   --text-color-light: #ffffff;
+
+  --small-space: 8px;
+  --medium-space: 16px;
+  --large-space: 24px;
 }
 
 body {
@@ -15,4 +20,64 @@ body {
 
 .success.mat-snack-bar-container {
   background-color: green;
+}
+
+.container {
+  width: 1100px;
+  max-width: 1300px;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.col-gap-sm {
+  column-gap: var(--small-space);
+}
+
+.col-gap-md {
+  column-gap: var(--medium-space);
+}
+
+.col-gap-lg {
+  column-gap: var(--large-space);
+}
+
+.row-gap-sm {
+  row-gap: var(--small-space);
+}
+
+.row-gap-md {
+  row-gap: var(--medium-space);
+}
+
+.row-gap-lg {
+  row-gap: var(--large-space);
+}
+
+.margin-vertical-sm {
+  margin: 8px 0px;
+}
+.margin-vertical-md {
+  margin: 16px 0px;
+}
+.margin-vertical-lg {
+  margin: 24px 0px;
 }

@@ -1,1 +1,24 @@
-<p>form works!</p>
+<form>
+  <div class="flex-justify-center">
+    <div class="container">
+      <div>
+        <screen-header
+          title="Leave Form"
+          [btnActions]="actions"
+        ></screen-header>
+      </div>
+      <div style="width: 30%">
+        <h2></h2>
+        <text-field
+          label="Type of Leave"
+          [control]="leaveValue.get('typeOfLeave')"
+        ></text-field>
+        <text-field
+          label="Comment"
+          [isTextArea]="true"
+          [control]="leaveValue.get('comment')"
+        ></text-field>
+      </div>
+    </div>
+  </div>
+</form>

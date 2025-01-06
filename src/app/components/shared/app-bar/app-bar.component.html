@@ -1,18 +1,17 @@
-<mat-toolbar class="nav-bar-container">
-  <div class="nav-menu-container">
-    <h1 class="logo">{{ appName }}</h1>
-    <ul class="nav-menu-container">
-      @for (menu of appBarMenu; track $index) {
-      <li>
-        <a [routerLink]="menu?.navigateTo" class="nav-link">{{ menu?.name }}</a>
-      </li>
-      }
-    </ul>
-  </div>
-  <div class="profile-container">
-    <a class="action-btn" [routerLink]="navigation.path.USER_FORM"
-      >Add Details</a
-    >
-    <app-avatar></app-avatar>
+<mat-toolbar style="justify-content: center">
+  <div class="container nav-bar-container">
+    <div class="nav-menu-container">
+      <h1 class="logo">{{ appName }}</h1>
+      <ul class="nav-menu-container">
+        @for (menu of appBarMenu; track $index) {
+        <li>
+          <a [routerLink]="menu?.navigateTo">{{ menu?.name }}</a>
+        </li>
+        }
+      </ul>
+    </div>
+    <div class="profile-container">
+      <app-avatar></app-avatar>
+    </div>
   </div>
 </mat-toolbar>

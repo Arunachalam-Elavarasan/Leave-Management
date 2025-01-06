@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import {
   AbstractControl,
-  FormControl,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -33,8 +31,5 @@ export class TextFieldComponent {
   @Input() disabled: boolean = false;
   @Input() error: string | null = null;
   @Input() isTextArea: boolean = false;
-
-  ngOnInit(): void {
-    console.log(this.disabled);
-  }
+  @Input() maxLength!: number;
 }

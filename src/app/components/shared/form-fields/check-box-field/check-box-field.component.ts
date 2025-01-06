@@ -22,7 +22,7 @@ type labelPosition = 'before' | 'after';
   styleUrl: './check-box-field.component.scss',
 })
 export class CheckBoxFieldComponent {
-  // @Input() control!: AbstractControl | null;
   @Input() label: string = '';
   @Input() labelPosition: labelPosition = 'after';
+  @Input() control!: AbstractControl | null;
 }

@@ -1,1 +1,21 @@
-<p>leave list works!</p>
+<div class="flex-justify-center">
+  <div class="container">
+    <div>
+      <screen-header title="Leave List"></screen-header>
+    </div>
+    <div class="flex">
+      <div class="details-container">
+        <ng-container *ngFor="let leave of leaveDetails">
+          <div class="details-box">
+            <h4 class="user-name">{{ leave?.userName }}</h4>
+            <p class="small-text">
+              10 days - <span class="text-bold">{{ leave?.startDate }}</span> to
+              <span class="text-bold">{{ leave?.endDate }}</span>
+            </p>
+          </div>
+        </ng-container>
+      </div>
+      <div></div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, EMPTY, exhaustMap, map, of } from 'rxjs';
-import { addUser, addUsers, appActions, userAdded } from './app.action';
+import {
+  addLeaveDetails,
+  addUser,
+  addUsers,
+  appActions,
+  userAdded,
+} from './app.action';
 import { ApiService } from '../../services/api/api.service';
 
 @Injectable()
@@ -34,6 +40,19 @@ export class AppEffects {
         );
       }),
       catchError(() => EMPTY)
+    )
+  );
+
+  loadLeaveDetails$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(appActions.LOAD_LEAVE_DETAILS),
+      exhaustMap(() => {
+        return this.api.service.get(this.api.path.LEAVE_DETAILS).pipe(
+          map((value: any) => {
+            return addLeaveDetails({ value });
+          })
+        );
+      })
     )
   );
 }

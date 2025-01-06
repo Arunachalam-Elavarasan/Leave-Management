@@ -1,38 +1,75 @@
 <div
   [formGroup]="contactInfoValue"
-  style="display: flex; flex-direction: column; gap: 12px"
+  style="display: flex; flex-direction: column; gap: 12px; width: 100%"
 >
   <h3>{{ isPrimaryInfo ? "Primary" : "Secondary" }} Contact Info</h3>
   <div>
     <text-field
       label="Address"
-      [control]="contactInfoValue.get('address') | formControl"
+      [control]="contactInfoValue.get('address')"
       [isTextArea]="true"
+      [readonly]="isReadOnly"
+      [error]="
+        formService.fieldError(
+          contactInfoValue.get('address'),
+          'address',
+          validation
+        )
+      "
     />
   </div>
   <div>
     <text-field
       label="Street"
-      [control]="contactInfoValue.get('street') | formControl"
+      [readonly]="isReadOnly"
+      [control]="contactInfoValue.get('street')"
+      [error]="
+        formService.fieldError(
+          contactInfoValue.get('street'),
+          'street',
+          validation
+        )
+      "
     />
   </div>
   <div>
     <text-field
       label="City"
-      [control]="contactInfoValue.get('city') | formControl"
+      [readonly]="isReadOnly"
+      [control]="contactInfoValue.get('city')"
+      [error]="
+        formService.fieldError(contactInfoValue.get('city'), 'city', validation)
+      "
     />
   </div>
   <div>
     <text-field
       label="State"
-      [control]="contactInfoValue.get('state') | formControl"
+      [readonly]="isReadOnly"
+      [control]="contactInfoValue.get('state')"
+      [error]="
+        formService.fieldError(
+          contactInfoValue.get('state'),
+          'state',
+          validation
+        )
+      "
     />
   </div>
   <div>
     <text-field
       label="Pin code"
-      [control]="contactInfoValue.get('pinCode') | formControl"
+      [readonly]="isReadOnly"
+      [maxLength]="6"
+      type="number"
+      [control]="contactInfoValue.get('pinCode')"
+      [error]="
+        formService.fieldError(
+          contactInfoValue.get('pinCode'),
+          'pinCode',
+          validation
+        )
+      "
     />
-    <check-box-field label="Use Primary Contact" *ngIf="!isPrimaryInfo" />
   </div>
 </div>

@@ -1,0 +1,16 @@
+<div class="flex align-center space-between margin-vertical-md">
+  <h2>{{ title }}</h2>
+  <div class="flex col-gap-sm">
+    <ng-container *ngFor="let btn of btnActions">
+      <button
+        *ngIf="!btn?.isHide"
+        mat-flat-button
+        [color]="btn?.color"
+        (click)="onActionBtnClick(btn?.action)"
+        [disabled]="btn?.isDisabled"
+      >
+        {{ btn?.label }}
+      </button>
+    </ng-container>
+  </div>
+</div>

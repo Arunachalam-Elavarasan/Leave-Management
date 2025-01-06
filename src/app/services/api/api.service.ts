@@ -11,8 +11,8 @@ export class ApiService {
   httpClient = inject(HttpClient);
 
   path = {
-    USER: 'user',
     USERS: 'users',
+    LEAVE_DETAILS: 'leaveDetails',
   };
 
   service = {
@@ -21,6 +21,9 @@ export class ApiService {
 
     put: (url: string, id: string, payload: any): Observable<any> =>
       this.httpClient.put(`${this.baseUrl}${url}${id}`, payload),
+
+    patch: (url: string, id: string, payload: any): Observable<any> =>
+      this.httpClient.patch(`${this.baseUrl}${url}/${id}`, payload),
 
     get: (url: string, id: string = ''): Observable<any> =>
       this.httpClient.get(`${this.baseUrl}${url}/${id}`),

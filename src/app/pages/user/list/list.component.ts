@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../components/shared/confirm-dialog/confirm-dialog.component';
 import { loadUsers } from '../../../store/app/app.action';
 import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
+import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 
 const tableColumn = [
   {
@@ -51,16 +52,16 @@ const tableColumn = [
 @Component({
   selector: 'user-list',
   standalone: true,
-  imports: [TablePaginationExample],
+  imports: [TablePaginationExample, ScreenHeaderComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
   private api = inject(ApiService);
   private store = inject(Store);
-  private navigation = inject(NavigationService);
   private dialog = inject(MatDialog);
   private snackBar = inject(SnackBarService);
+  navigation = inject(NavigationService);
 
   deleteId = '';
 
@@ -68,10 +69,11 @@ export class ListComponent {
 
   users: any[] = [];
 
+  headerActions = [{ label: 'Add Details', action: 'add', color: 'primary' }];
+
   ngOnInit(): void {
     this.store.subscribe({
       next: (value: any) => {
-        console.log(value?.app?.users);
         this.users = [...(value?.app?.users || [])];
       },
     });
@@ -110,7 +112,7 @@ export class ListComponent {
     }
     this.navigation.navigateTo(this.navigation.path.USER_FORM, {
       id: values?.item?.id,
-      isEdit: values?.action === 'edit',
+      isView: values?.action === 'view',
     });
   }
 
