@@ -20,7 +20,7 @@ export class ApiService {
       this.httpClient.post(`${this.baseUrl}${url}`, payload),
 
     put: (url: string, id: string, payload: any): Observable<any> =>
-      this.httpClient.put(`${this.baseUrl}${url}${id}`, payload),
+      this.httpClient.put(`${this.baseUrl}${url}/${id}`, payload),
 
     patch: (url: string, id: string, payload: any): Observable<any> =>
       this.httpClient.patch(`${this.baseUrl}${url}/${id}`, payload),

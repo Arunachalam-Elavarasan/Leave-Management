@@ -43,6 +43,14 @@ export const userDetailsList: UserListItem[] = [
   },
 ];
 
+export function userStatusItem(template: any): UserListItem {
+  return {
+    label: 'Status',
+    accessor: 'status',
+    template,
+  };
+}
+
 export const userHeaderAction: HeaderActions = [
   { label: 'Add Details', action: 'add', color: 'primary' },
 ];

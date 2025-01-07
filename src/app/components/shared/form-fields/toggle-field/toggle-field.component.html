@@ -1,5 +1,14 @@
 <mat-slide-toggle
+  *ngIf="control"
   [labelPosition]="labelPosition"
   [formControl]="control | formControl"
+  >{{ label }}</mat-slide-toggle
+>
+<mat-slide-toggle
+  *ngIf="!control"
+  [labelPosition]="labelPosition"
+  [name]="name"
+  [checked]="checked"
+  (change)="onChange.emit($event.checked)"
   >{{ label }}</mat-slide-toggle
 >

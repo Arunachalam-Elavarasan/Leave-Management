@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -43,14 +42,12 @@ export class TablePaginationExample {
   displayedColumns: string[] = [];
   dataSource: any;
 
-  ngOnInit(): void {
-    this.displayedColumns = this.columnData?.map((item) => item?.accessor);
-    this.dataSource = new MatTableDataSource(this.data);
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.['data']) {
-      this.dataSource = changes['data']?.currentValue;
+      this.dataSource = new MatTableDataSource(changes['data']?.currentValue);
+    }
+    if (changes?.['columnData']) {
+      this.displayedColumns = this.columnData?.map((item) => item?.accessor);
     }
   }
 
