@@ -1,9 +1,18 @@
 <mat-form-field [appearance]="appearance" style="display: block">
-  <mat-label>Number</mat-label>
-  <input type="text" matInput [matAutocomplete]="auto" />
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    type="text"
+    matInput
+    [matAutocomplete]="auto"
+    [value]="selectOption?.[optionLabelKey]"
+  />
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    (optionSelected)="onOptionChange($event.option.value)"
+  >
     <ng-container *ngFor="let item of options">
-      <mat-option [value]="item">{{ item?.label }}</mat-option>
+      <mat-option [value]="item">{{ item?.[optionLabelKey] }}</mat-option>
     </ng-container>
   </mat-autocomplete>
 </mat-form-field>

@@ -17,6 +17,10 @@ export class ListComponent {
   leaveDetails: any = [];
   users: any[] = [];
 
+  onUserSelect(value: any) {
+    console.log(value);
+  }
+
   getLeaveDetails() {
     this.store.select(getLeaves).subscribe({
       next: (leaves: any[]) => {
