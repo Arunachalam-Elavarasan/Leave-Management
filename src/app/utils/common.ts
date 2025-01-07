@@ -1,3 +1,5 @@
+import { messages } from '../constants/contents';
+
 interface FormatPluralParams {
   number: number;
   word?: string;
@@ -38,4 +40,12 @@ export const formatPlural = ({
   return number > 1
     ? `${number} ${pluralWord || `${word}${suffix}`}`
     : `${number} ${word}`;
+};
+
+export const getErrorMessage = (error: any) => {
+  const status = error?.status;
+  if (status === 400) return messages?.INVALID_REQUEST;
+  if (status === 500) return messages?.SOMETHING_WENT_WRONG;
+  if (status === 404) return messages?.DETAILS_NOT_FOUND;
+  return messages?.UNABLE_TO_CONNECT_SERVER;
 };

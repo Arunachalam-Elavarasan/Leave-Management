@@ -21,11 +21,14 @@ import { HeaderActions, TableAction } from '../../../model/common';
 import { DialogService } from '../../../services/dialog/dialog.service';
 import {
   userDetailsList,
+  userDetailsMessage,
   userDialogConfig,
   userDialogData,
   userHeaderAction,
   userStatusItem,
 } from '../../../constants/userDetails';
+import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
+import { messages } from '../../../constants/contents';
 
 @Component({
   selector: 'user-list',
@@ -43,6 +46,7 @@ export class ListComponent {
   private api = inject(ApiService);
   private dialog = inject(DialogService);
   private changeDetection = inject(ChangeDetectorRef);
+  private snackBar = inject(SnackBarService);
 
   @ViewChild('userStatus') userStatusField!: TemplateRef<any>;
 
@@ -52,14 +56,16 @@ export class ListComponent {
   headerActions: HeaderActions = userHeaderAction;
   userDetailsForm: string = routePath.USER_FORM;
 
+  onError(error: any) {
+    this.snackBar.showApiError({ error });
+  }
+
   onConfirm(): void {
     this.api.service.delete(this.api.path.USERS, this.deleteId).subscribe({
       next: (value) => {
         this.store.dispatch(loadUsers());
       },
-      error: (err) => {
-        console.error(err);
-      },
+      error: (err) => this.onError(err),
     });
   }
 
@@ -84,9 +90,13 @@ export class ListComponent {
     this.api.service
       .put(this.api.path.USERS, user?.id, { ...user, status })
       .subscribe({
-        next: (value) => {
+        next: (value: any) => {
           this.store.dispatch(loadUsers());
+          this.snackBar.showSnackBar({
+            message: userDetailsMessage?.STATUS_CHANGED(value?.status),
+          });
         },
+        error: (error: any) => this.onError(error),
       });
   }
 

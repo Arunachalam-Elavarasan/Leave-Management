@@ -10,3 +10,11 @@ export const APP_BAR_MENU = [
     navigateTo: routePath?.LEAVE_LIST,
   },
 ];
+
+export const messages = {
+  UNABLE_TO_CONNECT_SERVER:
+    'Unable to connect to the server. Please try again later.',
+  SOMETHING_WENT_WRONG: 'Something Went Wrong',
+  DETAILS_NOT_FOUND: 'Details Record Not Found',
+  INVALID_REQUEST: 'Invalid Request Try Again',
+};
