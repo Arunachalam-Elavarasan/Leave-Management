@@ -3,7 +3,7 @@
     <div class="container">
       <div class="flex-col row-gap-md">
         <screen-header
-          title="Add User Details"
+          [title]="screenTitle"
           [btnActions]="btnActions"
           (onActionClick)="onActionClick($event)"
         ></screen-header>
@@ -56,7 +56,7 @@
                   )
                 "
               />
-              <ng-container *ngIf="isView">
+              <ng-container *ngIf="action">
                 <toggle-field
                   label="Status"
                   name="status"

@@ -28,6 +28,13 @@ export const routes: Routes = [
             (m) => m.BasicInfoComponent
           ),
       },
+      {
+        path: `${routePath?.USER_FORM}/:action/:id`,
+        loadComponent: () =>
+          import('./pages/user/form/basic-info/basic-info.component').then(
+            (m) => m.BasicInfoComponent
+          ),
+      },
 
       {
         path: routePath?.LEAVE_LIST,
@@ -37,7 +44,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: routePath?.LEAVE_FORM,
+        path: `${routePath?.LEAVE_FORM}/:id`,
         loadComponent: () =>
           import('./pages/leave/form/form.component').then(
             (m) => m.FormComponent

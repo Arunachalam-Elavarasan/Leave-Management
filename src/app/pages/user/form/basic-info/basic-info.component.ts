@@ -1,43 +1,54 @@
-import { Component, inject, Input } from '@angular/core';
-import { TextFieldComponent } from '../../../../components/shared/form-fields/text-field/text-field.component';
-import { ContactInfoComponent } from '../contact-info/contact-info.component';
-import { ToggleFieldComponent } from '../../../../components/shared/form-fields/toggle-field/toggle-field.component';
+import { Store } from '@ngrx/store';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
+  FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
-import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
-import { CommonModule } from '@angular/common';
-import { NavigationService } from '../../../../services/navigation/navigation.service';
+
+import { ContactInfoComponent } from '../contact-info/contact-info.component';
+import { ScreenHeaderComponent } from '../../../../components/shared/screen-header/screen-header.component';
+import { TextFieldComponent } from '../../../../components/shared/form-fields/text-field/text-field.component';
+import { ToggleFieldComponent } from '../../../../components/shared/form-fields/toggle-field/toggle-field.component';
+import { CheckBoxFieldComponent } from '../../../../components/shared/form-fields/check-box-field/check-box-field.component';
+
+import { loadUsers } from '../../../../store/app/app.action';
+import { FormHeaderAction } from '../../../../model/userDetails';
 import { ApiService } from '../../../../services/api/api.service';
 import { userDetailsValidation } from '../../../../constants/validations';
+import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
 import { FormService } from '../../../../services/form/form-service.service';
-import { CheckBoxFieldComponent } from '../../../../components/shared/form-fields/check-box-field/check-box-field.component';
-import { Store } from '@ngrx/store';
-import { loadUsers } from '../../../../store/app/app.action';
-import { ScreenHeaderComponent } from '../../../../components/shared/screen-header/screen-header.component';
+import { NavigationService } from '../../../../services/navigation/navigation.service';
 import {
+  APPLY_LEAVE,
+  applyLeave,
   basicInfo,
+  cancel,
+  CANCEL,
   contactInfo,
-  formHeaderActions,
+  getScreenTitle,
+  saveInfo,
+  VIEW,
 } from '../../../../constants/userDetails';
-import { FormHeaderAction } from '../../../../model/userDetails';
+import { ActivatedRoute, Router } from '@angular/router';
+import { routePath } from '../../../../constants/route';
 
 @Component({
   selector: 'basic-info',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
     FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
     TextFieldComponent,
     ToggleFieldComponent,
     ContactInfoComponent,
-    FormGroupPipe,
-    CommonModule,
     CheckBoxFieldComponent,
     ScreenHeaderComponent,
+    FormGroupPipe,
   ],
   templateUrl: './basic-info.component.html',
   providers: [FormBuilder],
@@ -46,14 +57,17 @@ export class BasicInfoComponent {
   private store = inject(Store);
   private api = inject(ApiService);
   private formBuilder = inject(FormBuilder);
-  private navigation = inject(NavigationService);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
 
   formService = inject(FormService);
 
   editId: any = '';
+  action: string = '';
   isView: boolean = false;
   validation = userDetailsValidation;
-  btnActions: FormHeaderAction[] = formHeaderActions;
+  btnActions: FormHeaderAction[] = [];
+  screenTitle: string = '';
 
   user = this.formBuilder.group({
     ...basicInfo,
@@ -61,9 +75,72 @@ export class BasicInfoComponent {
     secondaryContactInfo: this.formBuilder.group(contactInfo),
   });
 
+  getFormGroup(formGroup: AbstractControl | null): FormGroup {
+    return formGroup as FormGroup;
+  }
+
+  onSuccess() {
+    this.router.navigate([routePath.HOME]);
+    this.store.dispatch(loadUsers());
+  }
+
+  onError() {}
+
+  onActionClick(action: string) {
+    if (action === APPLY_LEAVE && this.editId) {
+      this.router.navigate([`${routePath.LEAVE_FORM}/${this.editId}`]);
+      return;
+    }
+
+    action === CANCEL && this.router.navigate([routePath.HOME]);
+  }
+
+  onSubmit() {
+    if (this.user.invalid) return;
+    if (this.action && this.editId) {
+      this.api.service
+        .put(this.api.path.USERS, this.editId, this.user.value)
+        .subscribe({
+          next: () => this.onSuccess(),
+          error: () => this.onError(),
+        });
+      return;
+    }
+
+    this.api.service.post(this.api.path.USERS, this.user.value).subscribe({
+      next: () => this.onSuccess(),
+      error: () => this.onError(),
+    });
+  }
+
   ngOnInit(): void {
-    const paramId = this.navigation.getQueryParam('id');
-    const paramsIsView = this.navigation.getQueryParam('isView');
+    this.action = this.activatedRoute.snapshot.params['action'];
+    this.editId = this.activatedRoute.snapshot.params['id'];
+
+    this.btnActions = [
+      this?.editId && applyLeave,
+      saveInfo(!this.editId),
+      cancel,
+    ];
+
+    if (this.action === VIEW) {
+      this.isView === true;
+      this.user.get('secondarySameAsPrimary')?.disable();
+      this.user.get('status')?.disable();
+    }
+
+    this.screenTitle = getScreenTitle(this.isView, !!this.editId);
+
+    if (this.editId) {
+      this.api.service.get(this.api.path.USERS, this.editId).subscribe({
+        next: (data: any) => {
+          this.user.patchValue(data || {});
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
 
     this.user.get('secondarySameAsPrimary')?.valueChanges.subscribe((value) => {
       if (value) {
@@ -80,51 +157,5 @@ export class BasicInfoComponent {
         });
       }
     });
-
-    paramId.subscribe((id) => {
-      this.editId = id;
-      if (id) {
-        this.api.service.get(this.api.path.USERS, id).subscribe({
-          next: (data) => {
-            this.user.patchValue({ ...(data || {}) });
-          },
-          error: (err) => console.log(err),
-        });
-      }
-    });
-
-    paramsIsView.subscribe((viewStatus) => {
-      if (viewStatus === 'true') {
-        this.isView = true;
-        this.user.get('status')?.disable();
-        this.user.get('secondarySameAsPrimary')?.disable();
-      }
-    });
-  }
-
-  onActionClick(action: string) {
-    if (action === 'applyLeave' && this.editId) {
-      this.navigation.navigateTo(this.navigation.path.LEAVE_FORM, {
-        id: this.editId,
-      });
-      return;
-    }
-
-    action === 'save'
-      ? this.onSubmit()
-      : this.navigation.navigateTo(this.navigation.path.HOME);
-  }
-
-  onSubmit() {
-    if (this.user.valid) {
-      this.api.service.post(this.api.path.USERS, this.user.value).subscribe({
-        next: () => {
-          this.navigation.navigateTo(this.navigation.path.HOME);
-          this.store.dispatch(loadUsers());
-        },
-        error: () => {},
-      });
-      return;
-    }
   }
 }
