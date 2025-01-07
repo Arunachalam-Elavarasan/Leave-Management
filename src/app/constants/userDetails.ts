@@ -1,5 +1,5 @@
-import { Validators } from '@angular/forms';
-import { HeaderActions } from '../model/common';
+import { Form, Validators } from '@angular/forms';
+import { HeaderActions, TableAction } from '../model/common';
 import { FormHeaderAction, UserListItem } from '../model/userDetails';
 import { DialogConfig, DialogData } from '../services/dialog/dialog.service';
 
@@ -91,20 +91,33 @@ export const contactInfo = {
   pinCode: ['', [Validators.required, Validators.minLength(6)]],
 };
 
-export const formHeaderActions: FormHeaderAction[] = [
-  {
-    label: 'Apply Leave',
-    action: 'applyLeave',
-    color: 'accent',
-  },
-  {
-    label: 'Save',
+export const APPLY_LEAVE = 'applyLeave';
+export const SAVE = 'save';
+export const CANCEL = 'cancel';
+export const EDIT = 'edit';
+export const VIEW = 'view';
+
+export function getScreenTitle(isView: boolean, isEdit: boolean): string {
+  return `${isView ? 'View' : isEdit ? 'Edit' : 'Add'} User Details`;
+}
+
+export const applyLeave: FormHeaderAction = {
+  label: 'Apply Leave',
+  action: 'applyLeave', // Use string literal
+  color: 'accent',
+};
+
+export function saveInfo(isNew: boolean): FormHeaderAction {
+  return {
+    label: isNew ? 'Save' : 'Update',
     action: 'save',
     color: 'primary',
-  },
-  {
-    label: 'Cancel',
-    action: 'cancel',
-    color: 'warn',
-  },
-];
+    type: 'submit',
+  };
+}
+
+export const cancel: FormHeaderAction = {
+  label: 'Cancel',
+  action: 'cancel', // Use string literal
+  color: 'warn',
+};

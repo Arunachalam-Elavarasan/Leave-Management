@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 })
 export class NavigationService {
   private route = inject(Router);
-  private activatedRoute = inject(ActivatedRoute);
+  public activatedRoute = inject(ActivatedRoute);
 
   path = routePath;
 

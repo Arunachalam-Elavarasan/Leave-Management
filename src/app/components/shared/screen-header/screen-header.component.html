@@ -8,6 +8,7 @@
         [color]="btn?.color"
         (click)="onActionBtnClick(btn?.action)"
         [disabled]="btn?.isDisabled"
+        [type]="btn?.type || 'button'"
       >
         {{ btn?.label }}
       </button>

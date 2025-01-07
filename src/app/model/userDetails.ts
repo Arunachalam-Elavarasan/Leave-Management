@@ -15,4 +15,5 @@ export type FormHeaderAction = {
   label: string;
   action: 'applyLeave' | 'save' | 'cancel';
   color: string;
+  type?: 'submit' | 'button';
 };
