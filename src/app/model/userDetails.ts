@@ -8,6 +8,7 @@ export type UserListItem = {
   label: string;
   accessor: string;
   actions?: ActionType[];
+  template?: any;
 };
 
 export type FormHeaderAction = {

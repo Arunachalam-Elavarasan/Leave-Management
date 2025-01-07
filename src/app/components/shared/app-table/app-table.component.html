@@ -3,11 +3,25 @@
     <ng-container *ngFor="let column of columnData">
       <ng-container
         matColumnDef="{{ column?.accessor }}"
-        *ngIf="column?.accessor && !column?.actions"
+        *ngIf="column?.accessor && !column?.actions && !column?.template"
       >
         <th mat-header-cell *matHeaderCellDef>{{ column?.label }}</th>
         <td mat-cell *matCellDef="let element">
           {{ element?.[column?.accessor] }}
+        </td>
+      </ng-container>
+      <ng-container
+        matColumnDef="{{ column?.accessor }}"
+        *ngIf="column?.template"
+      >
+        <th mat-header-cell *matHeaderCellDef>{{ column?.label }}</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container
+            *ngTemplateOutlet="
+              column?.template;
+              context: { $implicit: element }
+            "
+          ></ng-container>
         </td>
       </ng-container>
       <ng-container matColumnDef="actions" *ngIf="column?.actions">

@@ -13,3 +13,9 @@
     ></app-table>
   </div>
 </div>
+<ng-template #userStatus let-element>
+  <toggle-field
+    (onChange)="onStatusChange(element, $event)"
+    [checked]="element?.status"
+  ></toggle-field>
+</ng-template>
