@@ -1,6 +1,7 @@
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   AbstractControl,
   FormBuilder,
@@ -15,13 +16,13 @@ import { TextFieldComponent } from '../../../../components/shared/form-fields/te
 import { ToggleFieldComponent } from '../../../../components/shared/form-fields/toggle-field/toggle-field.component';
 import { CheckBoxFieldComponent } from '../../../../components/shared/form-fields/check-box-field/check-box-field.component';
 
+import { routePath } from '../../../../constants/route';
 import { loadUsers } from '../../../../store/app/app.action';
 import { FormHeaderAction } from '../../../../model/userDetails';
 import { ApiService } from '../../../../services/api/api.service';
 import { userDetailsValidation } from '../../../../constants/validations';
 import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
 import { FormService } from '../../../../services/form/form-service.service';
-import { NavigationService } from '../../../../services/navigation/navigation.service';
 import {
   APPLY_LEAVE,
   applyLeave,
@@ -33,8 +34,6 @@ import {
   saveInfo,
   VIEW,
 } from '../../../../constants/userDetails';
-import { ActivatedRoute, Router } from '@angular/router';
-import { routePath } from '../../../../constants/route';
 
 @Component({
   selector: 'basic-info',
@@ -55,9 +54,9 @@ import { routePath } from '../../../../constants/route';
 })
 export class BasicInfoComponent {
   private store = inject(Store);
+  private router = inject(Router);
   private api = inject(ApiService);
   private formBuilder = inject(FormBuilder);
-  private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
 
   formService = inject(FormService);
@@ -117,17 +116,17 @@ export class BasicInfoComponent {
     this.action = this.activatedRoute.snapshot.params['action'];
     this.editId = this.activatedRoute.snapshot.params['id'];
 
-    this.btnActions = [
-      this?.editId && applyLeave,
-      saveInfo(!this.editId),
-      cancel,
-    ];
-
     if (this.action === VIEW) {
-      this.isView === true;
+      this.isView = true;
       this.user.get('secondarySameAsPrimary')?.disable();
       this.user.get('status')?.disable();
     }
+
+    this.btnActions = [
+      ...(this?.editId ? applyLeave : []),
+      ...saveInfo(!this.editId, this.isView),
+      cancel,
+    ];
 
     this.screenTitle = getScreenTitle(this.isView, !!this.editId);
 

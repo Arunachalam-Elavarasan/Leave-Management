@@ -1,4 +1,9 @@
-import { AbstractControl } from '@angular/forms';
+interface FormatPluralParams {
+  number: number;
+  word?: string;
+  suffix?: string;
+  pluralWord?: string;
+}
 
 export const removeData = (
   collection: any[] = [],
@@ -13,4 +18,24 @@ export const removeData = (
     }
   }
   return collectionValue;
+};
+
+export const getDaysBetweenTwoDate = (startDate: any, endDate: any) => {
+  const firstDate = new Date(startDate);
+  const secondDate = new Date(endDate);
+  const duration = Math.round(
+    (secondDate.getTime() - firstDate.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  return duration;
+};
+
+export const formatPlural = ({
+  number,
+  word = '',
+  suffix = 's',
+  pluralWord,
+}: FormatPluralParams): string => {
+  return number > 1
+    ? `${number} ${pluralWord || `${word}${suffix}`}`
+    : `${number} ${word}`;
 };

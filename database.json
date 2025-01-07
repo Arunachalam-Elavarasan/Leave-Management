@@ -114,71 +114,35 @@
         "state": "State",
         "pinCode": "343434"
       }
-    },
-    {
-      "id": "29f9",
-      "firstName": "Dinesh ",
-      "lastName": "Cholan",
-      "email": "chola@diensh.co",
-      "phoneNo": "3948394839",
-      "status": true,
-      "secondarySameAsPrimary": true,
-      "primaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State",
-        "pinCode": "384394"
-      },
-      "secondaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State",
-        "pinCode": "384394"
-      }
     }
   ],
   "leaveDetails": [
     {
-      "id": "4adg",
-      "userId": null,
-      "userName": "John Daniels",
+      "id": "f1bf",
       "typeOfLeave": "Sick Leave",
-      "startDate": "20-12-2024",
-      "endDate": "25-12-2024"
+      "comment": "No Commets",
+      "startDate": "2025-01-01T18:30:00.000Z",
+      "endDate": "2025-01-09T18:30:00.000Z",
+      "userId": "3ee9",
+      "duration": "8 Days"
     },
     {
-      "id": "4adg",
-      "userId": null,
-      "userName": "John Daniels",
-      "typeOfLeave": "Sick Leave",
-      "startDate": "20-12-2024",
-      "endDate": "25-12-2024"
+      "id": "59d7",
+      "typeOfLeave": "Going Home",
+      "comment": "Festival",
+      "startDate": "2025-01-06T18:30:00.000Z",
+      "endDate": "2025-01-10T18:30:00.000Z",
+      "userId": "b28b",
+      "duration": "4 Days"
     },
     {
-      "id": "4adg",
-      "userId": null,
-      "userName": "John Daniels",
-      "typeOfLeave": "Sick Leave",
-      "startDate": "20-12-2024",
-      "endDate": "25-12-2024"
-    },
-    {
-      "id": "4adg",
-      "userId": null,
-      "userName": "John Daniels",
-      "typeOfLeave": "Sick Leave",
-      "startDate": "20-12-2024",
-      "endDate": "25-12-2024"
-    },
-    {
-      "id": "4adg",
-      "userId": null,
-      "userName": "John Daniels",
-      "typeOfLeave": "Sick Leave",
-      "startDate": "20-12-2024",
-      "endDate": "25-12-2024"
+      "id": "50c0",
+      "typeOfLeave": "Leave apply",
+      "comment": "Nothing",
+      "startDate": "2025-01-09T18:30:00.000Z",
+      "endDate": "2025-01-30T18:30:00.000Z",
+      "userId": "fe98",
+      "duration": "21 Days"
     }
   ]
 }
