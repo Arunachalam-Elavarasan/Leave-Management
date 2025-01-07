@@ -3,11 +3,12 @@ import { ScreenHeaderComponent } from '../../../components/shared/screen-header/
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { getLeaves, getUsers } from '../../../store/app/app.selector';
+import { SelectFieldComponent } from '../../../components/shared/form-fields/select-field/select-field.component';
 
 @Component({
   selector: 'leave-list',
   standalone: true,
-  imports: [ScreenHeaderComponent, CommonModule],
+  imports: [ScreenHeaderComponent, CommonModule, SelectFieldComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })

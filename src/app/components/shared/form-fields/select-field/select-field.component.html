@@ -1,1 +1,9 @@
-<p>select-field works!</p>
+<mat-form-field [appearance]="appearance" style="display: block">
+  <mat-label>Number</mat-label>
+  <input type="text" matInput [matAutocomplete]="auto" />
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <ng-container *ngFor="let item of options">
+      <mat-option [value]="item">{{ item?.label }}</mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</mat-form-field>
