@@ -9,8 +9,9 @@
           <div class="details-box">
             <h4 class="user-name">{{ leave?.userName }}</h4>
             <p class="small-text">
-              10 days - <span class="text-bold">{{ leave?.startDate }}</span> to
-              <span class="text-bold">{{ leave?.endDate }}</span>
+              {{ leave?.duration }} -
+              <span class="text-bold">{{ leave?.startDate | date }}</span> to
+              <span class="text-bold">{{ leave?.endDate | date }}</span>
             </p>
           </div>
         </ng-container>

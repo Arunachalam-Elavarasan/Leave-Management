@@ -101,23 +101,29 @@ export function getScreenTitle(isView: boolean, isEdit: boolean): string {
   return `${isView ? 'View' : isEdit ? 'Edit' : 'Add'} User Details`;
 }
 
-export const applyLeave: FormHeaderAction = {
-  label: 'Apply Leave',
-  action: 'applyLeave', // Use string literal
-  color: 'accent',
-};
+export const applyLeave: FormHeaderAction[] = [
+  {
+    label: 'Apply Leave',
+    action: 'applyLeave',
+    color: 'accent',
+  },
+];
 
-export function saveInfo(isNew: boolean): FormHeaderAction {
-  return {
-    label: isNew ? 'Save' : 'Update',
-    action: 'save',
-    color: 'primary',
-    type: 'submit',
-  };
+export function saveInfo(isNew: boolean, isView: boolean): FormHeaderAction[] {
+  return isNew || !isView
+    ? [
+        {
+          label: isNew ? 'Save' : 'Update',
+          action: 'save',
+          color: 'primary',
+          type: 'submit',
+        },
+      ]
+    : [];
 }
 
 export const cancel: FormHeaderAction = {
   label: 'Cancel',
-  action: 'cancel', // Use string literal
+  action: 'cancel',
   color: 'warn',
 };

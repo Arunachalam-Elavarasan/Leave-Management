@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import {
   MatFormFieldAppearance,
   MatFormFieldModule,
@@ -7,6 +7,8 @@ import {
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe';
 
 @Component({
   selector: 'date-field',
@@ -16,6 +18,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    CommonModule,
+    FormControlPipe,
+    ReactiveFormsModule,
   ],
   templateUrl: './date-field.component.html',
   styleUrl: './date-field.component.scss',

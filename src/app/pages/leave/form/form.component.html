@@ -1,25 +1,60 @@
-<form>
+<form [formGroup]="leaveDetails" (submit)="onSubmit()">
   <div class="flex-justify-center">
     <div class="container">
       <div>
         <screen-header
           title="Leave Form"
           [btnActions]="actions"
+          (onActionClick)="onActionClick($event)"
         ></screen-header>
       </div>
       <div style="width: 30%">
         <h2></h2>
         <text-field
           label="Type of Leave"
-          [control]="leaveValue.get('typeOfLeave')"
+          [control]="leaveDetails.get('typeOfLeave')"
+          [error]="
+            formService.fieldError(
+              leaveDetails.get('typeOfLeave'),
+              'typeOfLeave',
+              validation
+            )
+          "
         ></text-field>
         <text-field
           label="Comment"
           [isTextArea]="true"
-          [control]="leaveValue.get('comment')"
+          [control]="leaveDetails.get('comment')"
+          [error]="
+            formService.fieldError(
+              leaveDetails.get('comment'),
+              'comment',
+              validation
+            )
+          "
         ></text-field>
-        <date-field label="Start Date"></date-field>
-        <date-field label="End Date"></date-field>
+        <date-field
+          label="Start Date"
+          [control]="leaveDetails.get('startDate')"
+          [error]="
+            formService.fieldError(
+              leaveDetails.get('startDate'),
+              'startDate',
+              validation
+            )
+          "
+        ></date-field>
+        <date-field
+          label="End Date"
+          [control]="leaveDetails.get('endDate')"
+          [error]="
+            formService.fieldError(
+              leaveDetails.get('endDate'),
+              'endDate',
+              validation
+            )
+          "
+        ></date-field>
       </div>
     </div>
   </div>
