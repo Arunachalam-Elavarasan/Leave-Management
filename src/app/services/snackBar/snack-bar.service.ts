@@ -5,15 +5,17 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../components/shared/snack-bar/snack-bar.component';
+import { getErrorMessage } from '../../utils/common';
 
 declare type SnackBarConfig = {
-  message: string;
+  message?: string;
   action?: string;
   duration?: number;
   isSuccess?: boolean;
   verticalPosition?: MatSnackBarVerticalPosition;
   horizontalPosition?: MatSnackBarHorizontalPosition;
   data?: any;
+  error?: any;
 };
 
 @Injectable({
@@ -25,11 +27,10 @@ export class SnackBarService {
   showSnackBar({
     message = '',
     action = 'Close',
-    duration = 200000,
+    duration = 2000,
     isSuccess = true,
     verticalPosition = 'top',
     horizontalPosition = 'center',
-    data,
   }: SnackBarConfig) {
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration,
@@ -38,6 +39,27 @@ export class SnackBarService {
       panelClass: 'success',
       data: {
         message,
+        action,
+        isSuccess,
+      },
+    });
+  }
+
+  showApiError({
+    action = 'Close',
+    duration = 2000,
+    isSuccess = true,
+    verticalPosition = 'top',
+    horizontalPosition = 'center',
+    error,
+  }: SnackBarConfig) {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration,
+      verticalPosition,
+      horizontalPosition,
+      panelClass: 'success',
+      data: {
+        message: getErrorMessage(error),
         action,
         isSuccess,
       },

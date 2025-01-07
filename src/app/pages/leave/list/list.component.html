@@ -17,7 +17,12 @@
         </ng-container>
       </div>
       <div>
-        <select-field></select-field>
+        <select-field
+          label="Filter Users"
+          [options]="users"
+          optionLabelKey="firstName"
+          (onChange)="onUserSelect($event)"
+        ></select-field>
       </div>
     </div>
   </div>

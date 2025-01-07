@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AbstractControl,
   FormsModule,
@@ -30,10 +30,14 @@ export class SelectFieldComponent {
   @Input() label!: string;
   @Input() appearance: MatFormFieldAppearance = 'outline';
   @Input() control!: AbstractControl | null;
-  @Input() options: any[] = [
-    { label: 'Select option 1', value: 1 },
-    { label: 'Select option 2', value: 2 },
-    { label: 'Select option 3', value: 3 },
-    { label: 'Select option 4', value: 4 },
-  ];
+  @Input() options: any[] = [];
+  @Input() optionLabelKey!: string;
+  @Output() onChange = new EventEmitter<any>();
+
+  selectOption!: any;
+
+  onOptionChange(value: any) {
+    this.selectOption = value;
+    this.onChange.emit(value);
+  }
 }

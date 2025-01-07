@@ -127,3 +127,10 @@ export const cancel: FormHeaderAction = {
   action: 'cancel',
   color: 'warn',
 };
+
+export const userDetailsMessage = {
+  DELETED_SUCCESSFULLY: 'User Deleted Successfully',
+  STATUS_CHANGED: (isActive: boolean) =>
+    `User Status Changed to ${isActive ? 'Active' : 'Inactive'}`,
+  DETAILS_NOT_FOUND: 'User Details Not Found',
+};
