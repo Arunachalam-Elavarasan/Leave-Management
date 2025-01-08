@@ -32,8 +32,10 @@ import {
   contactInfo,
   getScreenTitle,
   saveInfo,
+  userDetailsMessage,
   VIEW,
 } from '../../../../constants/userDetails';
+import { SnackBarService } from '../../../../services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'basic-info',
@@ -57,6 +59,7 @@ export class BasicInfoComponent {
   private router = inject(Router);
   private api = inject(ApiService);
   private formBuilder = inject(FormBuilder);
+  private snackBar = inject(SnackBarService);
   private activatedRoute = inject(ActivatedRoute);
 
   formService = inject(FormService);
@@ -79,11 +82,14 @@ export class BasicInfoComponent {
   }
 
   onSuccess() {
+    this.snackBar.showSnackBar({
+      message: this.editId
+        ? userDetailsMessage?.USER_UPDATED
+        : userDetailsMessage?.USER_CREATED,
+    });
     this.router.navigate([routePath.HOME]);
     this.store.dispatch(loadUsers());
   }
-
-  onError() {}
 
   onActionClick(action: string) {
     if (action === APPLY_LEAVE && this.editId) {
@@ -101,14 +107,12 @@ export class BasicInfoComponent {
         .put(this.api.path.USERS, this.editId, this.user.value)
         .subscribe({
           next: () => this.onSuccess(),
-          error: () => this.onError(),
         });
       return;
     }
 
     this.api.service.post(this.api.path.USERS, this.user.value).subscribe({
       next: () => this.onSuccess(),
-      error: () => this.onError(),
     });
   }
 
@@ -141,6 +145,16 @@ export class BasicInfoComponent {
       });
     }
 
+    if (!this.editId) {
+      const initialValue = sessionStorage.getItem('initialValue');
+
+      initialValue && this.user.patchValue(JSON.parse(initialValue));
+
+      this.user.valueChanges.subscribe((userValue) => {
+        sessionStorage.setItem('initialValue', JSON.stringify(userValue));
+      });
+    }
+
     this.user.get('secondarySameAsPrimary')?.valueChanges.subscribe((value) => {
       if (value) {
         this.user.patchValue({
@@ -156,5 +170,9 @@ export class BasicInfoComponent {
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.removeItem('initialValue');
   }
 }

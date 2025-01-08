@@ -14,7 +14,7 @@ import { ToggleFieldComponent } from '../../../components/shared/form-fields/tog
 
 import { routePath } from '../../../constants/route';
 import { UserListItem } from '../../../model/userDetails';
-import { loadUsers } from '../../../store/app/app.action';
+import { loadUsers, setLoader } from '../../../store/app/app.action';
 import { getUsers } from '../../../store/app/app.selector';
 import { ApiService } from '../../../services/api/api.service';
 import { HeaderActions, TableAction } from '../../../model/common';
@@ -56,16 +56,14 @@ export class ListComponent {
   headerActions: HeaderActions = userHeaderAction;
   userDetailsForm: string = routePath.USER_FORM;
 
-  onError(error: any) {
-    this.snackBar.showApiError({ error });
-  }
-
-  onConfirm(): void {
+  onDeleteConfirm(): void {
     this.api.service.delete(this.api.path.USERS, this.deleteId).subscribe({
       next: (value) => {
         this.store.dispatch(loadUsers());
+        this.snackBar.showSnackBar({
+          message: userDetailsMessage?.DELETED_SUCCESSFULLY,
+        });
       },
-      error: (err) => this.onError(err),
     });
   }
 
@@ -75,7 +73,7 @@ export class ListComponent {
       this.dialog.open(
         userDialogConfig,
         userDialogData,
-        this.onConfirm.bind(this)
+        this.onDeleteConfirm.bind(this)
       );
       return;
     }
@@ -96,7 +94,6 @@ export class ListComponent {
             message: userDetailsMessage?.STATUS_CHANGED(value?.status),
           });
         },
-        error: (error: any) => this.onError(error),
       });
   }
 

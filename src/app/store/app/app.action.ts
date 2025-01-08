@@ -10,7 +10,14 @@ export const appActions = {
 
   LOAD_LEAVE_DETAILS: `[Load Leave] Details`,
   ADD_LEAVE_DETAILS: '[Add Leave] Details',
+
+  LOADER_ACTION: '[Loader Action]',
 };
+
+export const setLoader = createAction(
+  appActions.LOADER_ACTION,
+  props<{ isLoading: boolean }>()
+);
 
 export const loadUsers = createAction(appActions.LOAD_USER);
 
