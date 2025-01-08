@@ -28,3 +28,9 @@
 .text-bold {
   font-weight: 600;
 }
+
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}

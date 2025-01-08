@@ -5,7 +5,12 @@
       <ul class="nav-menu-container">
         @for (menu of appBarMenu; track $index) {
         <li>
-          <a [routerLink]="menu?.navigateTo">{{ menu?.name }}</a>
+          <a
+            [routerLink]="menu?.navigateTo"
+            class="link"
+            routerLinkActive="active-link"
+            >{{ menu?.name }}</a
+          >
         </li>
         }
       </ul>

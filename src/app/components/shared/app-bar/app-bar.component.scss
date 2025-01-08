@@ -18,7 +18,7 @@
 }
 .nav-menu-container {
   display: flex;
-  column-gap: 30px;
+  column-gap: 16px;
   list-style-type: none;
 }
 .nav-menu {
@@ -36,6 +36,14 @@
   align-items: center;
 }
 
+a {
+  text-decoration: none;
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+
 .active-link {
-  background-color: blueviolet;
+  font-weight: 700;
+  color: #fff;
+  background-color: #6d42ba;
 }

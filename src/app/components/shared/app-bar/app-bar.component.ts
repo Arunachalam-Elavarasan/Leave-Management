@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { environment } from '../../../../environment/environment';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { APP_BAR_MENU } from '../../../constants/contents';
 import { AvatarComponent } from '../avatar/avatar.component';
-import { RouterLink } from '@angular/router';
+import { environment } from '../../../../environment/environment';
 import { NavigationService } from '../../../services/navigation/navigation.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bar',
@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
     RouterLink,
     AvatarComponent,
     CommonModule,
+    RouterModule,
   ],
   templateUrl: './app-bar.component.html',
   styleUrl: './app-bar.component.scss',

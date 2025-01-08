@@ -40,6 +40,7 @@ export const userContactInfoValidation = {
   },
   pinCode: {
     required: required('Pin Code'),
+    minlength: minDigitsRequired('Pin Code', 6),
   },
 };
 

@@ -49,7 +49,6 @@ import { SnackBarService } from '../../../../services/snackBar/snack-bar.service
     ContactInfoComponent,
     CheckBoxFieldComponent,
     ScreenHeaderComponent,
-    FormGroupPipe,
   ],
   templateUrl: './basic-info.component.html',
   providers: [FormBuilder],
@@ -101,6 +100,8 @@ export class BasicInfoComponent {
   }
 
   onSubmit() {
+    this.user.controls.primaryContactInfo.markAllAsTouched();
+    this.user.controls.secondaryContactInfo.markAllAsTouched();
     if (this.user.invalid) return;
     if (this.action && this.editId) {
       this.api.service
