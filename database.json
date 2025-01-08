@@ -24,29 +24,6 @@
       "id": "3ee9"
     },
     {
-      "id": "b28b",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "first@gmail.com",
-      "phoneNo": "7373439483",
-      "status": true,
-      "secondarySameAsPrimary": true,
-      "primaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State ",
-        "pinCode": "343989"
-      },
-      "secondaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State ",
-        "pinCode": "343989"
-      }
-    },
-    {
       "id": "4a6c",
       "firstName": "First Name",
       "lastName": "Last Name",
@@ -109,7 +86,7 @@
       "comment": "Festival",
       "startDate": "2025-01-06T18:30:00.000Z",
       "endDate": "2025-01-10T18:30:00.000Z",
-      "userId": "b28b",
+      "userId": null,
       "duration": "4 Days"
     },
     {

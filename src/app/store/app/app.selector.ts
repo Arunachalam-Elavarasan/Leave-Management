@@ -8,3 +8,5 @@ export const getLeaves = createSelector(
   appStore,
   (state) => state?.leaveDetails
 );
+
+export const getLoader = createSelector(appStore, (state) => state?.isLoading);
