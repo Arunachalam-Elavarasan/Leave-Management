@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AbstractControl,
+  FormControl,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -11,6 +12,7 @@ import {
   MatFormFieldModule,
   MatFormFieldAppearance,
 } from '@angular/material/form-field';
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'select-field',
@@ -32,12 +34,28 @@ export class SelectFieldComponent {
   @Input() control!: AbstractControl | null;
   @Input() options: any[] = [];
   @Input() optionLabelKey!: string;
+  @Input() isAutoComplete: boolean = true;
   @Output() onChange = new EventEmitter<any>();
 
+  formControl = new FormControl();
+  filteredOptions: any[] = [];
   selectOption!: any;
+
+  onInputChange(event: any) {
+    const searchValue = event?.target?.value?.toLocaleLowerCase();
+    this.filteredOptions = this.options.filter((option) =>
+      String(option?.[this.optionLabelKey] || '')
+        ?.toLocaleLowerCase()
+        ?.includes(searchValue)
+    );
+  }
 
   onOptionChange(value: any) {
     this.selectOption = value;
     this.onChange.emit(value);
+  }
+
+  ngOnInit(): void {
+    this.filteredOptions = this.options;
   }
 }

@@ -23,7 +23,7 @@ declare type SnackBarConfig = {
 export class SnackBarService {
   constructor(private snackBar: MatSnackBar) {}
 
-  showSnackBar({
+  show({
     message = '',
     action = 'Close',
     duration = 2000,

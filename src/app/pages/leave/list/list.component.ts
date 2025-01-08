@@ -17,8 +17,14 @@ export class ListComponent {
   leaveDetails: any = [];
   users: any[] = [];
 
+  filteredDetails: any[] = [];
+
   onUserSelect(value: any) {
-    console.log(value);
+    const hello = this.leaveDetails?.filter(
+      (leave: any) => leave?.userId === value?.id
+    );
+
+    console.log(hello);
   }
 
   getLeaveDetails() {
@@ -43,6 +49,8 @@ export class ListComponent {
           },
           []
         );
+
+        this.filteredDetails = this.leaveDetails;
       },
     });
   }

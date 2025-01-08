@@ -17,7 +17,7 @@ export function errorHandlingInterceptor(
   store.dispatch(setLoader({ isLoading: true }));
   return next(req).pipe(
     catchError((error) => {
-      snackBar.showSnackBar({ message: getErrorMessage(error) });
+      snackBar.show({ message: getErrorMessage(error) });
       return throwError(() => error);
     }),
     finalize(() => {

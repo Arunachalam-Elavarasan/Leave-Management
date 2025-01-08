@@ -60,7 +60,7 @@ export class ListComponent {
     this.api.service.delete(this.api.path.USERS, this.deleteId).subscribe({
       next: (value) => {
         this.store.dispatch(loadUsers());
-        this.snackBar.showSnackBar({
+        this.snackBar.show({
           message: userDetailsMessage?.DELETED_SUCCESSFULLY,
         });
       },
@@ -90,7 +90,7 @@ export class ListComponent {
       .subscribe({
         next: (value: any) => {
           this.store.dispatch(loadUsers());
-          this.snackBar.showSnackBar({
+          this.snackBar.show({
             message: userDetailsMessage?.STATUS_CHANGED(value?.status),
           });
         },

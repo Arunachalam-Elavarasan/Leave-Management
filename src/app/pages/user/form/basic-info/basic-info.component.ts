@@ -82,7 +82,7 @@ export class BasicInfoComponent {
   }
 
   onSuccess() {
-    this.snackBar.showSnackBar({
+    this.snackBar.show({
       message: this.editId
         ? userDetailsMessage?.USER_UPDATED
         : userDetailsMessage?.USER_CREATED,

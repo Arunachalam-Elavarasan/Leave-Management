@@ -1,22 +1,31 @@
+import { Store } from '@ngrx/store';
 import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
 import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 import { TextFieldComponent } from '../../../components/shared/form-fields/text-field/text-field.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DateFieldComponent } from '../../../components/shared/form-fields/date-field/date-field.component';
+
+import { routePath } from '../../../constants/route';
+import { CANCEL } from '../../../constants/userDetails';
 import { ListHeaderAction } from '../../../model/common';
+import { ApiService } from '../../../services/api/api.service';
+import { loadLeaveDetails } from '../../../store/app/app.action';
+import { leaveDetailsValidation } from '../../../constants/validations';
+import { FormService } from '../../../services/form/form-service.service';
+import { formatPlural, getDaysBetweenTwoDate } from '../../../utils/common';
 import {
+  LEAVE_APPLIED,
   leaveFormActions,
   leaveInitialValues,
 } from '../../../constants/userLeaves';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormService } from '../../../services/form/form-service.service';
-import { leaveDetailsValidation } from '../../../constants/validations';
-import { CANCEL } from '../../../constants/userDetails';
-import { routePath } from '../../../constants/route';
-import { ApiService } from '../../../services/api/api.service';
-import { formatPlural, getDaysBetweenTwoDate } from '../../../utils/common';
-import { Store } from '@ngrx/store';
-import { loadLeaveDetails } from '../../../store/app/app.action';
+import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'leave-form',
@@ -33,19 +42,19 @@ import { loadLeaveDetails } from '../../../store/app/app.action';
   providers: [FormService],
 })
 export class FormComponent {
-  private formBuilder = inject(FormBuilder);
-  private router = inject(Router);
-  private activatedRoute = inject(ActivatedRoute);
   private store = inject(Store);
+  private router = inject(Router);
   private api = inject(ApiService);
+  private formBuilder = inject(FormBuilder);
+  private snackBar = inject(SnackBarService);
+  private activatedRoute = inject(ActivatedRoute);
   formService = inject(FormService);
-  actions: ListHeaderAction[] = leaveFormActions;
+
   userDetails!: any[];
   userId: string = '';
-
-  leaveDetails = this.formBuilder.group(leaveInitialValues);
-
+  actions: ListHeaderAction[] = leaveFormActions;
   validation = leaveDetailsValidation;
+  leaveDetails: FormGroup = this.formBuilder.group(leaveInitialValues);
 
   onActionClick(action: any) {
     action === CANCEL && this.router.navigate([routePath.LEAVE_LIST]);
@@ -67,10 +76,10 @@ export class FormComponent {
 
     this.api.service.post(this.api.path.LEAVE_DETAILS, payload).subscribe({
       next: (value) => {
+        this.snackBar.show({ message: LEAVE_APPLIED });
         this.router.navigate([routePath.LEAVE_LIST]);
         this.store.dispatch(loadLeaveDetails());
       },
-      error: (err) => {},
     });
   }
 

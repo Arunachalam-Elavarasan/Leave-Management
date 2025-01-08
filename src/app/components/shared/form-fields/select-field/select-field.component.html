@@ -5,14 +5,18 @@
     matInput
     [matAutocomplete]="auto"
     [value]="selectOption?.[optionLabelKey]"
+    [readonly]="!isAutoComplete"
+    (input)="onInputChange($event)"
   />
   <mat-autocomplete
     autoActiveFirstOption
     #auto="matAutocomplete"
     (optionSelected)="onOptionChange($event.option.value)"
   >
-    <ng-container *ngFor="let item of options">
-      <mat-option [value]="item">{{ item?.[optionLabelKey] }}</mat-option>
-    </ng-container>
+    <mat-option
+      *ngFor="let item of filteredOptions"
+      [value]="item"
+      >{{ item?.[optionLabelKey] }}</mat-option
+    >
   </mat-autocomplete>
 </mat-form-field>
