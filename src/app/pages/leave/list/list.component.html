@@ -5,23 +5,29 @@
     </div>
     <div class="flex">
       <div class="details-container">
-        <ng-container *ngFor="let leave of leaveDetails">
-          <div class="details-box">
-            <h4 class="user-name">{{ leave?.userName }}</h4>
-            <p class="small-text">
-              {{ leave?.duration }} -
-              <span class="text-bold">{{ leave?.startDate | date }}</span> to
-              <span class="text-bold">{{ leave?.endDate | date }}</span>
-            </p>
-          </div>
+        <ng-container *ngIf="filteredDetails?.length">
+          <ng-container *ngFor="let leave of filteredDetails">
+            <div class="details-box">
+              <h4 class="user-name">{{ leave?.userName }}</h4>
+              <p class="small-text">
+                {{ leave?.duration }} -
+                <span class="text-bold">{{ leave?.startDate | date }}</span> to
+                <span class="text-bold">{{ leave?.endDate | date }}</span>
+              </p>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!filteredDetails?.length">
+          <p>Leave Records Not found</p>
         </ng-container>
       </div>
-      <div>
+      <div class="filter-container">
         <select-field
           label="Filter Users"
           [options]="users"
           optionLabelKey="firstName"
-          (onChange)="onUserSelect($event)"
+          (onOptionChange)="onUserSelect($event)"
+          (onChange)="onChange($event)"
         ></select-field>
       </div>
     </div>

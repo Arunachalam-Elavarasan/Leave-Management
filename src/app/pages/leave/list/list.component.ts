@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
-import { getLeaves, getUsers } from '../../../store/app/app.selector';
+import { Component, inject, SimpleChanges } from '@angular/core';
+import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 import { SelectFieldComponent } from '../../../components/shared/form-fields/select-field/select-field.component';
+
+import { getLeaves, getUsers } from '../../../store/app/app.selector';
 
 @Component({
   selector: 'leave-list',
@@ -17,8 +18,20 @@ export class ListComponent {
   leaveDetails: any = [];
   users: any[] = [];
 
+  filteredDetails: any[] = [];
+
+  onChange(value: any) {
+    if (!value) this.filteredDetails = this.leaveDetails;
+  }
+
   onUserSelect(value: any) {
-    console.log(value);
+    if (!value) {
+      this.filteredDetails = this.leaveDetails;
+      return;
+    }
+    this.filteredDetails = this.leaveDetails?.filter(
+      (leave: any) => leave?.userId === value?.id
+    );
   }
 
   getLeaveDetails() {
@@ -33,16 +46,18 @@ export class ListComponent {
               const user = this.users?.find(
                 (item) => item?.id === leave?.userId
               );
+              if (!user) return acc;
+
               existName = `${user?.firstName} ${user?.lastName}`;
               userNames[user?.id] = existName;
             }
-
             acc.push({ ...leave, userName: existName });
-
             return acc;
           },
           []
         );
+
+        this.filteredDetails = this.leaveDetails;
       },
     });
   }

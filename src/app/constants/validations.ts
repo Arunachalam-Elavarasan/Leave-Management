@@ -8,6 +8,8 @@ export const minDigitsRequired = (fieldName: string, min: number) =>
 export const maxDigitsRequired = (fieldName: string, max: number) =>
   `${fieldName} has minimum ${max} digits`;
 
+export const startEndDate = 'End date should not be more than start Date';
+
 export const userDetailsValidation = {
   firstName: {
     required: required('First Name'),
@@ -40,6 +42,7 @@ export const userContactInfoValidation = {
   },
   pinCode: {
     required: required('Pin Code'),
+    minlength: minDigitsRequired('Pin Code', 6),
   },
 };
 
@@ -48,12 +51,13 @@ export const leaveDetailsValidation = {
     required: required('Type Of Leave'),
   },
   comment: {
-    required: required('Comment is required'),
+    required: required('Comment'),
   },
   startDate: {
     required: required('Start Date'),
   },
   endDate: {
     required: required('End Date'),
+    endDate: startEndDate,
   },
 };

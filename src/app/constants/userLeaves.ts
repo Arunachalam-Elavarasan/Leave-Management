@@ -21,3 +21,5 @@ export const leaveInitialValues = {
   startDate: ['', Validators.required],
   endDate: ['', Validators.required],
 };
+
+export const LEAVE_APPLIED: string = 'Leave Applied Successfully';

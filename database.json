@@ -106,6 +106,24 @@
       "endDate": "2025-01-16T18:30:00.000Z",
       "userId": "d66f",
       "duration": "9 Days"
+    },
+    {
+      "id": "7646",
+      "typeOfLeave": "Temporary Break",
+      "comment": "Nothing to say",
+      "startDate": "2025-01-09T18:30:00.000Z",
+      "endDate": "2025-01-30T18:30:00.000Z",
+      "userId": "3ee9",
+      "duration": "21 Days"
+    },
+    {
+      "id": "3c43",
+      "typeOfLeave": "Sick Leave",
+      "comment": "Comment",
+      "startDate": "2025-01-09T18:30:00.000Z",
+      "endDate": "2025-01-16T18:30:00.000Z",
+      "userId": "3ee9",
+      "duration": "7 Days"
     }
   ]
 }
