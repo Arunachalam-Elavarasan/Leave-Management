@@ -4,5 +4,8 @@ export const routePath = {
   USER_FORM: 'user/form',
 
   LEAVE_LIST: 'leave/list',
+  LEAVE_LIST_CARD_VIEW: 'card-view',
+  LEAVE_LIST_CALENDER_VIEW: 'calender-view',
+
   LEAVE_FORM: 'leave/form',
 };

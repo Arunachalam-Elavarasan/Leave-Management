@@ -42,7 +42,29 @@ export const routes: Routes = [
           import('./pages/leave/list/list.component').then(
             (m) => m.ListComponent
           ),
+        children: [
+          {
+            path: '',
+            redirectTo: 'calender-view',
+            pathMatch: 'full',
+          },
+          {
+            path: 'calender-view',
+            loadComponent: () =>
+              import(
+                './pages/leave/list/view/calender/calender.component'
+              ).then((m) => m.CalenderComponent),
+          },
+          {
+            path: 'card-view',
+            loadComponent: () =>
+              import('./pages/leave/list/view/card/card.component').then(
+                (m) => m.CardComponent
+              ),
+          },
+        ],
       },
+
       {
         path: `${routePath?.LEAVE_FORM}/:id`,
         loadComponent: () =>
