@@ -70,6 +70,7 @@ export class SelectFieldComponent {
 
   onClear() {
     this.inputField.nativeElement.value = '';
+    this.onOptionChange.emit('');
   }
 
   onOptionSelect(value: any) {

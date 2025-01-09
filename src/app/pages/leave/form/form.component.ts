@@ -26,6 +26,7 @@ import {
   leaveInitialValues,
 } from '../../../constants/userLeaves';
 import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
+import { checkEndDateValidation } from '../../../validators/leaveDetails';
 
 @Component({
   selector: 'leave-form',
@@ -54,13 +55,16 @@ export class FormComponent {
   userId: string = '';
   actions: ListHeaderAction[] = leaveFormActions;
   validation = leaveDetailsValidation;
-  leaveDetails: FormGroup = this.formBuilder.group(leaveInitialValues);
+  leaveDetails: FormGroup = this.formBuilder.group(leaveInitialValues, {
+    validators: checkEndDateValidation(),
+  });
 
   onActionClick(action: any) {
     action === CANCEL && this.router.navigate([routePath.LEAVE_LIST]);
   }
 
   onSubmit() {
+    console.log(this.leaveDetails);
     if (this.leaveDetails.invalid || !this.userId) return;
     const form = this.leaveDetails;
     const noOfDays = getDaysBetweenTwoDate(

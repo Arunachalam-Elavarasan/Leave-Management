@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, SimpleChanges } from '@angular/core';
 import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 import { SelectFieldComponent } from '../../../components/shared/form-fields/select-field/select-field.component';
 
@@ -25,6 +25,10 @@ export class ListComponent {
   }
 
   onUserSelect(value: any) {
+    if (!value) {
+      this.filteredDetails = this.leaveDetails;
+      return;
+    }
     this.filteredDetails = this.leaveDetails?.filter(
       (leave: any) => leave?.userId === value?.id
     );
