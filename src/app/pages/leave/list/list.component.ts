@@ -1,11 +1,12 @@
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
-import { Component, inject, SimpleChanges } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 import { SelectFieldComponent } from '../../../components/shared/form-fields/select-field/select-field.component';
 
 import { getLeaves, getUsers } from '../../../store/app/app.selector';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { routePath } from '../../../constants/route';
 
 @Component({
   selector: 'leave-list',
@@ -15,6 +16,7 @@ import { RouterOutlet } from '@angular/router';
     CommonModule,
     SelectFieldComponent,
     RouterOutlet,
+    RouterLink,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -23,6 +25,8 @@ export class ListComponent {
   private store = inject(Store);
   leaveDetails: any = [];
   users: any[] = [];
+
+  route = routePath;
 
   filteredDetails: any[] = [];
 
