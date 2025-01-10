@@ -5,16 +5,16 @@
 </div>
 
 <mat-grid-list cols="7">
-  <ng-container *ngFor="let date of dateCollection">
+  <ng-container *ngFor="let item of collection">
     <mat-grid-tile
       class="day-tile"
       [ngClass]="{
-        'inActive-day-tile': !!date?.isDisabled,
-        'active-day-tile': !date?.isDisabled
+        'inActive-day-tile': !!item?.isDisabled,
+        'active-day-tile': !item?.isDisabled
       }"
     >
-      <span class="day-cell-container" (click)="onDayClick(date)">
-        <p class="day-label">{{ date?.date }}</p>
+      <span class="day-cell-container" (click)="onDayClick(item)">
+        <p class="day-label">{{ item?.date | date : "d" }}</p>
       </span>
     </mat-grid-tile>
   </ng-container>

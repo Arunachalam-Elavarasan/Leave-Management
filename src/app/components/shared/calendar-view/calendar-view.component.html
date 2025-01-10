@@ -1,1 +1,13 @@
-<month-view></month-view>
+<div class="calendar-action">
+  <button mat-icon-button (click)="onMonthChange(false)">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onMonthChange(true)">
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
+  <span>
+    {{ months[currentMonthCalendar.month] }}
+    {{ currentMonthCalendar.year }}
+  </span>
+</div>
+<month-view [collection]="dateCollection"></month-view>
