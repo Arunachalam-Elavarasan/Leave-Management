@@ -12,7 +12,8 @@
   display: flex;
   width: 100%;
   height: 100%;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .day-tile {
@@ -25,4 +26,7 @@
 
 .active-day-tile {
   cursor: pointer;
+}
+.active-day {
+  color: blue;
 }

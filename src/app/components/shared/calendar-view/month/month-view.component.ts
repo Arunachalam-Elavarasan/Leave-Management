@@ -18,17 +18,20 @@ export class MonthViewComponent {
   days: string[] = WEEK_DAYS;
   @Input() collection: any[] = [];
 
-  date!: number;
-  year!: number;
-  month!: number;
+  mockData = {
+    ie34: ['2025-01-10', '2025-01-11'],
+    ie36: ['2025-01-10', '2025-01-11'],
+    ie37: ['2025-01-10', '2025-01-11'],
+    i3ed: {
+      '2025-01-10': true,
+      '2025-01-11': true,
+      '2025-01-12': true,
+    },
+  };
+
+  today = new Date();
 
   onDayClick(date: any) {
     console.log({ date });
-  }
-
-  ngOnInit(): void {
-    this.month = new Date().getMonth();
-    this.year = new Date().getFullYear();
-    this.date = new Date().getDate();
   }
 }

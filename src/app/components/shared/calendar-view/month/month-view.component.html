@@ -14,7 +14,15 @@
       }"
     >
       <span class="day-cell-container" (click)="onDayClick(item)">
-        <p class="day-label">{{ item?.date | date : "d" }}</p>
+        <div>
+          <p class="day-label">
+            {{ item?.date | date : "d" }}
+          </p>
+        </div>
+        <div
+          *ngIf="!item?.isDisabled"
+          style="background-color: blueviolet; height: 20px; width: 100%"
+        ></div>
       </span>
     </mat-grid-tile>
   </ng-container>

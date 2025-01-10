@@ -67,6 +67,8 @@ export class ListComponent {
           []
         );
 
+        console.log(this.leaveDetails);
+
         this.filteredDetails = this.leaveDetails;
       },
     });
