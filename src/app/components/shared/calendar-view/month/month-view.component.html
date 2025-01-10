@@ -1,1 +1,21 @@
-<p>month-view works!</p>
+<div class="flex space-between">
+  <div *ngFor="let day of days" class="day-container">
+    <p class="day-label">{{ day | slice : 0 : 3 }}</p>
+  </div>
+</div>
+
+<mat-grid-list cols="7">
+  <ng-container *ngFor="let date of dateCollection">
+    <mat-grid-tile
+      class="day-tile"
+      [ngClass]="{
+        'inActive-day-tile': !!date?.isDisabled,
+        'active-day-tile': !date?.isDisabled
+      }"
+    >
+      <span class="day-cell-container" (click)="onDayClick(date)">
+        <p class="day-label">{{ date?.date }}</p>
+      </span>
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>

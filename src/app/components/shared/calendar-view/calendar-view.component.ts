@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { MonthViewComponent } from './month/month-view.component';
 
 @Component({
   selector: 'calendar-view',
   standalone: true,
-  imports: [],
+  imports: [MonthViewComponent],
   templateUrl: './calendar-view.component.html',
   styleUrl: './calendar-view.component.scss',
 })
