@@ -1,36 +1,16 @@
-.details-container {
-  display: flex;
-  width: 70%;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-.details-box {
-  min-width: 31%;
-  background-color: lightgray;
-  min-height: 100px;
-  max-width: 30%;
-  padding: 12px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.user-name {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.small-text {
-  font-size: 12px;
-  text-align: right;
-}
-.text-bold {
-  font-weight: 600;
-}
-
 .filter-container {
   display: flex;
   justify-content: flex-end;
   flex: 1;
+}
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 70%;
+}
+
+.nav-container {
+  display: flex;
+  gap: 12px;
 }

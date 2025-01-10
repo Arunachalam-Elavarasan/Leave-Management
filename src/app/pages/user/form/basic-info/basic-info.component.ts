@@ -21,7 +21,6 @@ import { loadUsers } from '../../../../store/app/app.action';
 import { FormHeaderAction } from '../../../../model/userDetails';
 import { ApiService } from '../../../../services/api/api.service';
 import { userDetailsValidation } from '../../../../constants/validations';
-import { FormGroupPipe } from '../../../../pipes/formGroup/form-group.pipe';
 import { FormService } from '../../../../services/form/form-service.service';
 import {
   APPLY_LEAVE,

@@ -1,0 +1,32 @@
+.day-container {
+  flex: 1;
+}
+.day-label {
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-align: center;
+  margin: 6px 6px 0px 0px;
+}
+.day-cell-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.day-tile {
+  border: 1px solid gray;
+  transition: 0.2s;
+}
+.inActive-day-tile {
+  background-color: #e5e4e2;
+}
+
+.active-day-tile {
+  cursor: pointer;
+}
+.active-day {
+  color: blue;
+}

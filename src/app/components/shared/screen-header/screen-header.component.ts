@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { NavigationService } from '../../../services/navigation/navigation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'screen-header',
@@ -18,11 +18,11 @@ export class ScreenHeaderComponent {
   @Input() btnActions: any[] = [];
   @Output() onActionClick = new EventEmitter<any>();
 
-  navigation = inject(NavigationService);
+  router = inject(Router);
 
   onActionBtnClick(action: string): void {
     if (action === 'add' && this.addPath) {
-      this.navigation.navigateTo(this.addPath);
+      this.router.navigate([this.addPath]);
       return;
     }
     this.onActionClick.emit(action);

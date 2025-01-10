@@ -1,0 +1,29 @@
+<div class="flex space-between">
+  <div *ngFor="let day of days" class="day-container">
+    <p class="day-label">{{ day | slice : 0 : 3 }}</p>
+  </div>
+</div>
+
+<mat-grid-list cols="7">
+  <ng-container *ngFor="let item of collection">
+    <mat-grid-tile
+      class="day-tile"
+      [ngClass]="{
+        'inActive-day-tile': !!item?.isDisabled,
+        'active-day-tile': !item?.isDisabled
+      }"
+    >
+      <span class="day-cell-container" (click)="onDayClick(item)">
+        <div>
+          <p class="day-label">
+            {{ item?.date | date : "d" }}
+          </p>
+        </div>
+        <div
+          *ngIf="!item?.isDisabled"
+          style="background-color: blueviolet; height: 20px; width: 100%"
+        ></div>
+      </span>
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>

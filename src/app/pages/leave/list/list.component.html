@@ -5,21 +5,11 @@
     </div>
     <div class="flex">
       <div class="details-container">
-        <ng-container *ngIf="filteredDetails?.length">
-          <ng-container *ngFor="let leave of filteredDetails">
-            <div class="details-box">
-              <h4 class="user-name">{{ leave?.userName }}</h4>
-              <p class="small-text">
-                {{ leave?.duration }} -
-                <span class="text-bold">{{ leave?.startDate | date }}</span> to
-                <span class="text-bold">{{ leave?.endDate | date }}</span>
-              </p>
-            </div>
-          </ng-container>
-        </ng-container>
-        <ng-container *ngIf="!filteredDetails?.length">
-          <p>Leave Records Not found</p>
-        </ng-container>
+        <div class="nav-container">
+          <a [routerLink]="route.LEAVE_LIST_CALENDER_VIEW">Calender</a>
+          <a [routerLink]="route.LEAVE_LIST_CARD_VIEW">Card</a>
+        </div>
+        <router-outlet></router-outlet>
       </div>
       <div class="filter-container">
         <select-field
