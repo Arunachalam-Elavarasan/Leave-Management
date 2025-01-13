@@ -37,3 +37,14 @@ export const getNextMonth = (
     ? { month: 0, year: year + 1 }
     : { year, month: nextMonth };
 };
+
+export const getBetweenDates = (startDate: Date, endDate: Date): Date[] => {
+  const dates: any[] = [];
+  let currentDate = startDate;
+
+  while (currentDate <= endDate) {
+    dates.push(new Date(currentDate));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  return dates;
+};

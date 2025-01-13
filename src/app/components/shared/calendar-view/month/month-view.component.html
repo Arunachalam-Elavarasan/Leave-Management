@@ -19,10 +19,18 @@
             {{ item?.date | date : "d" }}
           </p>
         </div>
-        <div
-          *ngIf="!item?.isDisabled"
-          style="background-color: blueviolet; height: 20px; width: 100%"
-        ></div>
+        <ng-container *ngIf="!item?.isDisabled">
+          <ng-container *ngFor="let user of users">
+            <div
+              *ngIf="renderData?.[user]?.[item?.date]"
+              class="indicator-bar"
+              [ngStyle]="{
+                'background-color': renderData?.[user]?.barColor || '#00FF',
+                width: '100%'
+              }"
+            ></div>
+          </ng-container>
+        </ng-container>
       </span>
     </mat-grid-tile>
   </ng-container>

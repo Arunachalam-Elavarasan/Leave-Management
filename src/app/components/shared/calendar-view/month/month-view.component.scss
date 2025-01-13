@@ -14,6 +14,7 @@
   height: 100%;
   flex-direction: column;
   align-items: flex-end;
+  gap: 4px;
 }
 
 .day-tile {
@@ -29,4 +30,7 @@
 }
 .active-day {
   color: blue;
+}
+.indicator-bar {
+  height: 20px;
 }
