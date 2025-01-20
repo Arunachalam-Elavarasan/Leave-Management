@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { APP_BAR_MENU } from '../../../constants/contents';
 import { AvatarComponent } from '../avatar/avatar.component';
 import { environment } from '../../../../environment/environment';
+import { MatIconModule } from '@angular/material/icon';
+import { ThemeService } from '../../../services/theme/theme.service';
 
 @Component({
   selector: 'app-bar',
@@ -18,6 +20,7 @@ import { environment } from '../../../../environment/environment';
     AvatarComponent,
     CommonModule,
     RouterModule,
+    MatIconModule,
   ],
   templateUrl: './app-bar.component.html',
   styleUrl: './app-bar.component.scss',
@@ -25,4 +28,5 @@ import { environment } from '../../../../environment/environment';
 export class AppBarComponent {
   appName = environment?.APP_NAME;
   appBarMenu = APP_BAR_MENU;
+  theme = inject(ThemeService);
 }

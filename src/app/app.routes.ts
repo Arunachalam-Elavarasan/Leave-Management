@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './components/wrappers/layout/layout.component';
 
 import { routePath } from './constants/route';
+import { authGuard } from './components/wrappers/authGuard/auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
           import('./pages/user/list/list.component').then(
             (m) => m.ListComponent
           ),
+        canActivate: [authGuard],
       },
       {
         path: routePath?.USER_FORM,
@@ -27,6 +29,7 @@ export const routes: Routes = [
           import('./pages/user/form/basic-info/basic-info.component').then(
             (m) => m.BasicInfoComponent
           ),
+        canActivate: [authGuard],
       },
       {
         path: `${routePath?.USER_FORM}/:action/:id`,
@@ -34,6 +37,7 @@ export const routes: Routes = [
           import('./pages/user/form/basic-info/basic-info.component').then(
             (m) => m.BasicInfoComponent
           ),
+        canActivate: [authGuard],
       },
 
       {
@@ -42,6 +46,7 @@ export const routes: Routes = [
           import('./pages/leave/list/list.component').then(
             (m) => m.ListComponent
           ),
+        canActivate: [authGuard],
         children: [
           {
             path: '',

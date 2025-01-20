@@ -1,4 +1,4 @@
-<mat-toolbar style="justify-content: center">
+<mat-toolbar style="justify-content: center" class="nav-bar-wrapper">
   <div class="container nav-bar-container">
     <div class="nav-menu-container">
       <h1 class="logo">{{ appName }}</h1>
@@ -16,6 +16,16 @@
       </ul>
     </div>
     <div class="profile-container">
+      <span (click)="theme.toggleTheme()" class="icon-btn">
+        <mat-icon
+          fontIcon="dark_mode"
+          *ngIf="theme.currentTheme === 'light-theme'"
+        ></mat-icon>
+        <mat-icon
+          fontIcon="light_mode"
+          *ngIf="theme.currentTheme === 'dark-theme'"
+        ></mat-icon>
+      </span>
       <app-avatar></app-avatar>
     </div>
   </div>

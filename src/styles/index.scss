@@ -1,27 +1,67 @@
+@use "./variables" as *;
+
+:root {
+  --primary-color: #{$primary_light};
+  --secondary-color: #{$secondary_light};
+  --tertiary-color: #{$tertiary_light};
+  --success-color: #{$success_light};
+  --error-color: #{$error_light};
+  --warning-color: #{$warning_light};
+  --info-color: #{$info_light};
+  --background-color: #{$background_light};
+  --surface-color: #{$surface_light};
+  --text-primary-color: #{$text_primary_light};
+  --text-secondary-color: #{$text_secondary_light};
+  --disabled-color: #{$disabled_light};
+  --border-color: #{$border_light};
+  --shadow-color: #{$shadow_light};
+
+  --too-small-space: 4px;
+  --small-space: 8px;
+  --medium-space: 16px;
+  --large-space: 24px;
+  --too-large-space: 28px;
+
+  --primary-font: "sans-serif";
+  --secondary-font: "Arial";
+  --too-small-font-size: 12px;
+  --small-font-size: 14px;
+  --medium-font-size: 16px;
+  --large-font-size: 24px;
+  --too-large-font-size: 32px;
+}
+
+:root.dark-theme {
+  --primary-color: #{$primary_dark};
+  --secondary-color: #{$secondary_dark};
+  --tertiary-color: #{$tertiary_dark};
+  --success-color: #{$success_dark};
+  --error-color: #{$error_dark};
+  --warning-color: #{$warning_dark};
+  --info-color: #{$info_dark};
+  --background-color: #{$background_dark};
+  --surface-color: #{$surface_dark};
+  --text-primary-color: #{$text_primary_dark};
+  --text-secondary-color: #{$text_secondary_dark};
+  --disabled-color: #{$disabled_dark};
+  --border-color: #{$border_dark};
+  --shadow-color: #{$shadow_dark};
+}
+
 * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  font-family: sans-serif;
-}
-
-:root {
-  --success-bg-color: #4caf50;
-  --error-bg-color: #f44336;
-  --text-color-light: #ffffff;
-
-  --small-space: 8px;
-  --medium-space: 16px;
-  --large-space: 24px;
-}
-
-.success.mat-snack-bar-container {
-  background-color: green;
+  font-family: var(--primary-font);
 }
 
 .container {
   width: 1100px;
   max-width: 1300px;
+}
+
+.success.mat-snack-bar-container {
+  background-color: var(--success-color);
 }
 
 .flex {
@@ -76,11 +116,11 @@
 }
 
 .margin-vertical-sm {
-  margin: 8px 0px;
+  margin: var(--small-space) 0px;
 }
 .margin-vertical-md {
-  margin: 16px 0px;
+  margin: var(--medium-space) 0px;
 }
 .margin-vertical-lg {
-  margin: 24px 0px;
+  margin: var(--large-space) 0px;
 }
