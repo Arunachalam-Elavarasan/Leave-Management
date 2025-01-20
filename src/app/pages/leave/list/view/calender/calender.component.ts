@@ -22,11 +22,11 @@ export class CalenderComponent {
     const data = this.shared.getData();
 
     this.leaveDetails = data?.reduce((acc: any, item: any, index: number) => {
-      console.log(index);
       acc[item?.userId] = {
         ...(acc?.[item?.userId] || {
           userName: item?.userName,
           barColor: COLOR_PALETTE[index],
+          top: (index + 1) * 25,
         }),
       };
       const dates = getBetweenDates(
@@ -35,7 +35,11 @@ export class CalenderComponent {
       );
 
       dates?.map((date: Date) => {
-        acc[item?.userId][date?.toString()] = true;
+        acc[item?.userId][date?.toString()] = {
+          start: 0,
+          end: 100,
+          ...item,
+        };
       });
       return acc;
     }, {});

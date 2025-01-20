@@ -5,11 +5,18 @@ import { MONTHS, WEEK_DAYS } from '../../../../constants/common';
 import { getDayByDate, getNoOfDaysInMonth } from '../../../../utils/date';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { DayTileComponent } from '../day-tile/day-tile.component';
 
 @Component({
   selector: 'month-view',
   standalone: true,
-  imports: [MatGridListModule, CommonModule, MatButtonModule, MatIconModule],
+  imports: [
+    MatGridListModule,
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    DayTileComponent,
+  ],
   templateUrl: './month-view.component.html',
   styleUrl: './month-view.component.scss',
 })
@@ -22,7 +29,7 @@ export class MonthViewComponent {
 
   today = new Date();
 
-  onDayClick(date: any) {
+  onBarClick(date: any) {
     console.log({ date });
   }
 

@@ -19,7 +19,10 @@ import { ApiService } from '../../../services/api/api.service';
 import { loadLeaveDetails } from '../../../store/app/app.action';
 import { leaveDetailsValidation } from '../../../constants/validations';
 import { FormService } from '../../../services/form/form-service.service';
-import { formatPlural, getDurationBetweenTwoDates } from '../../../utils/common';
+import {
+  formatPlural,
+  getDurationBetweenTwoDates,
+} from '../../../utils/common';
 import {
   LEAVE_APPLIED,
   leaveFormActions,
@@ -64,7 +67,6 @@ export class FormComponent {
   }
 
   onSubmit() {
-    console.log(this.leaveDetails);
     if (this.leaveDetails.invalid || !this.userId) return;
     const form = this.leaveDetails;
     const noOfDays = getDurationBetweenTwoDates(

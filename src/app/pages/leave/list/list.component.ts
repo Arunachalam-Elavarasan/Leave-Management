@@ -72,8 +72,6 @@ export class ListComponent {
 
         this.filteredDetails = this.leaveDetails;
         this.sharedData.setData(this.leaveDetails);
-
-        console.log(this.leaveDetails);
       },
     });
   }

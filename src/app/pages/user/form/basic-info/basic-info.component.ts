@@ -139,9 +139,6 @@ export class BasicInfoComponent {
         next: (data: any) => {
           this.user.patchValue(data || {});
         },
-        error: (err) => {
-          console.log(err);
-        },
       });
     }
 

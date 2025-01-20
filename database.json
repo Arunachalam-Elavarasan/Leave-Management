@@ -124,6 +124,24 @@
       "endDate": "2025-01-16T18:30:00.000Z",
       "userId": "3ee9",
       "duration": "7 Days"
+    },
+    {
+      "id": "c0a4",
+      "typeOfLeave": "Testing",
+      "comment": "No Comments",
+      "startDate": "2025-02-04T18:30:00.000Z",
+      "endDate": "2025-02-19T18:30:00.000Z",
+      "userId": "d66f",
+      "duration": "15 Days"
+    },
+    {
+      "id": "00d2",
+      "typeOfLeave": "Testing",
+      "comment": "No Comment",
+      "startDate": "2025-02-04T18:30:00.000Z",
+      "endDate": "2025-02-06T18:30:00.000Z",
+      "userId": "3ee9",
+      "duration": "2 Days"
     }
   ]
 }
