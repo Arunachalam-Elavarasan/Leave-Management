@@ -25,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
 })
-export class TablePaginationExample {
+export class AppTable {
   @Input() columnData: any[] = [];
   @Input() data: any[] = [];
   @Input() emptyMessage: string = 'No Data Found';
@@ -57,7 +57,7 @@ export class TablePaginationExample {
     }
   }
 
-  handleActionClick(action: string, item: any) {
-    this.onActionClick.emit({ action, item });
+  handleActionClick(action: string, item: any, index: number) {
+    this.onActionClick.emit({ action, item, index });
   }
 }

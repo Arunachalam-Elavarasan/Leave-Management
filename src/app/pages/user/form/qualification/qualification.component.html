@@ -1,0 +1,31 @@
+<div class="flex space-between" [formGroup]="userQualification">
+  <div class="flex-col row-gap-md" style="width: 30%">
+    <h3>Qualification</h3>
+    <div>
+      <text-field
+        label="Qualification"
+        [control]="userQualification.get('qualification')"
+      />
+      <text-field
+        label="Percentage"
+        [control]="userQualification.get('percentage')"
+      />
+      <button
+        mat-flat-button
+        type="button"
+        (click)="onQualificationSubmit()"
+        color="primary"
+      >
+        {{ editIndex.toString() ? "Update" : "Add" }}
+      </button>
+    </div>
+  </div>
+  <div style="width: 60%" class="margin-vertical-md">
+    <app-table
+      [columnData]="columnData"
+      [data]="qualifications"
+      (onActionClick)="onActionClick($event)"
+      emptyMessage="Qualification Not Found"
+    ></app-table>
+  </div>
+</div>
