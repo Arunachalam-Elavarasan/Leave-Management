@@ -28,6 +28,9 @@ export const userDetailsValidation = {
   deactivationReason: {
     required: required('Deactivation Reason'),
   },
+  dateOfBirth: {
+    required: required('Date of Birth'),
+  },
 };
 
 export const userContactInfoValidation = {
@@ -46,9 +49,6 @@ export const userContactInfoValidation = {
   pinCode: {
     required: required('Pin Code'),
     minlength: minDigitsRequired('Pin Code', 6),
-  },
-  dateOfBirth: {
-    required: required('Date of Birth'),
   },
 };
 
