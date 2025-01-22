@@ -46,6 +46,15 @@ export const userContactInfoValidation = {
   },
 };
 
+export const userQualificationValidation = {
+  qualification: {
+    required: required('Qualification'),
+  },
+  percentage: {
+    required: required('Percentage'),
+  },
+};
+
 export const leaveDetailsValidation = {
   typeOfLeave: {
     required: required('Type Of Leave'),

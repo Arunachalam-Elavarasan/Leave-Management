@@ -7,6 +7,7 @@ import { SelectFieldComponent } from '../../../components/shared/form-fields/sel
 import { getLeaves, getUsers } from '../../../store/app/app.selector';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { routePath } from '../../../constants/route';
+import { ShareDataService } from '../../../services/shareDate/share-data.service';
 
 @Component({
   selector: 'leave-list',
@@ -20,9 +21,11 @@ import { routePath } from '../../../constants/route';
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
+  providers: [ShareDataService],
 })
 export class ListComponent {
   private store = inject(Store);
+  sharedData = inject(ShareDataService);
   leaveDetails: any = [];
   users: any[] = [];
 
@@ -67,9 +70,8 @@ export class ListComponent {
           []
         );
 
-        console.log(this.leaveDetails);
-
         this.filteredDetails = this.leaveDetails;
+        this.sharedData.setData(this.leaveDetails);
       },
     });
   }

@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  inject,
   Input,
   Output,
   SimpleChanges,
@@ -25,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
 })
-export class TablePaginationExample {
+export class AppTable {
   @Input() columnData: any[] = [];
   @Input() data: any[] = [];
   @Input() emptyMessage: string = 'No Data Found';
@@ -34,12 +36,16 @@ export class TablePaginationExample {
   @Input() hidePageSize: boolean = false;
   @Input() hasFirstLastButton: boolean = true;
   @Input() pageOptions: number[] = [5, 10, 15];
+  @Input() isActionDisabled: boolean = false;
 
   @Output() onActionClick = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  private change = inject(ChangeDetectorRef);
+
   displayedColumns: string[] = [];
+  columnSchema: any[] = [];
   dataSource: any;
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,6 +53,7 @@ export class TablePaginationExample {
       this.dataSource = new MatTableDataSource(changes['data']?.currentValue);
     }
     if (changes?.['columnData']) {
+      this.columnSchema = [...this.columnData];
       this.displayedColumns = this.columnData?.map((item) => item?.accessor);
     }
   }
@@ -57,7 +64,7 @@ export class TablePaginationExample {
     }
   }
 
-  handleActionClick(action: string, item: any) {
-    this.onActionClick.emit({ action, item });
+  handleActionClick(action: string, item: any, index: number) {
+    this.onActionClick.emit({ action, item, index });
   }
 }

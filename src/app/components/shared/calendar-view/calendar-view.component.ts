@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MonthViewComponent } from './month/month-view.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import {
   getNoOfDaysInMonth,
   getPreMonth,
 } from '../../../utils/date';
+import { getDurationBetweenTwoDates } from '../../../utils/common';
 
 @Component({
   selector: 'calendar-view',
@@ -20,6 +21,7 @@ import {
 })
 export class CalendarViewComponent {
   months: string[] = MONTHS;
+  @Input() data!: any;
 
   dateCollection: any = [];
 
@@ -74,6 +76,7 @@ export class CalendarViewComponent {
   }
 
   ngOnInit(): void {
+    getDurationBetweenTwoDates(new Date(), new Date().getDate() + 5);
     this.setDateCollection(
       this.currentMonthCalendar?.month,
       this.currentMonthCalendar?.year

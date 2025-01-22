@@ -8,7 +8,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 
-import { TablePaginationExample } from '../../../components/shared/app-table/app-table.component';
+import { AppTable } from '../../../components/shared/app-table/app-table.component';
 import { ScreenHeaderComponent } from '../../../components/shared/screen-header/screen-header.component';
 import { ToggleFieldComponent } from '../../../components/shared/form-fields/toggle-field/toggle-field.component';
 
@@ -28,16 +28,11 @@ import {
   userStatusItem,
 } from '../../../constants/userDetails';
 import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
-import { messages } from '../../../constants/contents';
 
 @Component({
   selector: 'user-list',
   standalone: true,
-  imports: [
-    TablePaginationExample,
-    ScreenHeaderComponent,
-    ToggleFieldComponent,
-  ],
+  imports: [AppTable, ScreenHeaderComponent, ToggleFieldComponent],
   templateUrl: './list.component.html',
 })
 export class ListComponent {

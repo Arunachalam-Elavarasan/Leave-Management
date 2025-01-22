@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -35,6 +36,7 @@ import {
   VIEW,
 } from '../../../../constants/userDetails';
 import { SnackBarService } from '../../../../services/snackBar/snack-bar.service';
+import { QualificationComponent } from '../qualification/qualification.component';
 
 @Component({
   selector: 'basic-info',
@@ -48,6 +50,7 @@ import { SnackBarService } from '../../../../services/snackBar/snack-bar.service
     ContactInfoComponent,
     CheckBoxFieldComponent,
     ScreenHeaderComponent,
+    QualificationComponent,
   ],
   templateUrl: './basic-info.component.html',
   providers: [FormBuilder],
@@ -73,6 +76,7 @@ export class BasicInfoComponent {
     ...basicInfo,
     primaryContactInfo: this.formBuilder.group(contactInfo),
     secondaryContactInfo: this.formBuilder.group(contactInfo),
+    qualification: this.formBuilder.array<FormGroup<any>>([]),
   });
 
   getFormGroup(formGroup: AbstractControl | null): FormGroup {
@@ -96,6 +100,21 @@ export class BasicInfoComponent {
     }
 
     action === CANCEL && this.router.navigate([routePath.HOME]);
+  }
+
+  onQualificationSubmit(qualification: any) {
+    const editIndex = qualification?.index;
+    const payload = qualification?.value;
+    const qualificationControl = this.user.controls.qualification;
+
+    if (editIndex?.toString()) {
+      qualification?.isUpdate
+        ? qualificationControl.at(editIndex)?.patchValue(payload)
+        : qualificationControl.removeAt(editIndex);
+      return;
+    }
+    if (!payload?.id) payload.id = Math.random();
+    qualificationControl.push(this.formBuilder.group(payload));
   }
 
   onSubmit() {
@@ -138,9 +157,12 @@ export class BasicInfoComponent {
       this.api.service.get(this.api.path.USERS, this.editId).subscribe({
         next: (data: any) => {
           this.user.patchValue(data || {});
-        },
-        error: (err) => {
-          console.log(err);
+          const qualification = this.user.controls.qualification;
+          if (data?.qualification?.length) {
+            data?.qualification?.forEach((item: any) => {
+              qualification.push(this.formBuilder.group(item));
+            });
+          }
         },
       });
     }

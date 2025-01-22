@@ -15,7 +15,6 @@ export class FieldErrorPipe implements PipeTransform {
     if (!errors) return '';
 
     const firstErrorKey = Object.keys(errors)[0];
-    console.log({ firstErrorKey });
     return validation?.[fieldName]?.[firstErrorKey] || '';
   }
 }

@@ -23,8 +23,6 @@ export class DialogBoxComponent {
 
   ngOnInit(): void {
     this.inputData = this.data;
-
-    console.log(this.data);
   }
 
   onClose() {

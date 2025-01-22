@@ -13,17 +13,12 @@
         'active-day-tile': !item?.isDisabled
       }"
     >
-      <span class="day-cell-container" (click)="onDayClick(item)">
-        <div>
-          <p class="day-label">
-            {{ item?.date | date : "d" }}
-          </p>
-        </div>
-        <div
-          *ngIf="!item?.isDisabled"
-          style="background-color: blueviolet; height: 20px; width: 100%"
-        ></div>
-      </span>
+      <day-tile
+        [item]="item"
+        [renderData]="renderData"
+        [users]="users"
+        (onBarClick)="onBarClick($event)"
+      ></day-tile>
     </mat-grid-tile>
   </ng-container>
 </mat-grid-list>

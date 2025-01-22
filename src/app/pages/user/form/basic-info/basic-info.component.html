@@ -7,83 +7,116 @@
           [btnActions]="btnActions"
           (onActionClick)="onActionClick($event)"
         ></screen-header>
-        <div class="flex space-between col-gap-md">
-          <div class="flex-col row-gap-md" style="width: 30%">
-            <h3>Basic Info</h3>
-            <div>
-              <text-field
-                label="First Name"
-                [control]="user.get('firstName')"
-                [readonly]="isView"
-                [error]="
-                  formService.fieldError(
-                    user.get('firstName'),
-                    'firstName',
-                    validation
-                  )
-                "
-              />
-              <text-field
-                label="Last Name"
-                [control]="user.get('lastName')"
-                [readonly]="isView"
-                [error]="
-                  formService.fieldError(
-                    user.get('lastName'),
-                    'lastName',
-                    validation
-                  )
-                "
-              />
-              <text-field
-                label="Email"
-                [readonly]="isView"
-                [control]="user.get('email')"
-                [error]="
-                  formService.fieldError(user.get('email'), 'email', validation)
-                "
-              />
-              <text-field
-                label="Phone Number"
-                [readonly]="isView"
-                [control]="user.get('phoneNo')"
-                [maxLength]="10"
-                [error]="
-                  formService.fieldError(
-                    user.get('phoneNo'),
-                    'phoneNo',
-                    validation
-                  )
-                "
-              />
-              <ng-container *ngIf="action">
-                <toggle-field
-                  label="Status"
-                  name="status"
-                  [control]="user.get('status')"
+        <div class="flex-col row-gap-md">
+          <div class="flex space-between col-gap-md">
+            <div class="flex-col row-gap-md" style="width: 30%">
+              <h3>Basic Info</h3>
+              <div>
+                <text-field
+                  label="First Name"
+                  [control]="user.get('firstName')"
+                  [readonly]="isView"
+                  [error]="
+                    formService.fieldError(
+                      user.get('firstName'),
+                      'firstName',
+                      validation
+                    )
+                  "
                 />
-              </ng-container>
+                <text-field
+                  label="Last Name"
+                  [control]="user.get('lastName')"
+                  [readonly]="isView"
+                  [error]="
+                    formService.fieldError(
+                      user.get('lastName'),
+                      'lastName',
+                      validation
+                    )
+                  "
+                />
+                <text-field
+                  label="Email"
+                  [readonly]="isView"
+                  [control]="user.get('email')"
+                  [error]="
+                    formService.fieldError(
+                      user.get('email'),
+                      'email',
+                      validation
+                    )
+                  "
+                />
+                <text-field
+                  label="Phone Number"
+                  [readonly]="isView"
+                  [control]="user.get('phoneNo')"
+                  [maxLength]="10"
+                  [error]="
+                    formService.fieldError(
+                      user.get('phoneNo'),
+                      'phoneNo',
+                      validation
+                    )
+                  "
+                />
+              </div>
+            </div>
+            <div style="width: 30%">
+              <contact-info
+                [contactInfoValue]="user.controls.primaryContactInfo"
+                [isReadOnly]="isView"
+              />
+            </div>
+            <div style="width: 30%">
+              <contact-info
+                [contactInfoValue]="user.controls.secondaryContactInfo"
+                [isPrimaryInfo]="false"
+                [isReadOnly]="
+                  !!user.get('secondarySameAsPrimary')?.value || isView
+                "
+              />
+              <check-box-field
+                label="Use Primary Contact"
+                [control]="user.get('secondarySameAsPrimary')"
+              />
             </div>
           </div>
-          <div style="width: 30%">
-            <contact-info
-              [contactInfoValue]="user.controls.primaryContactInfo"
-              [isReadOnly]="isView"
-            />
-          </div>
-          <div style="width: 30%">
-            <contact-info
-              [contactInfoValue]="user.controls.secondaryContactInfo"
-              [isPrimaryInfo]="false"
-              [isReadOnly]="
-                !!user.get('secondarySameAsPrimary')?.value || isView
-              "
-            />
-            <check-box-field
-              label="Use Primary Contact"
-              [control]="user.get('secondarySameAsPrimary')"
-            />
-          </div>
+          <hr />
+          <qualification
+            [readonly]="isView"
+            (onSubmit)="onQualificationSubmit($event)"
+            [qualifications]="user.controls.qualification.value"
+          ></qualification>
+          <ng-container *ngIf="action">
+            <hr />
+            <div class="flex-col row-gap-md">
+              <toggle-field
+                label="Status"
+                name="status"
+                [control]="user.get('status')"
+              />
+              <ng-container *ngIf="!user.controls.status.value">
+                <text-field
+                  label="Deactivation Reason"
+                  [readonly]="isView"
+                  [control]="user.get('deactivationReason')"
+                  [maxLength]="10"
+                  [error]="
+                    formService.fieldError(
+                      user.get('deactivationReason'),
+                      'deactivationReason',
+                      validation
+                    )
+                  "
+              /></ng-container>
+              <div
+                *ngIf="user.controls.status.value"
+                style="height: 78px"
+              ></div>
+            </div>
+          </ng-container>
         </div>
       </div>
     </div>

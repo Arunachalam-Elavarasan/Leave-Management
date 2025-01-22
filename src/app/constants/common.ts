@@ -22,3 +22,5 @@ export const MONTHS = [
   'November',
   'December',
 ];
+
+export const COLOR_PALETTE = ['#16C47F', '#FFD65A', '#FF9D23', '#F93827'];

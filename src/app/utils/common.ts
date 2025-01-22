@@ -22,7 +22,7 @@ export const removeData = (
   return collectionValue;
 };
 
-export const getDaysBetweenTwoDate = (startDate: any, endDate: any) => {
+export const getDurationBetweenTwoDates = (startDate: any, endDate: any) => {
   const firstDate = new Date(startDate);
   const secondDate = new Date(endDate);
   const duration = Math.round(

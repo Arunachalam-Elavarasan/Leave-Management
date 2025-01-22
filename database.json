@@ -1,129 +1,36 @@
 {
   "users": [
     {
-      "firstName": "Mitchel",
+      "id": "926d",
+      "firstName": "Michel",
       "lastName": "Johnson",
-      "email": "michel@gmail.com",
-      "phoneNo": "3438943894",
+      "email": "test@gmail.com",
+      "phoneNo": "3483948934",
       "status": true,
       "secondarySameAsPrimary": true,
+      "deactivationReason": "",
       "primaryContactInfo": {
         "address": "Address",
         "street": "Street",
         "city": "City",
         "state": "State",
-        "pinCode": "834988"
+        "pinCode": "839438"
       },
       "secondaryContactInfo": {
         "address": "Address",
         "street": "Street",
         "city": "City",
         "state": "State",
-        "pinCode": "834988"
+        "pinCode": "839438"
       },
-      "id": "3ee9"
-    },
-    {
-      "id": "4a6c",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "first@gmail.com",
-      "phoneNo": "7373439483",
-      "status": true,
-      "secondarySameAsPrimary": true,
-      "primaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State ",
-        "pinCode": "343989"
-      },
-      "secondaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State ",
-        "pinCode": "343989"
-      }
-    },
-    {
-      "id": "d66f",
-      "firstName": "Pratheeks",
-      "lastName": "Kumar",
-      "email": "pratheeks@gmail.com",
-      "phoneNo": "7348394839",
-      "status": true,
-      "secondarySameAsPrimary": true,
-      "primaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State",
-        "pinCode": "343434"
-      },
-      "secondaryContactInfo": {
-        "address": "Address",
-        "street": "Street",
-        "city": "City",
-        "state": "State",
-        "pinCode": "343434"
-      }
+      "qualification": [
+        {
+          "qualification": "B.E",
+          "percentage": "89",
+          "id": 0.6940491768007091
+        }
+      ]
     }
   ],
-  "leaveDetails": [
-    {
-      "id": "f1bf",
-      "typeOfLeave": "Sick Leave",
-      "comment": "No Commets",
-      "startDate": "2025-01-01T18:30:00.000Z",
-      "endDate": "2025-01-09T18:30:00.000Z",
-      "userId": "3ee9",
-      "duration": "8 Days"
-    },
-    {
-      "id": "59d7",
-      "typeOfLeave": "Going Home",
-      "comment": "Festival",
-      "startDate": "2025-01-06T18:30:00.000Z",
-      "endDate": "2025-01-10T18:30:00.000Z",
-      "userId": null,
-      "duration": "4 Days"
-    },
-    {
-      "id": "50c0",
-      "typeOfLeave": "Leave apply",
-      "comment": "Nothing",
-      "startDate": "2025-01-09T18:30:00.000Z",
-      "endDate": "2025-01-30T18:30:00.000Z",
-      "userId": "fe98",
-      "duration": "21 Days"
-    },
-    {
-      "id": "05c9",
-      "typeOfLeave": "Casual",
-      "comment": "Need to work on Personal",
-      "startDate": "2025-01-07T18:30:00.000Z",
-      "endDate": "2025-01-16T18:30:00.000Z",
-      "userId": "d66f",
-      "duration": "9 Days"
-    },
-    {
-      "id": "7646",
-      "typeOfLeave": "Temporary Break",
-      "comment": "Nothing to say",
-      "startDate": "2025-01-09T18:30:00.000Z",
-      "endDate": "2025-01-30T18:30:00.000Z",
-      "userId": "3ee9",
-      "duration": "21 Days"
-    },
-    {
-      "id": "3c43",
-      "typeOfLeave": "Sick Leave",
-      "comment": "Comment",
-      "startDate": "2025-01-09T18:30:00.000Z",
-      "endDate": "2025-01-16T18:30:00.000Z",
-      "userId": "3ee9",
-      "duration": "7 Days"
-    }
-  ]
+  "leaveDetails": []
 }

@@ -81,6 +81,7 @@ export const basicInfo = {
   phoneNo: ['', [Validators.required, Validators.minLength(10)]],
   status: true,
   secondarySameAsPrimary: false,
+  deactivationReason: [''],
 };
 
 export const contactInfo = {
@@ -89,6 +90,11 @@ export const contactInfo = {
   city: ['', [Validators.required]],
   state: ['', [Validators.required]],
   pinCode: ['', [Validators.required, Validators.minLength(6)]],
+};
+
+export const qualificationInitialValue = {
+  qualification: ['', [Validators.required]],
+  percentage: ['', [Validators.required]],
 };
 
 export const APPLY_LEAVE = 'applyLeave';
@@ -135,3 +141,32 @@ export const userDetailsMessage = {
   USER_CREATED: 'User Created Successfully',
   USER_UPDATED: 'User Updated Successfully',
 };
+
+export const qualificationTableSchema = (isDisabled: boolean) => [
+  {
+    label: 'Qualification',
+    accessor: 'qualification',
+  },
+  {
+    label: 'Percentage',
+    accessor: 'percentage',
+  },
+  {
+    label: 'Actions',
+    accessor: 'actions',
+    actions: [
+      {
+        iconName: 'edit',
+        iconColor: 'primary',
+        name: 'edit',
+        isDisabled,
+      },
+      {
+        iconName: 'delete',
+        iconColor: 'warn',
+        name: 'delete',
+        isDisabled,
+      },
+    ],
+  },
+];
