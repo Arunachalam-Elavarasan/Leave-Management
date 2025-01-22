@@ -52,8 +52,9 @@
               leaveDetails.get('endDate'),
               'endDate',
               validation
-            )
+            ) || leaveDetails.errors?.['endDate'] ? 'End Date Should be more than Start Date' :''
           "
+          [errorStateMatcher]="errorStateMatcher"
         ></date-field>
       </div>
     </div>

@@ -17,7 +17,10 @@ import { CANCEL } from '../../../constants/userDetails';
 import { ListHeaderAction } from '../../../model/common';
 import { ApiService } from '../../../services/api/api.service';
 import { loadLeaveDetails } from '../../../store/app/app.action';
-import { leaveDetailsValidation } from '../../../constants/validations';
+import {
+  ErrorMatcher,
+  leaveDetailsValidation,
+} from '../../../constants/validations';
 import { FormService } from '../../../services/form/form-service.service';
 import {
   formatPlural,
@@ -58,6 +61,7 @@ export class FormComponent {
   userId: string = '';
   actions: ListHeaderAction[] = leaveFormActions;
   validation = leaveDetailsValidation;
+  errorStateMatcher = new ErrorMatcher();
   leaveDetails: FormGroup = this.formBuilder.group(leaveInitialValues, {
     validators: checkEndDateValidation(),
   });
@@ -67,6 +71,8 @@ export class FormComponent {
   }
 
   onSubmit() {
+    this.leaveDetails.markAllAsTouched();
+    console.log(this.leaveDetails.errors);
     if (this.leaveDetails.invalid || !this.userId) return;
     const form = this.leaveDetails;
     const noOfDays = getDurationBetweenTwoDates(

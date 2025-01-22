@@ -31,7 +31,59 @@
         }
       ],
       "id": "926d"
+    },
+    {
+      "id": "5d0f",
+      "firstName": "James ",
+      "lastName": "Bond",
+      "email": "james@quest1.io",
+      "phoneNo": "3439498349",
+      "status": true,
+      "secondarySameAsPrimary": true,
+      "deactivationReason": "",
+      "dateOfBirth": "2010-02-03T18:30:00.000Z",
+      "primaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "343843"
+      },
+      "secondaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "343843"
+      },
+      "qualification": [
+        {
+          "qualification": "SSLC",
+          "percentage": "92",
+          "id": 0.07271706750236873
+        },
+        {
+          "qualification": "HSC",
+          "percentage": "58.8",
+          "id": 0.5859407204899714
+        },
+        {
+          "qualification": "BCA",
+          "percentage": "81",
+          "id": 0.07148773540555942
+        }
+      ]
     }
   ],
-  "leaveDetails": []
+  "leaveDetails": [
+    {
+      "id": "3ee3",
+      "typeOfLeave": "leave",
+      "comment": "comment",
+      "startDate": "2025-01-17T18:30:00.000Z",
+      "endDate": "2025-01-17T18:30:00.000Z",
+      "userId": "926d",
+      "duration": "0 Day"
+    }
+  ]
 }

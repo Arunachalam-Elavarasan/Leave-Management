@@ -1,12 +1,18 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import {
   MatFormFieldAppearance,
   MatFormFieldModule,
 } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { ErrorStateMatcher, MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { FormControlPipe } from '../../../../pipes/formControl/form-control.pipe';
 
@@ -34,4 +40,5 @@ export class DateFieldComponent {
   @Input() error: string | null = null;
   @Input() maxDate!: number;
   @Input() minDate!: number;
+  @Input() errorStateMatcher!: ErrorStateMatcher;
 }

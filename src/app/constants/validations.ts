@@ -1,3 +1,15 @@
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class ErrorMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    return !!control?.parent?.invalid && control.touched;
+  }
+}
+
 export const required = (fieldName: string) => `${fieldName} is Required`;
 
 export const inValid = (fieldName: string) => `Please Enter Valid ${fieldName}`;
@@ -9,6 +21,7 @@ export const maxDigitsRequired = (fieldName: string, max: number) =>
   `${fieldName} has minimum ${max} digits`;
 
 export const startEndDate = 'End date should not be more than start Date';
+const moreThanToday = 'Date fo Birth should be less than Today.';
 
 export const userDetailsValidation = {
   firstName: {
@@ -28,6 +41,10 @@ export const userDetailsValidation = {
   deactivationReason: {
     required: required('Deactivation Reason'),
   },
+  dateOfBirth: {
+    required: required('Date of Birth'),
+    moreThanToday,
+  },
 };
 
 export const userContactInfoValidation = {
@@ -46,9 +63,6 @@ export const userContactInfoValidation = {
   pinCode: {
     required: required('Pin Code'),
     minlength: minDigitsRequired('Pin Code', 6),
-  },
-  dateOfBirth: {
-    required: required('Date of Birth'),
   },
 };
 

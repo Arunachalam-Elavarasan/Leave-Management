@@ -2,6 +2,7 @@ import { Form, Validators } from '@angular/forms';
 import { HeaderActions, TableAction } from '../model/common';
 import { FormHeaderAction, UserListItem } from '../model/userDetails';
 import { DialogConfig, DialogData } from '../services/dialog/dialog.service';
+import { userDateOfBirth } from '../validators/userDetails';
 
 export const userDetailsList: UserListItem[] = [
   {
@@ -82,7 +83,7 @@ export const basicInfo = {
   status: true,
   secondarySameAsPrimary: false,
   deactivationReason: [''],
-  dateOfBirth: ['', [Validators.required]],
+  dateOfBirth: ['', [Validators.required, userDateOfBirth()]],
 };
 
 export const contactInfo = {
@@ -143,7 +144,7 @@ export const userDetailsMessage = {
   USER_UPDATED: 'User Updated Successfully',
 };
 
-export const qualificationTableSchema = (isDisabled: boolean) => [
+export const qualificationTableSchema = [
   {
     label: 'Qualification',
     accessor: 'qualification',
@@ -160,13 +161,11 @@ export const qualificationTableSchema = (isDisabled: boolean) => [
         iconName: 'edit',
         iconColor: 'primary',
         name: 'edit',
-        isDisabled,
       },
       {
         iconName: 'delete',
         iconColor: 'warn',
         name: 'delete',
-        isDisabled,
       },
     ],
   },
