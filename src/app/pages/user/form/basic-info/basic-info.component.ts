@@ -121,6 +121,7 @@ export class BasicInfoComponent {
   }
 
   onSubmit() {
+    console.log(this.user.controls.dateOfBirth);
     this.user.controls.primaryContactInfo.markAllAsTouched();
     this.user.controls.secondaryContactInfo.markAllAsTouched();
     if (this.user.invalid) return;

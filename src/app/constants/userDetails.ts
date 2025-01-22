@@ -2,6 +2,7 @@ import { Form, Validators } from '@angular/forms';
 import { HeaderActions, TableAction } from '../model/common';
 import { FormHeaderAction, UserListItem } from '../model/userDetails';
 import { DialogConfig, DialogData } from '../services/dialog/dialog.service';
+import { userDateOfBirth } from '../validators/userDetails';
 
 export const userDetailsList: UserListItem[] = [
   {
@@ -82,7 +83,7 @@ export const basicInfo = {
   status: true,
   secondarySameAsPrimary: false,
   deactivationReason: [''],
-  dateOfBirth: ['', [Validators.required]],
+  dateOfBirth: ['', [Validators.required, userDateOfBirth()]],
 };
 
 export const contactInfo = {

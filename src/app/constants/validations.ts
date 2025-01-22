@@ -9,6 +9,7 @@ export const maxDigitsRequired = (fieldName: string, max: number) =>
   `${fieldName} has minimum ${max} digits`;
 
 export const startEndDate = 'End date should not be more than start Date';
+const moreThanToday = 'Date fo Birth should be less than Today.';
 
 export const userDetailsValidation = {
   firstName: {
@@ -30,6 +31,7 @@ export const userDetailsValidation = {
   },
   dateOfBirth: {
     required: required('Date of Birth'),
+    moreThanToday,
   },
 };
 
