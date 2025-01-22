@@ -82,6 +82,7 @@ export const basicInfo = {
   status: true,
   secondarySameAsPrimary: false,
   deactivationReason: [''],
+  dateOfBirth: ['', [Validators.required]],
 };
 
 export const contactInfo = {

@@ -9,6 +9,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 
 import { ContactInfoComponent } from '../contact-info/contact-info.component';
@@ -37,6 +38,7 @@ import {
 } from '../../../../constants/userDetails';
 import { SnackBarService } from '../../../../services/snackBar/snack-bar.service';
 import { QualificationComponent } from '../qualification/qualification.component';
+import { DateFieldComponent } from '../../../../components/shared/form-fields/date-field/date-field.component';
 
 @Component({
   selector: 'basic-info',
@@ -51,6 +53,7 @@ import { QualificationComponent } from '../qualification/qualification.component
     CheckBoxFieldComponent,
     ScreenHeaderComponent,
     QualificationComponent,
+    DateFieldComponent,
   ],
   templateUrl: './basic-info.component.html',
   providers: [FormBuilder],
@@ -121,16 +124,20 @@ export class BasicInfoComponent {
     this.user.controls.primaryContactInfo.markAllAsTouched();
     this.user.controls.secondaryContactInfo.markAllAsTouched();
     if (this.user.invalid) return;
+    const payload = {
+      ...this.user.value,
+      ...(this.user.controls.status.value ? { deactivationReason: '' } : {}),
+    };
     if (this.action && this.editId) {
       this.api.service
-        .put(this.api.path.USERS, this.editId, this.user.value)
+        .put(this.api.path.USERS, this.editId, payload)
         .subscribe({
           next: () => this.onSuccess(),
         });
       return;
     }
 
-    this.api.service.post(this.api.path.USERS, this.user.value).subscribe({
+    this.api.service.post(this.api.path.USERS, payload).subscribe({
       next: () => this.onSuccess(),
     });
   }
@@ -191,6 +198,13 @@ export class BasicInfoComponent {
           secondaryContactInfo: this.user.get('primaryContactInfo')?.value,
         });
       }
+    });
+
+    this.user.controls.status.valueChanges.subscribe((value) => {
+      const deactivation = this.user.controls.deactivationReason;
+      !value && deactivation.setValidators([Validators.required]);
+      value && deactivation.clearValidators();
+      deactivation.updateValueAndValidity();
     });
   }
 
