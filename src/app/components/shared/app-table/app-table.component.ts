@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectorRef,
   Component,
   EventEmitter,
-  inject,
   Input,
   Output,
   SimpleChanges,
@@ -41,8 +39,6 @@ export class AppTable {
   @Output() onActionClick = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  private change = inject(ChangeDetectorRef);
 
   displayedColumns: string[] = [];
   columnSchema: any[] = [];

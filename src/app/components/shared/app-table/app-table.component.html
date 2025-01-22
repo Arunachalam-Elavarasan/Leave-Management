@@ -28,13 +28,12 @@
         <th mat-header-cell *matHeaderCellDef>{{ column?.label }}</th>
         <td mat-cell *matCellDef="let element; let index = index">
           <ng-container *ngFor="let btnAction of column?.actions">
-            {{ btnAction?.isDisabled }}
             <button
               color="{{ btnAction?.iconColor }}"
               mat-icon-button
               (click)="handleActionClick(btnAction?.name, element, index)"
               type="button"
-              [disabled]="btnAction?.isDisabled || isActionDisabled"
+              [disabled]="isActionDisabled"
             >
               <mat-icon [fontIcon]="btnAction?.iconName"></mat-icon>
             </button>

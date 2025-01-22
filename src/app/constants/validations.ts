@@ -1,3 +1,15 @@
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class ErrorMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    return !!control?.parent?.invalid && control.touched;
+  }
+}
+
 export const required = (fieldName: string) => `${fieldName} is Required`;
 
 export const inValid = (fieldName: string) => `Please Enter Valid ${fieldName}`;

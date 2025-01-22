@@ -144,7 +144,7 @@ export const userDetailsMessage = {
   USER_UPDATED: 'User Updated Successfully',
 };
 
-export const qualificationTableSchema = (isDisabled: boolean) => [
+export const qualificationTableSchema = [
   {
     label: 'Qualification',
     accessor: 'qualification',
@@ -161,13 +161,11 @@ export const qualificationTableSchema = (isDisabled: boolean) => [
         iconName: 'edit',
         iconColor: 'primary',
         name: 'edit',
-        isDisabled,
       },
       {
         iconName: 'delete',
         iconColor: 'warn',
         name: 'delete',
-        isDisabled,
       },
     ],
   },

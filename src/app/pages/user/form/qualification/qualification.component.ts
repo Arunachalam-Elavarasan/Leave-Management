@@ -40,7 +40,8 @@ export class QualificationComponent {
   editIndex: string = '';
   formBuilder = inject(FormBuilder);
   formService = inject(FormService);
-  columnData = qualificationTableSchema(this.readonly);
+  isActionDisabled: boolean = this.readonly;
+  columnData = qualificationTableSchema;
   userQualification = this.formBuilder.group(qualificationInitialValue);
   validation = userQualificationValidation;
 
@@ -60,14 +61,14 @@ export class QualificationComponent {
   onClear() {
     this.userQualification.reset();
     this.editIndex = '';
-    this.columnData = qualificationTableSchema(false);
+    this.isActionDisabled = false;
   }
 
   onActionClick(event: any) {
     if (event?.action === 'edit') {
       this.editIndex = event?.index;
       this.userQualification.patchValue(event?.item);
-      this.columnData = qualificationTableSchema(true);
+      this.isActionDisabled = true;
       return;
     }
 
