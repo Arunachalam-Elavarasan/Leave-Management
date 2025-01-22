@@ -76,7 +76,7 @@ export class BasicInfoComponent {
     ...basicInfo,
     primaryContactInfo: this.formBuilder.group(contactInfo),
     secondaryContactInfo: this.formBuilder.group(contactInfo),
-    qualification: this.formBuilder.array([]),
+    qualification: this.formBuilder.array<FormGroup<any>>([]),
   });
 
   getFormGroup(formGroup: AbstractControl | null): FormGroup {
@@ -103,9 +103,18 @@ export class BasicInfoComponent {
   }
 
   onQualificationSubmit(qualification: any) {
-    let payload = qualification?.value;
-    if (!payload?.id) payload.id = Math.random();
+    const editIndex = qualification?.index;
+    const payload = qualification?.value;
     const qualificationControl = this.user.controls.qualification;
+
+    if (editIndex?.toString()) {
+      qualification?.isUpdate
+        ? qualificationControl.at(editIndex)?.patchValue(payload)
+        : qualificationControl.removeAt(editIndex);
+      return;
+    }
+    if (!payload?.id) payload.id = Math.random();
+    qualificationControl.push(this.formBuilder.group(payload));
   }
 
   onSubmit() {
@@ -148,6 +157,12 @@ export class BasicInfoComponent {
       this.api.service.get(this.api.path.USERS, this.editId).subscribe({
         next: (data: any) => {
           this.user.patchValue(data || {});
+          const qualification = this.user.controls.qualification;
+          if (data?.qualification?.length) {
+            data?.qualification?.forEach((item: any) => {
+              qualification.push(this.formBuilder.group(item));
+            });
+          }
         },
       });
     }

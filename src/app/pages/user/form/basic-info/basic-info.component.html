@@ -61,13 +61,6 @@
                     )
                   "
                 />
-                <ng-container *ngIf="action">
-                  <toggle-field
-                    label="Status"
-                    name="status"
-                    [control]="user.get('status')"
-                  />
-                </ng-container>
               </div>
             </div>
             <div style="width: 30%">
@@ -92,9 +85,38 @@
           </div>
           <hr />
           <qualification
+            [readonly]="isView"
             (onSubmit)="onQualificationSubmit($event)"
-            [qualifications]="user.controls.qualification"
+            [qualifications]="user.controls.qualification.value"
           ></qualification>
+          <ng-container *ngIf="action">
+            <hr />
+            <div class="flex-col row-gap-md">
+              <toggle-field
+                label="Status"
+                name="status"
+                [control]="user.get('status')"
+              />
+              <ng-container *ngIf="!user.controls.status.value">
+                <text-field
+                  label="Deactivation Reason"
+                  [readonly]="isView"
+                  [control]="user.get('deactivationReason')"
+                  [maxLength]="10"
+                  [error]="
+                    formService.fieldError(
+                      user.get('deactivationReason'),
+                      'deactivationReason',
+                      validation
+                    )
+                  "
+              /></ng-container>
+              <div
+                *ngIf="user.controls.status.value"
+                style="height: 78px"
+              ></div>
+            </div>
+          </ng-container>
         </div>
       </div>
     </div>

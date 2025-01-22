@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  inject,
   Input,
   Output,
   SimpleChanges,
@@ -34,12 +36,16 @@ export class AppTable {
   @Input() hidePageSize: boolean = false;
   @Input() hasFirstLastButton: boolean = true;
   @Input() pageOptions: number[] = [5, 10, 15];
+  @Input() isActionDisabled: boolean = false;
 
   @Output() onActionClick = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  private change = inject(ChangeDetectorRef);
+
   displayedColumns: string[] = [];
+  columnSchema: any[] = [];
   dataSource: any;
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,6 +53,7 @@ export class AppTable {
       this.dataSource = new MatTableDataSource(changes['data']?.currentValue);
     }
     if (changes?.['columnData']) {
+      this.columnSchema = [...this.columnData];
       this.displayedColumns = this.columnData?.map((item) => item?.accessor);
     }
   }

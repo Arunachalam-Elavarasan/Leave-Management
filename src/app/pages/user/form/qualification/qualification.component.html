@@ -5,19 +5,47 @@
       <text-field
         label="Qualification"
         [control]="userQualification.get('qualification')"
+        [readonly]="readonly"
+        [error]="
+          formService.fieldError(
+            userQualification.get('qualification'),
+            'qualification',
+            validation
+          )
+        "
       />
       <text-field
         label="Percentage"
         [control]="userQualification.get('percentage')"
+        [readonly]="readonly"
+        [error]="
+          formService.fieldError(
+            userQualification.get('percentage'),
+            'percentage',
+            validation
+          )
+        "
       />
-      <button
-        mat-flat-button
-        type="button"
-        (click)="onQualificationSubmit()"
-        color="primary"
-      >
-        {{ editIndex.toString() ? "Update" : "Add" }}
-      </button>
+      <div class="flex flex-end col-gap-sm">
+        <button
+          mat-flat-button
+          type="button"
+          (click)="onClear()"
+          color="warn"
+          [disabled]="readonly"
+        >
+          Clear
+        </button>
+        <button
+          mat-flat-button
+          type="button"
+          (click)="onQualificationSubmit()"
+          color="primary"
+          [disabled]="readonly"
+        >
+          {{ editIndex.toString() ? "Update" : "Add" }}
+        </button>
+      </div>
     </div>
   </div>
   <div style="width: 60%" class="margin-vertical-md">
@@ -26,6 +54,7 @@
       [data]="qualifications"
       (onActionClick)="onActionClick($event)"
       emptyMessage="Qualification Not Found"
+      [hasPagination]="false"
     ></app-table>
   </div>
 </div>
