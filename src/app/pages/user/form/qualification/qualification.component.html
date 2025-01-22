@@ -1,60 +1,62 @@
-<div class="flex space-between" [formGroup]="userQualification">
-  <div class="flex-col row-gap-md" style="width: 30%">
-    <h3>Qualification</h3>
-    <div>
-      <text-field
-        label="Qualification"
-        [control]="userQualification.get('qualification')"
-        [readonly]="readonly"
-        [error]="
-          formService.fieldError(
-            userQualification.get('qualification'),
-            'qualification',
-            validation
-          )
-        "
-      />
-      <text-field
-        label="Percentage"
-        [control]="userQualification.get('percentage')"
-        [readonly]="readonly"
-        [error]="
-          formService.fieldError(
-            userQualification.get('percentage'),
-            'percentage',
-            validation
-          )
-        "
-      />
-      <div class="flex flex-end col-gap-sm">
-        <button
-          mat-flat-button
-          type="button"
-          (click)="onClear()"
-          color="warn"
-          [disabled]="readonly"
-        >
-          Clear
-        </button>
-        <button
-          mat-flat-button
-          type="button"
-          (click)="onQualificationSubmit()"
-          color="primary"
-          [disabled]="readonly"
-        >
-          {{ editIndex.toString() ? "Update" : "Add" }}
-        </button>
+<div class="flex-col row-gap-md margin-vertical-md">
+  <h3>Qualification</h3>
+  <div class="flex space-between" [formGroup]="userQualification">
+    <div class="flex-col row-gap-md" style="width: 30%" *ngIf="!readonly">
+      <div>
+        <text-field
+          label="Qualification"
+          [control]="userQualification.get('qualification')"
+          [readonly]="readonly"
+          [error]="
+            formService.fieldError(
+              userQualification.get('qualification'),
+              'qualification',
+              validation
+            )
+          "
+        />
+        <text-field
+          label="Percentage"
+          [control]="userQualification.get('percentage')"
+          [readonly]="readonly"
+          [error]="
+            formService.fieldError(
+              userQualification.get('percentage'),
+              'percentage',
+              validation
+            )
+          "
+        />
+        <div class="flex flex-end col-gap-sm">
+          <button
+            mat-flat-button
+            type="button"
+            (click)="onClear()"
+            color="warn"
+            [disabled]="readonly"
+          >
+            Clear
+          </button>
+          <button
+            mat-flat-button
+            type="button"
+            (click)="onQualificationSubmit()"
+            color="primary"
+            [disabled]="readonly"
+          >
+            {{ editIndex.toString() ? "Update" : "Add" }}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div style="width: 60%" class="margin-vertical-md">
-    <app-table
-      [columnData]="columnData"
-      [data]="qualifications"
-      (onActionClick)="onActionClick($event)"
-      emptyMessage="Qualification Not Found"
-      [hasPagination]="false"
-    ></app-table>
+    <div style="width: 60%">
+      <app-table
+        [columnData]="columnData"
+        [data]="qualifications"
+        (onActionClick)="onActionClick($event)"
+        emptyMessage="Qualification Not Found"
+        [hasPagination]="false"
+      ></app-table>
+    </div>
   </div>
 </div>

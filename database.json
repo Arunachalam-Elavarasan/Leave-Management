@@ -1,7 +1,6 @@
 {
   "users": [
     {
-      "id": "926d",
       "firstName": "Michel",
       "lastName": "Johnson",
       "email": "test@gmail.com",
@@ -9,6 +8,7 @@
       "status": true,
       "secondarySameAsPrimary": true,
       "deactivationReason": "",
+      "dateOfBirth": "2025-01-09T18:30:00.000Z",
       "primaryContactInfo": {
         "address": "Address",
         "street": "Street",
@@ -29,7 +29,8 @@
           "percentage": "89",
           "id": 0.6940491768007091
         }
-      ]
+      ],
+      "id": "926d"
     }
   ],
   "leaveDetails": []

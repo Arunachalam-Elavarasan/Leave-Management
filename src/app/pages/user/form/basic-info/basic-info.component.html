@@ -61,6 +61,17 @@
                     )
                   "
                 />
+                <date-field
+                  label="Date of Birth"
+                  [control]="user.get('dateOfBirth')"
+                  [error]="
+                    formService.fieldError(
+                      user.get('dateOfBirth'),
+                      'dateOfBirth',
+                      validation
+                    )
+                  "
+                ></date-field>
               </div>
             </div>
             <div style="width: 30%">
@@ -102,7 +113,6 @@
                   label="Deactivation Reason"
                   [readonly]="isView"
                   [control]="user.get('deactivationReason')"
-                  [maxLength]="10"
                   [error]="
                     formService.fieldError(
                       user.get('deactivationReason'),
