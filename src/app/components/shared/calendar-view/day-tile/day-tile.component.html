@@ -1,37 +1,38 @@
 <span class="day-cell-container">
   <div>
     <p class="day-label">
-      {{ item?.date | date : "d" }}
+      {{ item.date | date : "d" }}
     </p>
   </div>
   <ng-container *ngIf="!item?.isDisabled">
-    <ng-container *ngFor="let user of users">
+    <ng-container *ngFor="let leave of collection; let index = index">
       <span
         class="flex indicator-container"
-        [ngStyle]="{ top: (renderData?.[user]?.top)+'px' }"
-        (click)="onBarClick.emit(renderData?.[user]?.[item?.date])"
-        [matTooltip]="renderData?.[user]?.[item?.date]?.userName"
+        [ngStyle]="{ top: getPosition(leave?.position) }"
+        (click)="onBarClick.emit(leave)"
+        [matTooltip]="leave?.userName"
+        *ngIf="index < 3"
       >
         <div
-          *ngIf="renderData?.[user]?.[item?.date]"
+          *ngIf="leave"
           class="indicator-bar"
           [ngStyle]="{
-                'width':   renderData?.[user]?.[item?.date]?.start +'%',
+                'width':   leave?.start +'%',
               }"
         ></div>
         <div
-          *ngIf="renderData?.[user]?.[item?.date]"
+          *ngIf="leave"
           class="indicator-bar"
           [ngStyle]="{
-                'background-color': renderData?.[user]?.barColor || '#00FF',
-                'width':  (renderData?.[user]?.[item?.date]?.end - renderData?.[user]?.[item?.date]?.start) +'%',
+                'background-color': leave?.barColor || '#00FF',
+                'width':  (leave?.end - leave?.start) +'%',
               }"
         ></div>
         <div
-          *ngIf="renderData?.[user]?.[item?.date]"
+          *ngIf="[leave]"
           class="indicator-bar"
           [ngStyle]="{
-                'width':  (100-renderData?.[user]?.[item?.date]?.end) +'%',
+                'width':  (100-leave?.end) +'%',
               }"
         ></div>
       </span>

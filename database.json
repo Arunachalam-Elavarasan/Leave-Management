@@ -73,6 +73,69 @@
           "id": 0.07148773540555942
         }
       ]
+    },
+    {
+      "id": "007d",
+      "firstName": "Prakash",
+      "lastName": "Kumar",
+      "email": "prakash@gmail.com",
+      "phoneNo": "3849384938",
+      "status": true,
+      "secondarySameAsPrimary": true,
+      "deactivationReason": "",
+      "dateOfBirth": "1966-02-01T18:30:00.000Z",
+      "primaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "834983"
+      },
+      "secondaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "834983"
+      },
+      "qualification": [
+        {
+          "qualification": "SSLC",
+          "percentage": "89",
+          "id": 0.3921773430911435
+        },
+        {
+          "qualification": "HSC",
+          "percentage": "78",
+          "id": 0.7830393414836692
+        }
+      ]
+    },
+    {
+      "id": "388d",
+      "firstName": "Arunachalam",
+      "lastName": "Elavarasan",
+      "email": "arun@gmail.com",
+      "phoneNo": "3843984934",
+      "status": true,
+      "secondarySameAsPrimary": true,
+      "deactivationReason": "",
+      "dateOfBirth": "2025-01-02T18:30:00.000Z",
+      "primaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "384983"
+      },
+      "secondaryContactInfo": {
+        "address": "Address",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "pinCode": "384983"
+      },
+      "qualification": []
     }
   ],
   "leaveDetails": [
@@ -102,6 +165,33 @@
       "endDate": "2025-01-17T18:30:00.000Z",
       "userId": "5d0f",
       "duration": "0 Day"
+    },
+    {
+      "id": "d167",
+      "typeOfLeave": "Testing",
+      "comment": "Comment",
+      "startDate": "2024-12-31T18:30:00.000Z",
+      "endDate": "2025-01-01T18:30:00.000Z",
+      "userId": "5d0f",
+      "duration": "2 Days"
+    },
+    {
+      "id": "e8ef",
+      "typeOfLeave": "Testing",
+      "comment": "Medical",
+      "startDate": "2025-01-17T18:30:00.000Z",
+      "endDate": "2025-01-19T18:30:00.000Z",
+      "userId": "388d",
+      "duration": "3 Days"
+    },
+    {
+      "id": "96c6",
+      "typeOfLeave": "Welcome",
+      "comment": "comments",
+      "startDate": "2025-01-15T18:30:00.000Z",
+      "endDate": "2025-01-27T18:30:00.000Z",
+      "userId": "007d",
+      "duration": "13 Days"
     }
   ]
 }

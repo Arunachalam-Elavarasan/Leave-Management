@@ -104,16 +104,14 @@ export class FormComponent {
     const payload = {
       ...form.value,
       userId: this.userId,
-      duration: formatPlural({ number: noOfDays, word: 'Day' }),
+      duration: formatPlural({ number: noOfDays + 1, word: 'Day' }),
     };
-
-    console.log({ payload });
 
     this.api.service.post(this.api.path.LEAVE_DETAILS, payload).subscribe({
       next: (value) => {
         this.snackBar.show({ message: LEAVE_APPLIED });
-        this.router.navigate([routePath.LEAVE_LIST]);
         this.store.dispatch(loadLeaveDetails());
+        this.router.navigate([routePath.LEAVE_LIST]);
       },
     });
   }
@@ -123,7 +121,6 @@ export class FormComponent {
 
     this.store.select(getLeaves).subscribe((value: any[]) => {
       this.leaves = value?.filter((leave) => leave?.userId === this.userId);
-      console.log(this.leaves);
     });
   }
 }
