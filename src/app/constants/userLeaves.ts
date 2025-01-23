@@ -23,3 +23,4 @@ export const leaveInitialValues = {
 };
 
 export const LEAVE_APPLIED: string = 'Leave Applied Successfully';
+export const LEAVE_EXIST: string = 'Leave already exists for this dates';

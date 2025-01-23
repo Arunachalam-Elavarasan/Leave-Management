@@ -28,11 +28,13 @@ import {
 } from '../../../utils/common';
 import {
   LEAVE_APPLIED,
+  LEAVE_EXIST,
   leaveFormActions,
   leaveInitialValues,
 } from '../../../constants/userLeaves';
 import { SnackBarService } from '../../../services/snackBar/snack-bar.service';
 import { checkEndDateValidation } from '../../../validators/leaveDetails';
+import { getLeaves } from '../../../store/app/app.selector';
 
 @Component({
   selector: 'leave-form',
@@ -57,6 +59,7 @@ export class FormComponent {
   private activatedRoute = inject(ActivatedRoute);
   formService = inject(FormService);
 
+  leaves: any[] = [];
   userDetails!: any[];
   userId: string = '';
   actions: ListHeaderAction[] = leaveFormActions;
@@ -70,10 +73,28 @@ export class FormComponent {
     action === CANCEL && this.router.navigate([routePath.LEAVE_LIST]);
   }
 
+  checkLeaveExist() {
+    const appliedStartDate = this.leaveDetails.get('startDate')?.value;
+    const appliedEndDate = this.leaveDetails.get('endDate')?.value;
+
+    return this.leaves?.reduce((acc, leave) => {
+      const startDate = new Date(leave?.startDate);
+      const endDate = new Date(leave?.endDate);
+      const leaveExist =
+        (appliedStartDate >= startDate && endDate <= appliedStartDate) ||
+        (appliedEndDate >= startDate && endDate <= appliedEndDate);
+      return (acc = leaveExist);
+    }, false);
+  }
+
   onSubmit() {
     this.leaveDetails.markAllAsTouched();
-    console.log(this.leaveDetails.errors);
     if (this.leaveDetails.invalid || !this.userId) return;
+
+    if (this.checkLeaveExist()) {
+      this.snackBar.show({ message: LEAVE_EXIST });
+      return;
+    }
     const form = this.leaveDetails;
     const noOfDays = getDurationBetweenTwoDates(
       form.get('startDate')?.value,
@@ -83,19 +104,23 @@ export class FormComponent {
     const payload = {
       ...form.value,
       userId: this.userId,
-      duration: formatPlural({ number: noOfDays, word: 'Day' }),
+      duration: formatPlural({ number: noOfDays + 1, word: 'Day' }),
     };
 
     this.api.service.post(this.api.path.LEAVE_DETAILS, payload).subscribe({
       next: (value) => {
         this.snackBar.show({ message: LEAVE_APPLIED });
-        this.router.navigate([routePath.LEAVE_LIST]);
         this.store.dispatch(loadLeaveDetails());
+        this.router.navigate([routePath.LEAVE_LIST]);
       },
     });
   }
 
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.params['id'];
+
+    this.store.select(getLeaves).subscribe((value: any[]) => {
+      this.leaves = value?.filter((leave) => leave?.userId === this.userId);
+    });
   }
 }
