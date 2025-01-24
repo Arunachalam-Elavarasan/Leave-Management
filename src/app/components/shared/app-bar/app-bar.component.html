@@ -5,12 +5,19 @@
       <ul class="nav-menu-container">
         @for (menu of appBarMenu; track $index) {
         <li>
-          <a
-            [routerLink]="menu?.navigateTo"
-            class="link"
-            routerLinkActive="active-link"
-            >{{ menu?.name }}</a
-          >
+          <ng-container *ngIf="!menu?.subMenu">
+            <a
+              [routerLink]="menu?.navigateTo"
+              class="link"
+              routerLinkActive="active-link"
+              >{{ menu?.name }}</a
+            >
+          </ng-container>
+          <ng-container *ngIf="menu?.subMenu && menu?.subMenu?.length">
+            <!-- <a class="link" [matMenuTriggerFor]="sub">{{
+              menu?.name
+            }}</a> -->
+          </ng-container>
         </li>
         }
       </ul>
