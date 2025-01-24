@@ -14,9 +14,7 @@
             >
           </ng-container>
           <ng-container *ngIf="menu?.subMenu && menu?.subMenu?.length">
-            <!-- <a class="link" [matMenuTriggerFor]="sub">{{
-              menu?.name
-            }}</a> -->
+            <app-menu [label]="menu?.name" [menu]="menu.subMenu"></app-menu>
           </ng-container>
         </li>
         }

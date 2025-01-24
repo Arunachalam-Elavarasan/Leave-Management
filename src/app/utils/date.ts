@@ -1,5 +1,5 @@
 import { WEEK_DAYS } from '../constants/common';
-import { CurrentMonthCalendar } from '../model/calendar';
+import { CurrentCalendar } from '../model/calendar';
 
 export const getNoOfDaysInMonth = (
   month: number,
@@ -18,24 +18,18 @@ export const getPreviousDate = (date: Date | string, count: number = 1) => {
   return givenDate;
 };
 
-export const getPreMonth = (
-  month: number,
-  year: number
-): CurrentMonthCalendar => {
-  const preMonth = month - 1;
+export const getPreCalendarView = (data: CurrentCalendar): CurrentCalendar => {
+  const preMonth = data?.month - 1;
   return preMonth < 0
-    ? { month: 11, year: year - 1 }
-    : { year, month: preMonth };
+    ? { ...data, month: 11, year: data?.year - 1 }
+    : { ...data, year: data?.year, month: preMonth };
 };
 
-export const getNextMonth = (
-  month: number,
-  year: number
-): CurrentMonthCalendar => {
-  const nextMonth = month + 1;
+export const getNextCalendarView = (data: CurrentCalendar): CurrentCalendar => {
+  const nextMonth = data?.month + 1;
   return nextMonth > 11
-    ? { month: 0, year: year + 1 }
-    : { year, month: nextMonth };
+    ? { ...data, month: 0, year: data?.year + 1 }
+    : { ...data, year: data?.year, month: nextMonth };
 };
 
 export const getBetweenDates = (startDate: Date, endDate: Date): Date[] => {
@@ -47,4 +41,18 @@ export const getBetweenDates = (startDate: Date, endDate: Date): Date[] => {
     currentDate.setDate(currentDate.getDate() + 1);
   }
   return dates;
+};
+
+export const getDayView = (
+  data: CurrentCalendar,
+  goNext: boolean
+): CurrentCalendar => {
+  const date = new Date(data?.year, data?.month, data?.date);
+  const nextDay = new Date(date.setDate(date.getDate() - (goNext ? -1 : 1)));
+  return {
+    date: nextDay?.getDate(),
+    day: WEEK_DAYS[nextDay?.getDay()],
+    month: nextDay?.getMonth(),
+    year: nextDay?.getFullYear(),
+  };
 };

@@ -10,6 +10,7 @@ import { AvatarComponent } from '../avatar/avatar.component';
 import { environment } from '../../../../environment/environment';
 import { MatIconModule } from '@angular/material/icon';
 import { ThemeService } from '../../../services/theme/theme.service';
+import { AppMenuComponent } from '../app-menu/app-menu.component';
 
 @Component({
   selector: 'app-bar',
@@ -24,6 +25,7 @@ import { ThemeService } from '../../../services/theme/theme.service';
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    AppMenuComponent,
   ],
   templateUrl: './app-bar.component.html',
   styleUrl: './app-bar.component.scss',

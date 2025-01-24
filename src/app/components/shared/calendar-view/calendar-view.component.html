@@ -1,13 +1,20 @@
 <div class="calendar-action">
-  <button mat-icon-button (click)="onMonthChange(false)">
+  <button mat-icon-button (click)="onCalendarChange(false)">
     <mat-icon>arrow_back_ios</mat-icon>
   </button>
-  <button mat-icon-button (click)="onMonthChange(true)">
+  <button mat-icon-button (click)="onCalendarChange(true)">
     <mat-icon>arrow_forward_ios</mat-icon>
   </button>
   <span>
-    {{ months[currentMonthCalendar.month] }}
-    {{ currentMonthCalendar.year }}
+    {{ calendarTitle }}
   </span>
 </div>
-<month-view [collection]="dateCollection" [renderData]="data"></month-view>
+<ng-container *ngIf="type === 'month'">
+  <month-view [collection]="dateCollection" [renderData]="data"></month-view>
+</ng-container>
+<ng-container *ngIf="type === 'week'">
+  <app-week></app-week>
+</ng-container>
+<ng-container *ngIf="type === 'day'">
+  <app-day></app-day>
+</ng-container>
