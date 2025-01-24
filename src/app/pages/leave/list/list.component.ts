@@ -38,6 +38,8 @@ export class ListComponent {
   }
 
   onUserSelect(value: any) {
+    console.log(value);
+
     if (!value) {
       this.filteredDetails = this.leaveDetails;
       return;

@@ -77,6 +77,31 @@ export const routes: Routes = [
             (m) => m.FormComponent
           ),
       },
+      {
+        path: routePath.PLAN,
+        redirectTo: routePath.DAY_PLAN,
+        pathMatch: 'full',
+      },
+      {
+        path: routePath.PLAN,
+
+        children: [
+          {
+            path: 'day',
+            loadComponent: () =>
+              import('./pages/plan/day/day.component').then(
+                (m) => m.DayComponent
+              ),
+          },
+          {
+            path: 'week',
+            loadComponent: () =>
+              import('./pages/plan/week/week.component').then(
+                (m) => m.WeekComponent
+              ),
+          },
+        ],
+      },
     ],
   },
 ];

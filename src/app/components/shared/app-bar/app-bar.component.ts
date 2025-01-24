@@ -3,6 +3,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { APP_BAR_MENU } from '../../../constants/contents';
 import { AvatarComponent } from '../avatar/avatar.component';
@@ -21,6 +22,8 @@ import { ThemeService } from '../../../services/theme/theme.service';
     CommonModule,
     RouterModule,
     MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   templateUrl: './app-bar.component.html',
   styleUrl: './app-bar.component.scss',

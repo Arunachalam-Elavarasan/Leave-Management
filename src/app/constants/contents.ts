@@ -9,6 +9,19 @@ export const APP_BAR_MENU = [
     name: 'Leave Details',
     navigateTo: routePath?.LEAVE_LIST,
   },
+  {
+    name: 'Plan',
+    subMenu: [
+      {
+        name: 'Day',
+        navigateTo: routePath?.DAY_PLAN,
+      },
+      {
+        name: 'Week',
+        navigateTo: routePath?.WEEK_PLAN,
+      },
+    ],
+  },
 ];
 
 export const messages = {

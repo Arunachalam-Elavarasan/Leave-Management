@@ -8,4 +8,9 @@ export const routePath = {
   LEAVE_LIST_CALENDER_VIEW: 'calender-view',
 
   LEAVE_FORM: 'leave/form',
+
+  PLAN: 'plan',
+
+  DAY_PLAN: 'plan/day',
+  WEEK_PLAN: 'plan/week',
 };
